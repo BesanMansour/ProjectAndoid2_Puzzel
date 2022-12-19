@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/MenuProfile"
+            android:title="Profile">
+        </item>
+
+        <item android:id="@+id/MenuSound"
+            android:title="Sound">
+        </item>
+
+        <item android:id="@+id/MenuNotification"
+            android:title="Notification">
+        </item>
+
+        <item android:id="@+id/MenuReturn"
+            android:title="Return">
+        </item>
+    </group>
+
+</menu>

@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:text="Settings"
+        android:textColor="@color/blue"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/SettingImg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/img"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/home_btn"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="الملف الشخصي"
+        android:id="@+id/SettingProfile"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:gravity="center">
+
+        <Switch
+            android:id="@+id/SettingSwitch"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:checked="false" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_gravity="center"
+            android:background="@drawable/home_btn"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:text="الاشعارات"
+            android:layout_marginRight="35dp"
+            android:id="@+id/SettingNotification"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_gravity="center"
+        android:background="@drawable/home_btn"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="اعادة اللعبة من الصفر؟"
+        android:layout_marginTop="40dp"
+        android:id="@+id/SettingReturn"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:padding="6dp"
+        android:textColor="@color/white"/>
+</LinearLayout>
