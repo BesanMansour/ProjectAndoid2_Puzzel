@@ -1,13 +1,13 @@
 package RoomDatabase;
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(foreignKeys = {@ForeignKey(entity = Pattern.class,
-        parentColumns = {"id"},childColumns = {"patternId"},
-        onUpdate = ForeignKey.CASCADE,onDelete = ForeignKey.CASCADE)})
+@Entity(foreignKeys = {@ForeignKey(entity = Level.class,
+parentColumns = {"id"},childColumns = {"levelId"})})
 public class Mystery {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
     private String title;
     private String answer_1;
@@ -16,13 +16,16 @@ public class Mystery {
     private String answer_4;
     private String true_answer;
     private int points;
-    private int patternId;
+    private int levelId;
     private int duration;
-    public Pattern pattern;
+    final int patternId;
+    final String patternName;
     private String hint;
 
-    public Mystery(String title, String answer_1, String answer_2, String answer_3, String answer_4,
-                   String true_answer, int points, int patternId, int duration, Pattern pattern, String hint) {
+    public Mystery(int id,String title, String answer_1, String answer_2, String answer_3, String answer_4,
+                   String true_answer, int points, int levelId, int duration, int patternId,
+                   String patternName, String hint) {
+        this.id = id;
         this.title = title;
         this.answer_1 = answer_1;
         this.answer_2 = answer_2;
@@ -30,12 +33,13 @@ public class Mystery {
         this.answer_4 = answer_4;
         this.true_answer = true_answer;
         this.points = points;
-        this.patternId = patternId;
+        this.levelId = levelId;
         this.duration = duration;
-        this.pattern = pattern;
+        this.patternId = patternId;
+        this.patternName = patternName;
         this.hint = hint;
     }
-
+    
     public int getId() {
         return id;
     }
@@ -108,14 +112,6 @@ public class Mystery {
         this.duration = duration;
     }
 
-    public Pattern getPattern() {
-        return pattern;
-    }
-
-    public void setPattern(Pattern pattern) {
-        this.pattern = pattern;
-    }
-
     public String getHint() {
         return hint;
     }
@@ -124,11 +120,19 @@ public class Mystery {
         this.hint = hint;
     }
 
+    public int getLevelId() {
+        return levelId;
+    }
+
+    public void setLevelId(int levelId) {
+        this.levelId = levelId;
+    }
+
     public int getPatternId() {
         return patternId;
     }
 
-    public void setPatternId(int patternId) {
-        this.patternId = patternId;
+    public String getPatternName() {
+        return patternName;
     }
 }

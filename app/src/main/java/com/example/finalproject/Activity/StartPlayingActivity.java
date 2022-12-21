@@ -2,6 +2,8 @@ package com.example.finalproject.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -26,6 +28,7 @@ import java.util.List;
 
 import RoomDatabase.Level;
 import RoomDatabase.MyRoomDatabase;
+import RoomDatabase.ViewModel;
 
 public class StartPlayingActivity extends AppCompatActivity {
     ActivityStartPlayingBinding binding;
@@ -37,14 +40,17 @@ public class StartPlayingActivity extends AppCompatActivity {
         binding = ActivityStartPlayingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        MyRoomDatabase roomDatabase = Room.databaseBuilder(getApplicationContext(),
-                MyRoomDatabase.class, "database").allowMainThreadQueries().build();
+//        MyRoomDatabase roomDatabase = MyRoomDatabase.getDatabase(this.getApplicationContext());
+
+        ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
 
         String assets = ParsJson.readFromAssets(getApplicationContext(),"json/jsonStr.json");
-        ParsJson.readJson(assets);
+
+        ParsJson p = new ParsJson(this);
+        p.readJson(assets);
 
         level= new ArrayList<>();
-        roomDatabase.levelDao().AllLevel().observe(this, new Observer<List<Level>>() {
+        viewModel.AllLevel().observe(this, new Observer<List<Level>>() {
             @Override
             public void onChanged(List<Level> levels) {
                 level = levels;
@@ -63,7 +69,7 @@ public class StartPlayingActivity extends AppCompatActivity {
             }
         });
     }
-//    private void parsJson(String assets){
+    //    private void parsJson(String assets){
 //        try {
 //            JSONArray jsonArray = new JSONArray(assets);
 //            ArrayList<game> gameArrayList = new ArrayList<>();

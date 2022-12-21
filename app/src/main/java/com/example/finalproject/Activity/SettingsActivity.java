@@ -36,24 +36,20 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!sound) {
-                    editor.putBoolean("sound",false);
+                    editor.putBoolean("sound_false",false);
+                    editor.apply();
                     binding.SettingImg.setImageResource(R.drawable.img);
-                    startService(intent);
+//                    startService(intent);
                     sound = true;
                 } else {
-                    editor.putBoolean("sound",true);
+                    editor.putBoolean("sound_true",true);
+                    editor.apply();
                     binding.SettingImg.setImageResource(R.drawable.img_1);
-                    stopService(intent);
+//                    stopService(intent);
                     sound = false;
                 }
             }
         });
-        sp.getString("sound","");
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        stopService(intent);
     }
 //    @RequiresApi(api = Build.VERSION_CODES.M)
 //    private void mute() {

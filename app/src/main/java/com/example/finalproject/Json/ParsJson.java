@@ -1,9 +1,10 @@
 package com.example.finalproject.Json;
 
 import android.content.Context;
-import android.media.MediaCodec;
+import android.util.Log;
 
-import androidx.room.Room;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,28 +15,53 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import RoomDatabase.Level;
-import RoomDatabase.MyRoomDatabase;
 import RoomDatabase.Mystery;
-import RoomDatabase.Pattern;
+import RoomDatabase.ViewModel;
 
 public class ParsJson {
+    Context context;
 
-    public static void readJson(String assets) {
-        Context context = null;
-        MyRoomDatabase roomDatabase = Room.databaseBuilder(context.getApplicationContext(),
-                MyRoomDatabase.class, "database").allowMainThreadQueries().build();
+    public ParsJson(Context context) {
+        this.context = context;
+    }
+
+    public void readJson(String assets) {
+        ViewModel viewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(ViewModel.class);
+
+//        Log.d("jsonTest", "readJson: im here");
+//        MyRoomDatabase roomDatabase = MyRoomDatabase.getDatabase(context.getApplicationContext());
+
+        ArrayList<Level> levelArrayList = new ArrayList<>();
+
+        Mystery mystery = null;
+        Level level = null;
         try {
             JSONArray jsonArray = new JSONArray(assets);
-            ArrayList<Level> levelArrayList = new ArrayList<>();
+
+            ArrayList<Mystery> mysteryArrayList = new ArrayList<>();
+
+//            JSONObject levelJsonObject = jsonArray.getJSONObject(0);
+//            JSONArray jsonArray1 = levelJsonObject.getJSONArray("questions");
+//            JSONObject levelJsonObject1 = jsonArray1.getJSONObject(0);
+//            String title = levelJsonObject1.getString("title");
+//            Log.d("jsonTest", "readJson: "+title);
+
             for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject levelJsonObject = new JSONObject(jsonArray.get(i).toString());
+                JSONObject levelJsonObject = jsonArray.getJSONObject(i);
                 int level_no = levelJsonObject.getInt("level_no");
                 int unlock_points = levelJsonObject.getInt("unlock_points");
 
+                level = new Level(level_no, unlock_points);
+                levelArrayList.add(level);
+                viewModel.InsertLevel(level);
+
+//                roomDatabase.databaseWriteExecutor.execute(() ->
+//                roomDatabase.levelDao().InsertLevel(level));
+
                 JSONArray mysteryJsonArray = levelJsonObject.getJSONArray("questions");
-                ArrayList<Mystery> mysteryArrayList = new ArrayList<>();
                 for (int j = 0; j < mysteryJsonArray.length(); j++) {
-                    JSONObject mysteryJsonObject = new JSONObject(mysteryJsonArray.get(i).toString());
+                    JSONObject mysteryJsonObject = mysteryJsonArray.getJSONObject(j);
+//                    JSONObject mysteryJsonObject = new JSONObject(mysteryJsonArray.get(i).toString());
                     int id = mysteryJsonObject.getInt("id");
                     String title = mysteryJsonObject.getString("title");
                     String answer_1 = mysteryJsonObject.getString("answer_1");
@@ -50,10 +76,18 @@ public class ParsJson {
                     int pattern_id = patternJsonObject.getInt("pattern_id");
                     String pattern_name = patternJsonObject.getString("pattern_name");
 
-                    Pattern pattern = new Pattern(pattern_name);
+//                    Pattern pattern = new Pattern(pattern_name);
 
-                    Mystery mystery = new Mystery(title,answer_1,answer_2,answer_3,answer_4,true_answer
-                    ,points,pattern_id,duration,pattern,hint);
+                    Log.d("jsonTest", "readJson: " + title);
+
+
+                    mystery = new Mystery(id,title, answer_1, answer_2, answer_3, answer_4, true_answer
+                            , points, level_no, duration, pattern_id, pattern_name, hint);
+
+                    mysteryArrayList.add(mystery);
+
+                    viewModel.InsertMystery(mystery);
+
 
 //                    pattern.setPattern_id(pattern_id);
 //                    pattern.setPattern_name(pattern_name);
@@ -69,26 +103,33 @@ public class ParsJson {
 //                    questions.setDuration(duration);
 //                    questions.setHint(hint);
 //                    questions.setPattern(pattern);
-//
 //                    questionsArrayList.add(questions);
-
-                    roomDatabase.mysteryDao().InsertMystery(mystery);
-                    roomDatabase.patternDao().InsertPattern(pattern);
+//                    roomDatabase.patternDao().InsertPattern(pattern);
                 }
-                Level level = new Level(unlock_points);
-                roomDatabase.levelDao().InsertLevel(level);
+
+//                level = new Level(level_no, unlock_points);
+//                levelArrayList.add(level);
+//
+////                roomDatabase.databaseWriteExecutor.execute(() ->
+////                roomDatabase.levelDao().InsertLevel(level));
+//
+//                viewModel.InsertLevel(level);
+
 //                game game = new game();
 //                game.setLevel_no(level_no);
 //                game.setUnlock_points(unlock_points);
 //                game.setQuestionsArrayList(questionsArrayList);
 //                levelArrayList.add(game);
             }
+//            viewModel.InsertMystery(mystery);
+//            viewModel.InsertLevel(level);
         } catch (
                 JSONException e) {
             e.printStackTrace();
+            Log.d("jsonTest", "readJson: " + e.getMessage());
+
         }
     }
-
     public static String readFromAssets(Context context, String fileName) {
         String string = "";
         try {

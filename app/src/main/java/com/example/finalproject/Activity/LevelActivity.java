@@ -2,6 +2,8 @@ package com.example.finalproject.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -21,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import RoomDatabase.ViewModel;
+
 public class LevelActivity extends AppCompatActivity {
     ActivityLevelBinding binding;
 
@@ -30,8 +34,11 @@ public class LevelActivity extends AppCompatActivity {
         binding = ActivityLevelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
+
         String assets = ParsJson.readFromAssets(getApplicationContext(),"json/jsonStr.json");
-        ParsJson.readJson(assets);
+        ParsJson p = new ParsJson(this);
+        p.readJson(assets);
     }
 
     private void parsJson(String assets) {
