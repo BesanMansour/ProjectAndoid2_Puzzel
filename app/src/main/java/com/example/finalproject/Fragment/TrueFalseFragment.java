@@ -16,16 +16,16 @@ public class TrueFalseFragment extends Fragment {
     private static final String ARG_Answer = "param2";
 
     private String title;
-    private String answer;
+    private boolean answer;
 
     public TrueFalseFragment() {
     }
 
-    public static TrueFalseFragment newInstance(String title,String answer) {
+    public static TrueFalseFragment newInstance(String title,boolean answer) {
         TrueFalseFragment fragment = new TrueFalseFragment();
         Bundle args = new Bundle();
         args.putString(ARG_TITLE, title);
-        args.putString(ARG_Answer, answer);
+        args.putBoolean(ARG_Answer, answer);
         fragment.setArguments(args);
         return fragment;
     }
@@ -35,10 +35,9 @@ public class TrueFalseFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             title = getArguments().getString(ARG_TITLE);
-            answer = getArguments().getString(ARG_Answer);
+            answer = getArguments().getBoolean(ARG_Answer);
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

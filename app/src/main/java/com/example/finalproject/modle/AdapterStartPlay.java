@@ -10,10 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalproject.databinding.ItemStartPlayingBinding;
-import com.example.finalproject.Json.game;
-import com.example.finalproject.Json.questions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import RoomDatabase.Level;
@@ -39,13 +36,11 @@ public class AdapterStartPlay extends RecyclerView.Adapter<AdapterStartPlay.Game
     public void onBindViewHolder(@NonNull GameViewHolder holder, int position) {
         Level level = levelArrayList.get(holder.getAdapterPosition());
         holder.level_no.setText("المجموعة "+ level.getId());
-//        ArrayList<questions> questions = game.getQuestionsArrayList();
-//        holder.count_ques.setText(String.valueOf(questions.size()));
         holder.unlock.setText(String.valueOf(level.getCountPoint()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onClick(holder.getAdapterPosition());
+                listener.onClick(level.getId());
                 notifyDataSetChanged();
             }
         });

@@ -2,27 +2,24 @@ package com.example.finalproject.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.util.Log;
 
+import com.example.finalproject.Fragment.ChooseFragment;
+import com.example.finalproject.Fragment.FillFragment;
 import com.example.finalproject.Fragment.LevelAdapterFragment;
 import com.example.finalproject.Fragment.TrueFalseFragment;
 import com.example.finalproject.Json.ParsJson;
 import com.example.finalproject.databinding.ActivityLevelBinding;
-import com.example.finalproject.Json.game;
-import com.example.finalproject.Json.questions;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
+import RoomDatabase.Mystery;
 import RoomDatabase.ViewModel;
 
 public class LevelActivity extends AppCompatActivity {
@@ -33,97 +30,37 @@ public class LevelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLevelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Intent intent = getIntent();
 
         ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
 
-        String assets = ParsJson.readFromAssets(getApplicationContext(),"json/jsonStr.json");
+        String assets = ParsJson.readFromAssets(getApplicationContext(), "json/jsonStr.json");
         ParsJson p = new ParsJson(this);
         p.readJson(assets);
-    }
 
-    private void parsJson(String assets) {
-        String title = null;
-        int points = 0;
-        String true_answer = null;
-        try {
-            JSONArray jsonArray = new JSONArray(assets);
-            ArrayList<game> gameArrayList = new ArrayList<>();
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject gameJsonObject = new JSONObject(jsonArray.get(i).toString());
-                int level_no = gameJsonObject.getInt("level_no");
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        LevelAdapterFragment levelAdapterFragment = new LevelAdapterFragment(this, fragments);
 
-                JSONArray questionsJsonArray = gameJsonObject.getJSONArray("questions");
-                ArrayList<questions> questionsArrayList = new ArrayList<>();
-                for (int j = 0; j < questionsJsonArray.length(); j++) {
-                    JSONObject questionsJsonObject = new JSONObject(questionsJsonArray.get(i).toString());
-                    int id = questionsJsonObject.getInt("id");
-                    title = questionsJsonObject.getString("title");
-                    String answer_1 = questionsJsonObject.getString("answer_1");
-                    String answer_2 = questionsJsonObject.getString("answer_2");
-                    String answer_3 = questionsJsonObject.getString("answer_3");
-                    String answer_4 = questionsJsonObject.getString("answer_4");
-                    true_answer = questionsJsonObject.getString("true_answer");
-                    points = questionsJsonObject.getInt("points");
-                    int duration = questionsJsonObject.getInt("duration");
-                    String hint = questionsJsonObject.getString("hint");
-                    JSONObject patternJsonObject = questionsJsonObject.getJSONObject("pattern");
-                    int pattern_id = patternJsonObject.getInt("pattern_id");
-                    String pattern_name = patternJsonObject.getString("pattern_name");
+        viewModel.AllMystery().observe(this, new Observer<List<Mystery>>() {
+            @Override
+            public void onChanged(List<Mystery> mysteries) {
+                int pos = intent.getIntExtra("position", 0);
 
-                    questions questions = new questions();
-//                    pattern pattern = new pattern();
-//                    pattern.setPattern_id(pattern_id);
-//                    pattern.setPattern_name(pattern_name);
+                String title = mysteries.get(pos).getTitle();
+                String true_answer = mysteries.get(pos).getTrue_answer();
+                String answer1 = mysteries.get(pos).getAnswer_1();
+                String answer2 = mysteries.get(pos).getAnswer_2();
+                String answer3 = mysteries.get(pos).getAnswer_3();
+                String answer4 = mysteries.get(pos).getAnswer_4();
 
-                    questions.setId(id);
-                    questions.setTitle(title);
-                    questions.setAnswer_1(answer_1);
-                    questions.setAnswer_2(answer_2);
-                    questions.setAnswer_3(answer_3);
-                    questions.setAnswer_4(answer_4);
-                    questions.setTrue_answer(true_answer);
-                    questions.setPoints(points);
-                    questions.setDuration(duration);
-                    questions.setHint(hint);
-//                    questions.setPattern(pattern);
+                Log.d("pos",String.valueOf(pos));
 
-                    questionsArrayList.add(questions);
+                fragments.add(TrueFalseFragment.newInstance(title, Boolean.parseBoolean(true_answer)));
+                fragments.add(ChooseFragment.newInstance(title, answer1, answer2, answer3, answer4, true_answer));
+                fragments.add(FillFragment.newInstance(title));
 
-                }
-                game game = new game();
-                game.setLevel_no(level_no);
-                game.setQuestionsArrayList(questionsArrayList);
-
-                ArrayList<Fragment> fragments = new ArrayList<>();
-                fragments.add(TrueFalseFragment.newInstance(title,true_answer));
-
-                Toast.makeText(this, String.valueOf(true_answer), Toast.LENGTH_SHORT).show();
-
-                LevelAdapterFragment carFragAdapter = new LevelAdapterFragment(this, fragments);
-                binding.LevelPager.setAdapter(carFragAdapter);
-
-                binding.LevelNumMystery.setText(String.valueOf(points));
-                binding.LevelNumPoint.setText(String.valueOf(questionsArrayList.size()));
-                binding.LevelTV.setText("المجموعة "+ level_no);
+                binding.LevelPager.setAdapter(levelAdapterFragment);
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private String readFromAssets(String fileName) {
-        String string = "";
-        try {
-            InputStream inputStream = getAssets().open(fileName);
-            int size = inputStream.available();
-            byte[] byteObject = new byte[size];
-            inputStream.read(byteObject);
-            inputStream.close();
-            string = new String(byteObject, "UTF-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return string;
+        });
     }
 }

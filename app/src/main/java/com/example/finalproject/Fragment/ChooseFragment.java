@@ -56,6 +56,11 @@ public class ChooseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FragmentChooseBinding binding = FragmentChooseBinding.inflate(getLayoutInflater());
+        binding.ChooseTitle.setText(mParam1);
+        binding.ChooseAnswer1.setText(answer1);
+        binding.ChooseAnswer2.setText(answer2);
+        binding.ChooseAnswer3.setText(answer3);
+        binding.ChooseAnswer4.setText(answer4);
         return binding.getRoot();
     }
 }

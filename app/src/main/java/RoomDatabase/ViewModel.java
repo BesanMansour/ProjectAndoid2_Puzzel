@@ -48,7 +48,7 @@ public class ViewModel extends AndroidViewModel {
         return repository.AllLevel();
     }
 
-    public void InsertMystery(Mystery mystery){
+    public void InsertMystery(Mystery mystery) {
         MyRoomDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -72,7 +72,7 @@ public class ViewModel extends AndroidViewModel {
             }
         });
     }
-    LiveData<List<Mystery>> AllMystery(){
+    public LiveData<List<Mystery>> AllMystery(){
         return repository.AllMystery();
     }
 }

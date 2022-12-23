@@ -4,6 +4,8 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.Contract;
+
 @Entity(foreignKeys = {@ForeignKey(entity = Level.class,
 parentColumns = {"id"},childColumns = {"levelId"})})
 public class Mystery {
@@ -22,9 +24,8 @@ public class Mystery {
     final String patternName;
     private String hint;
 
-    public Mystery(int id,String title, String answer_1, String answer_2, String answer_3, String answer_4,
-                   String true_answer, int points, int levelId, int duration, int patternId,
-                   String patternName, String hint) {
+    public Mystery(int id, String title, String answer_1, String answer_2, String answer_3, String answer_4,
+                   String true_answer, int points, int levelId, int duration,int patternId,String patternName, String hint) {
         this.id = id;
         this.title = title;
         this.answer_1 = answer_1;
@@ -39,7 +40,6 @@ public class Mystery {
         this.patternName = patternName;
         this.hint = hint;
     }
-    
     public int getId() {
         return id;
     }

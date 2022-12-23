@@ -3,23 +3,15 @@ package com.example.finalproject.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.finalproject.Json.ParsJson;
-import com.example.finalproject.Json.game;
-import com.example.finalproject.Json.questions;
 import com.example.finalproject.databinding.ActivityStartPlayingBinding;
 import com.example.finalproject.modle.AdapterStartPlay;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import RoomDatabase.Level;
-import RoomDatabase.MyRoomDatabase;
 import RoomDatabase.ViewModel;
 
 public class StartPlayingActivity extends AppCompatActivity {
@@ -39,8 +30,6 @@ public class StartPlayingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityStartPlayingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-//        MyRoomDatabase roomDatabase = MyRoomDatabase.getDatabase(this.getApplicationContext());
 
         ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
 

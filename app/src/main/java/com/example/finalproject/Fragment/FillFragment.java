@@ -9,22 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.finalproject.R;
+import com.example.finalproject.databinding.FragmentFillBinding;
 
 public class FillFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_TITLE = "param1";
+    private static final String ARG_Answer = "param2";
 
-    private String mParam1;
-    private String mParam2;
+    private String title;
+//    private String answer;
 
     public FillFragment() {
     }
-    public static FillFragment newInstance(String param1, String param2) {
+    public static FillFragment newInstance(String title) {
         FillFragment fragment = new FillFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_TITLE, title);
+//        args.putString(ARG_Answer, answer);
         fragment.setArguments(args);
         return fragment;
     }
@@ -33,14 +34,17 @@ public class FillFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            title = getArguments().getString(ARG_TITLE);
+//            answer = getArguments().getString(ARG_Answer);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_fill, container, false);
+        FragmentFillBinding binding = FragmentFillBinding.inflate(inflater,container,false);
+        binding.FillTitle.setText(title);
+//        binding.FillAnswer.setText(answer);
+        return binding.getRoot();
     }
 }
