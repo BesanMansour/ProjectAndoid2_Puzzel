@@ -115,4 +115,8 @@ public class Repository {
     LiveData<List<Mystery>> AllMystery(){
         return mysteryDao.AllMystery();
     }
+
+//    LiveData<List<Mystery>> getQuestion(int levelId){
+//        return mysteryDao.getQuestion(levelId);
+//    }
 }

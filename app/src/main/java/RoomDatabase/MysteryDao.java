@@ -23,4 +23,8 @@ public interface MysteryDao {
 
     @Query("SELECT * FROM Mystery")
     LiveData<List<Mystery>> AllMystery();
+
+//    @Query("SELECT * FROM Mystery where levelId=:levelId")
+//    LiveData<List<Mystery>> getQuestion(int levelId);
+
 }

@@ -24,42 +24,48 @@ import RoomDatabase.ViewModel;
 
 public class LevelActivity extends AppCompatActivity {
     ActivityLevelBinding binding;
+    ArrayList<Fragment> fragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLevelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Intent intent = getIntent();
 
+        Intent intent = getIntent();
+        int pos = intent.getIntExtra("position", 0)+1;
+
+        Log.d("Pos",pos+"");
         ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
 
         String assets = ParsJson.readFromAssets(getApplicationContext(), "json/jsonStr.json");
         ParsJson p = new ParsJson(this);
         p.readJson(assets);
 
-        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments = new ArrayList<>();
         LevelAdapterFragment levelAdapterFragment = new LevelAdapterFragment(this, fragments);
 
         viewModel.AllMystery().observe(this, new Observer<List<Mystery>>() {
             @Override
             public void onChanged(List<Mystery> mysteries) {
-                int pos = intent.getIntExtra("position", 0);
+                for (int i = 0; i < mysteries.size(); i++) {
+                    int  level = mysteries.get(i).getLevelId();
+                    if(level == pos){
+                    String title = mysteries.get(i).getTitle();
+                    String true_answer = mysteries.get(i).getTrue_answer();
+                    String answer1 = mysteries.get(i).getAnswer_1();
+                    String answer2 = mysteries.get(i).getAnswer_2();
+                    String answer3 = mysteries.get(i).getAnswer_3();
+                    String answer4 = mysteries.get(i).getAnswer_4();
 
-                String title = mysteries.get(pos).getTitle();
-                String true_answer = mysteries.get(pos).getTrue_answer();
-                String answer1 = mysteries.get(pos).getAnswer_1();
-                String answer2 = mysteries.get(pos).getAnswer_2();
-                String answer3 = mysteries.get(pos).getAnswer_3();
-                String answer4 = mysteries.get(pos).getAnswer_4();
+                    fragments.add(TrueFalseFragment.newInstance(title, Boolean.parseBoolean(true_answer)));
+                    fragments.add(ChooseFragment.newInstance(title, answer1, answer2, answer3, answer4, true_answer));
+                    fragments.add(FillFragment.newInstance(title));
 
-                Log.d("pos",String.valueOf(pos));
+                    Log.d("fragment", String.valueOf(fragments.size()));
 
-                fragments.add(TrueFalseFragment.newInstance(title, Boolean.parseBoolean(true_answer)));
-                fragments.add(ChooseFragment.newInstance(title, answer1, answer2, answer3, answer4, true_answer));
-                fragments.add(FillFragment.newInstance(title));
-
-                binding.LevelPager.setAdapter(levelAdapterFragment);
+                    binding.LevelPager.setAdapter(levelAdapterFragment);
+                }}
             }
         });
     }

@@ -75,4 +75,9 @@ public class ViewModel extends AndroidViewModel {
     public LiveData<List<Mystery>> AllMystery(){
         return repository.AllMystery();
     }
+
+//    public LiveData<List<Mystery>> getQuestion(int levelId){
+//        return repository.getQuestion(levelId);
+//    }
+
 }

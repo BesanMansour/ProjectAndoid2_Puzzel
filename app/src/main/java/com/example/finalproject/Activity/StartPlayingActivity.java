@@ -12,6 +12,7 @@ import android.os.Bundle;
 import com.example.finalproject.Json.ParsJson;
 import com.example.finalproject.databinding.ActivityStartPlayingBinding;
 import com.example.finalproject.modle.AdapterStartPlay;
+import com.example.finalproject.modle.MyListener;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,7 +44,7 @@ public class StartPlayingActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Level> levels) {
                 level = levels;
-                AdapterStartPlay adapterStartPlay = new AdapterStartPlay(getApplicationContext(),level, new AdapterStartPlay.MyListener() {
+                AdapterStartPlay adapterStartPlay = new AdapterStartPlay(getApplicationContext(),level, new MyListener() {
                     @Override
                     public void onClick(int position) {
                         Intent intent = new Intent(getBaseContext(), LevelActivity.class);

@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Contract;
 parentColumns = {"id"},childColumns = {"levelId"})})
 public class Mystery {
     @PrimaryKey
+    @NonNull
     private int id;
     private String title;
     private String answer_1;
@@ -25,7 +26,7 @@ public class Mystery {
     private String hint;
 
     public Mystery(int id, String title, String answer_1, String answer_2, String answer_3, String answer_4,
-                   String true_answer, int points, int levelId, int duration,int patternId,String patternName, String hint) {
+                   String true_answer, int points, int levelId, int duration, int patternId, String patternName, String hint) {
         this.id = id;
         this.title = title;
         this.answer_1 = answer_1;

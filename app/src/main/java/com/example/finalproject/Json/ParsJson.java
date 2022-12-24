@@ -65,11 +65,8 @@ public class ParsJson {
                     viewModel.InsertMystery(mystery);
                 }
             }
-        } catch (
-                JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
-            Log.d("jsonTest", "readJson: " + e.getMessage());
-
         }
     }
     public static String readFromAssets(Context context, String fileName) {
