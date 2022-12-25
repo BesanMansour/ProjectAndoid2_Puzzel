@@ -38,7 +38,7 @@ public class MyService extends Service {
         super.onDestroy();
         if (mp.isPlaying() && mp != null){
             mp.stop();
-            mp.release();
+//            mp.release();
         }
     }
     @Override

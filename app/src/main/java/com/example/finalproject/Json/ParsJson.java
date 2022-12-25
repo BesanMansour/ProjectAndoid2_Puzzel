@@ -58,8 +58,6 @@ public class ParsJson {
                     int pattern_id = patternJsonObject.getInt("pattern_id");
                     String pattern_name = patternJsonObject.getString("pattern_name");
 
-                    Log.d("jsonTest", "readJson: " + title);
-
                     mystery = new Mystery(id,title, answer_1, answer_2, answer_3, answer_4, true_answer
                             , points, level_no, duration,pattern_id,pattern_name, hint);
                     viewModel.InsertMystery(mystery);

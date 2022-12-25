@@ -55,44 +55,6 @@ public class TrueFalseFragment extends Fragment {
                              Bundle savedInstanceState) {
         FragmentTrueFalseBinding binding = FragmentTrueFalseBinding.inflate(inflater,container,false);
         binding.FragTitle.setText(title);
-//        Intent intent = getActivity().getIntent();
-//        int pos = intent.getIntExtra("position", 0);
-//
-//        ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
-//
-//        String assets = ParsJson.readFromAssets(getContext(), "json/jsonStr.json");
-//        ParsJson p = new ParsJson(getContext());
-//        p.readJson(assets);
-//
-//        fragments = new ArrayList<>();
-//        LevelAdapterFragment levelAdapterFragment = new LevelAdapterFragment(getActivity(), fragments);
-//
-//        viewModel.AllMystery().observe(getActivity(),new Observer<List<Mystery>>(){
-//            @Override
-//            public void onChanged(List<Mystery> mysteries) {
-//                try {
-//                    String title = mysteries.get(pos).getTitle();
-//                    String true_answer = mysteries.get(pos).getTrue_answer();
-//                    String answer1 = mysteries.get(pos).getAnswer_1();
-//                    String answer2 = mysteries.get(pos).getAnswer_2();
-//                    String answer3 = mysteries.get(pos).getAnswer_3();
-//                    String answer4 = mysteries.get(pos).getAnswer_4();
-//
-//                    fragments.add(ChooseFragment.newInstance(title, answer1, answer2, answer3, answer4, true_answer));
-//                    fragments.add(FillFragment.newInstance(title));
-//
-////                    binding.LevelPager.setAdapter(levelAdapterFragment);
-////                    binding.LevelPager.setCurrentItem(1,true);
-////                    binding.LevelPager.setCurrentItem(2,true);
-////                    binding.LevelPager.setCurrentItem(3,true);
-////                    binding.LevelPager.setCurrentItem((int) levelAdapterFragment.getItemId(pos));
-//                    levelAdapterFragment.notifyDataSetChanged();
-//                }catch (Exception e){
-//                    e.printStackTrace();
-//                    Log.d("errorMessage",e.getMessage());
-//                }
-//            }
-//        });
         return binding.getRoot();
     }
 }

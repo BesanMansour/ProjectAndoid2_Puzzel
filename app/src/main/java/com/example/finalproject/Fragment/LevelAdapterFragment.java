@@ -29,5 +29,4 @@ public class LevelAdapterFragment extends FragmentStateAdapter {
     public int getItemCount() {
         return fragments.size();
     }
-
 }
