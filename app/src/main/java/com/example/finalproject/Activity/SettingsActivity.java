@@ -36,13 +36,13 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!sound) {
-                    editor.putBoolean("sound_false",false);
+                    editor.putBoolean("sound_false", false);
                     editor.apply();
                     binding.SettingImg.setImageResource(R.drawable.img);
 //                    startService(intent);
                     sound = true;
                 } else {
-                    editor.putBoolean("sound_true",true);
+                    editor.putBoolean("sound_true", true);
                     editor.apply();
                     binding.SettingImg.setImageResource(R.drawable.img_1);
 //                    stopService(intent);
@@ -51,16 +51,4 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
-//    @RequiresApi(api = Build.VERSION_CODES.M)
-//    private void mute() {
-//        //mute audio
-//        AudioManager amanager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-//        amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
-//    }
-//
-//    public void unmute() {
-//        //unmute audio
-//        AudioManager amanager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-//        amanager.setStreamMute(AudioManager.STREAM_NOTIFICATION, false);
-//    }
 }

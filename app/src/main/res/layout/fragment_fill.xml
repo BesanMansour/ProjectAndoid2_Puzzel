@@ -25,6 +25,15 @@
         android:hint="Answer"/>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Check"
+        android:textAllCaps="false"
+        android:layout_marginTop="30dp"
+        android:id="@+id/CheckBtn"/>
+
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="50dp"

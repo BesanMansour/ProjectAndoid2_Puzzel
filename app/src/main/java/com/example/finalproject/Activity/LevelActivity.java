@@ -29,6 +29,7 @@ public class LevelActivity extends AppCompatActivity {
     ActivityLevelBinding binding;
     ArrayList<Fragment> fragments;
     List<Level> levelList;
+    int point = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +43,13 @@ public class LevelActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int pos = intent.getIntExtra("position", 0) + 1;
 
-
         ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
 
         String assets = ParsJson.readFromAssets(getApplicationContext(), "json/jsonStr.json");
         ParsJson p = new ParsJson(this);
         p.readJson(assets);
+
+        binding.LevelNumPoint.setText(point+"/8");
 
         viewModel.AllLevel().observe(this, new Observer<List<Level>>() {
             @Override
@@ -57,7 +59,6 @@ public class LevelActivity extends AppCompatActivity {
                 binding.LevelTV.setText("المجموعة " + levelList.get(i).getId());
             }
         });
-
         viewModel.AllMystery().observe(this, new Observer<List<Mystery>>() {
             @Override
             public void onChanged(List<Mystery> mysteries) {
@@ -75,13 +76,13 @@ public class LevelActivity extends AppCompatActivity {
 
                         switch (patternId) {
                             case 1:
-                                fragments.add(TrueFalseFragment.newInstance(title, Boolean.parseBoolean(true_answer)));
+                                fragments.add(TrueFalseFragment.newInstance(title,true_answer));
                                 break;
                             case 2:
                                 fragments.add(ChooseFragment.newInstance(title, answer1, answer2, answer3, answer4, true_answer));
                                 break;
                             case 3:
-                                fragments.add(FillFragment.newInstance(title));
+                                fragments.add(FillFragment.newInstance(title,true_answer));
                                 break;
                         }
                         LevelAdapterFragment levelAdapterFragment = new LevelAdapterFragment(LevelActivity.this, fragments);

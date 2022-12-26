@@ -28,10 +28,15 @@ public class SplashActivity extends AppCompatActivity {
         sp = getSharedPreferences("shared", MODE_PRIVATE);
         editor = sp.edit();
 
-        sp.getBoolean("sound_true",true);
-        sp.getBoolean("sound_false",false);
+        Intent intent = new Intent(getBaseContext(), MyService.class);
+//        startService(intent);
 
-        Thread thread = new Thread(){
+//        if (sp.getBoolean("sound_true", true)) {
+//            stopService(intent);
+//        } else if (sp.getBoolean("sound_false", false)) {
+//            startService(intent);
+//        }
+        Thread thread = new Thread() {
             @Override
             public void run() {
                 try {
@@ -46,16 +51,14 @@ public class SplashActivity extends AppCompatActivity {
         };
         thread.start();
 
-        Intent intent = new Intent(getBaseContext(), MyService.class);
-//        startService(intent);
     }
-    public void jobService(){
+    public void jobService() {
         jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
         ComponentName componentName = new ComponentName(getBaseContext(), MyJobService.class);
         JobInfo jobInfo = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             jobInfo = new JobInfo.Builder(1, componentName)
-                    .setPeriodic(24*60*60*1000,10*60*1000)
+                    .setPeriodic(24 * 60 * 60 * 1000, 10 * 60 * 1000)
                     .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                     .build();
         }
