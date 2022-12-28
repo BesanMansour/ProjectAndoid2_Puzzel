@@ -2,11 +2,13 @@ package com.example.finalproject.Activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
@@ -15,6 +17,7 @@ import com.example.finalproject.databinding.ActivityProfileBinding;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Date;
+import java.util.List;
 
 import RoomDatabase.DateConverter;
 import RoomDatabase.User;
@@ -34,12 +37,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
 
-        String user_name = binding.ProfileUserName.getText().toString();
-        String email = binding.ProfileEmail.getText().toString();
-        String birthDate = binding.ProfileBirth.getText().toString();
+        String user_name = binding.ProfileUserName.getText().toString().trim();
+        String email = binding.ProfileEmail.getText().toString().trim();
+        String birthDate = binding.ProfileBirth.getText().toString().trim();
         String male = binding.ProfileMale.getText().toString();
         String female = binding.ProfileFemale.getText().toString();
-        String country = binding.ProfileCountry.getText().toString();
+        String country = binding.ProfileCountry.getText().toString().trim();
 
         binding.ProfileBirth.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -54,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
                             // ليسنر على دالة أون ديت ست
                             // تستدعى لمن المستخدم يختار تاريخ
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                                String birth = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
                                 binding.ProfileBirth.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                                 // الشهر زائد 1 لانو الشهر في الكلندر بيبدا من صفر
                                 age = String.valueOf(now.get(Calendar.YEAR) - year);
@@ -75,6 +79,22 @@ public class ProfileActivity extends AppCompatActivity {
                 type
         );
         binding.ProfileCountry.setAdapter(adapter);
+        binding.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.AllUser().observe(ProfileActivity.this, new Observer<List<User>>() {
+                    @Override
+                    public void onChanged(List<User> users) {
+                        // users.get(0).getId();
+                        viewModel.UpdateUser(new User(1,user_name,email,birthDate,male,female,country));
+                        Log.d("Log",users.get(0).toString());
+                    }
+                });
+            }
+        });
+
+
+
 //        viewModel.InsertUser(new User(user_name,email,,male,female,country));
     }
 }

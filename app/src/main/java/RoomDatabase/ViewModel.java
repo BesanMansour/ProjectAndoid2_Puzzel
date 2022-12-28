@@ -19,13 +19,13 @@ public class ViewModel extends AndroidViewModel {
     public void InsertUser(User user){
         repository.InsertUser(user);
     }
-    void UpdateUser(User user){
+    public void UpdateUser(User user){
         repository.UpdateUser(user);
     }
     void DeleteUser(User user){
         repository.DeleteUser(user);
     }
-    LiveData<List<User>> AllUser(){
+    public LiveData<List<User>> AllUser(){
         return repository.AllUser();
     }
 

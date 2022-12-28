@@ -30,7 +30,6 @@ public class MyDialog extends DialogFragment {
 
     public MyDialog() {
     }
-
     public static MyDialog newInstanceDialog(boolean answerBool, String true_answer, String hint) {
         Bundle args = new Bundle();
         MyDialog fragment = new MyDialog();

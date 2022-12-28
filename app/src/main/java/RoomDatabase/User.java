@@ -3,7 +3,6 @@ package RoomDatabase;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 
 import java.util.Date;
@@ -15,9 +14,8 @@ public class User {
     private int id;
     @NonNull
     private String UserName;
-    @NonNull
     private String email;
-    private Date birthday;
+    private String birthday;
     private String male;
     private String female;
     private String country;
@@ -25,7 +23,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, @NonNull String userName, @NonNull String email, Date birthday, String male, String female, String country) {
+    public User(int id, @NonNull String userName, @NonNull String email, String birthday, String male, String female, String country) {
         this.id = id;
         UserName = userName;
         this.email = email;
@@ -60,11 +58,11 @@ public class User {
         this.email = email;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -90,5 +88,18 @@ public class User {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", UserName='" + UserName + '\'' +
+                ", email='" + email + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", male='" + male + '\'' +
+                ", female='" + female + '\'' +
+                ", country='" + country + '\'' +
+                '}';
     }
 }
