@@ -1,6 +1,7 @@
 package com.example.finalproject.modle;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,30 +13,40 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.finalproject.Fragment.FillFragment;
+import com.example.finalproject.Fragment.TrueFalseFragment;
 import com.example.finalproject.databinding.DialogBinding;
 
 public class MyDialog extends DialogFragment {
-    private static final String ARG_DIALOG = "trueAnswer";
-    private static final String ARG_DIALOG_FILL = "trueAnswer";
+    private static final String ARG_DIALOG = "answerBool";
+    private static final String ARG_TRUE_ANSWER = "trueAnswer";
 
-    private boolean trueAnswer;
-    public static String answer;
+
+    private static final String ARG_HINT = "hint";
+
+    private boolean answerBool;
+    private String true_answer;
+
+    private String hint;
 
     public MyDialog() {
     }
 
-    public static MyDialog newInstanceDialog(boolean trueAnswer) {
+    public static MyDialog newInstanceDialog(boolean answerBool, String true_answer, String hint) {
         Bundle args = new Bundle();
         MyDialog fragment = new MyDialog();
-        args.putBoolean(ARG_DIALOG, trueAnswer);
+        args.putBoolean(ARG_DIALOG, answerBool);
+        args.putString(ARG_TRUE_ANSWER, true_answer);
+        args.putString(ARG_HINT, hint);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public static MyDialog newInstanceDialogFill(String answer) {
+    public static MyDialog newInstanceDialogTrue(String hint) {
         Bundle args = new Bundle();
         MyDialog fragment = new MyDialog();
-        args.putString(ARG_DIALOG_FILL, answer);
+//        args.putBoolean(ARG_DIALOG, answerBool);
+        args.putString(ARG_HINT, hint);
+//        args.putString(ARG_TRUE_ANSWER, true_answer);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,25 +55,17 @@ public class MyDialog extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            trueAnswer = getArguments().getBoolean(ARG_DIALOG);
-            answer = getArguments().getString(ARG_DIALOG_FILL);
+            answerBool = getArguments().getBoolean(ARG_DIALOG);
+            true_answer = getArguments().getString(ARG_TRUE_ANSWER);
+            hint = getArguments().getString(ARG_HINT);
         }
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         DialogBinding dialogBinding = DialogBinding.inflate(inflater, container, false);
-        if (trueAnswer) {
-            dialogBinding.dialogTv.setText("Good");
-        }else if (!trueAnswer){
-            dialogBinding.dialogTv.setText("try again");
-        }
-        else if (answer.equals(FillFragment.answer)) {
-            dialogBinding.dialogTv.setText("Good");
-        }else if (!answer.equals(FillFragment.answer)){
-            dialogBinding.dialogTv.setText("try again");
-        }
-        Toast.makeText(getContext(), answer, Toast.LENGTH_SHORT).show();
+        dialogBinding.dialogAnswer.setText(hint);
         return dialogBinding.getRoot();
     }
 

@@ -16,7 +16,7 @@ public class ViewModel extends AndroidViewModel {
         repository = new Repository(application);
     }
 
-    void InsertUser(User user){
+    public void InsertUser(User user){
         repository.InsertUser(user);
     }
     void UpdateUser(User user){
@@ -76,8 +76,8 @@ public class ViewModel extends AndroidViewModel {
         return repository.AllMystery();
     }
 
-//    public LiveData<List<Mystery>> getQuestion(int levelId){
-//        return repository.getQuestion(levelId);
-//    }
+    public LiveData<List<Mystery>> getQuestion(int levelId){
+        return repository.getQuestion(levelId);
+    }
 
 }

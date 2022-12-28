@@ -40,7 +40,7 @@ public class AdapterStartPlay extends RecyclerView.Adapter<AdapterStartPlay.Game
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onClick(holder.getAdapterPosition());
+                listener.onClick(level.getId());
             }
         });
     }

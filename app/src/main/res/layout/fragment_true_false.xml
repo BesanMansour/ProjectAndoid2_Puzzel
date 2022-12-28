@@ -18,6 +18,7 @@
         android:textColor="@color/black"/>
 
     <RadioGroup
+        android:id="@+id/RadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

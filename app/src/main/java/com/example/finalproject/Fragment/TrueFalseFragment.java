@@ -1,43 +1,60 @@
 package com.example.finalproject.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import com.example.finalproject.Activity.TrueFalseDialog;
 import com.example.finalproject.databinding.FragmentTrueFalseBinding;
 import com.example.finalproject.modle.MyDialog;
 
+import java.time.Duration;
+
 public class TrueFalseFragment extends Fragment {
-    private static final String ARG_TITLE = "param1";
-    private static final String ARG_Answer = "param2";
+
+    private static final String ARG_TITLE = "title";
+    private static final String ARG_Answer = "answer";
+    private static final String ARG_HINT = "hint";
+    private static final String ARG_DURATION = "duration";
+    private static final String ARG_POINT = "point";
 
     private String title;
     private String answer;
-    boolean radioTrue;
-    boolean radioFalse;
+    private String hint;
+    private int duration;
+    private int point;
 
     public TrueFalseFragment() {
     }
-
-    public static TrueFalseFragment newInstance(String title, String answer) {
+    public static TrueFalseFragment newInstance(String title, String answer, String hint,int duration,int point) {
         TrueFalseFragment fragment = new TrueFalseFragment();
         Bundle args = new Bundle();
         args.putString(ARG_TITLE, title);
         args.putString(ARG_Answer, answer);
+        args.putString(ARG_HINT, hint);
+        args.putInt(ARG_DURATION, duration);
+        args.putInt(ARG_POINT, point);
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             title = getArguments().getString(ARG_TITLE);
             answer = getArguments().getString(ARG_Answer);
+            hint = getArguments().getString(ARG_HINT);
+            duration = getArguments().getInt(ARG_DURATION);
+            point = getArguments().getInt(ARG_POINT);
         }
     }
 
@@ -46,23 +63,31 @@ public class TrueFalseFragment extends Fragment {
                              Bundle savedInstanceState) {
         FragmentTrueFalseBinding binding = FragmentTrueFalseBinding.inflate(inflater, container, false);
         binding.FragTitle.setText(title);
-        radioTrue = answer.equals(binding.RadioTrue.getText().toString());
-        radioFalse = answer.equals(binding.RadioFalse.getText().toString());
-        binding.RadioTrue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MyDialog myDialog = MyDialog.newInstanceDialog(radioTrue);
-                myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
-            }
-        });
+
         binding.RadioFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyDialog myDialog = MyDialog.newInstanceDialog(radioFalse);
-                myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+                if (binding.RadioFalse.getText().toString().equals(answer)){
+                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good");
+                    myDialog.show(getParentFragmentManager(), "dialogTrue");
+                }else {
+                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n"+hint);
+                    myDialog.show(getParentFragmentManager(), "dialogTrue");
+                }
             }
         });
-
+        binding.RadioTrue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.RadioTrue.getText().toString().equals(answer)){
+                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good");
+                    myDialog.show(getParentFragmentManager(), "dialogTrue");
+                }else {
+                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("try again \n"+hint);
+                    myDialog.show(getParentFragmentManager(), "dialogTrue");
+                }
+            }
+        });
         return binding.getRoot();
     }
 }

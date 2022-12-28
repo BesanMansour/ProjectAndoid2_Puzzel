@@ -25,10 +25,9 @@ import RoomDatabase.Level;
 import RoomDatabase.Mystery;
 import RoomDatabase.ViewModel;
 
-public class LevelActivity extends AppCompatActivity {
+public class LevelActivity extends AppCompatActivity{
     ActivityLevelBinding binding;
     ArrayList<Fragment> fragments;
-    List<Level> levelList;
     int point = 0;
 
     @Override
@@ -37,11 +36,10 @@ public class LevelActivity extends AppCompatActivity {
         binding = ActivityLevelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        levelList = new ArrayList<>();
         fragments = new ArrayList<>();
 
         Intent intent = getIntent();
-        int pos = intent.getIntExtra("position", 0) + 1;
+        int pos = intent.getIntExtra("position", 0);
 
         ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
 
@@ -49,17 +47,10 @@ public class LevelActivity extends AppCompatActivity {
         ParsJson p = new ParsJson(this);
         p.readJson(assets);
 
-        binding.LevelNumPoint.setText(point+"/8");
+        binding.LevelNumPoint.setText(point + "/8");
+        binding.LevelTV.setText("المجموعة " + pos);
 
-        viewModel.AllLevel().observe(this, new Observer<List<Level>>() {
-            @Override
-            public void onChanged(List<Level> levels) {
-                int i = intent.getIntExtra("position", 0);
-                levelList = levels;
-                binding.LevelTV.setText("المجموعة " + levelList.get(i).getId());
-            }
-        });
-        viewModel.AllMystery().observe(this, new Observer<List<Mystery>>() {
+        viewModel.getQuestion(pos).observe(this, new Observer<List<Mystery>>() {
             @Override
             public void onChanged(List<Mystery> mysteries) {
                 for (int i = 0; i < mysteries.size(); i++) {
@@ -72,17 +63,22 @@ public class LevelActivity extends AppCompatActivity {
                         String answer2 = mysteries.get(i).getAnswer_2();
                         String answer3 = mysteries.get(i).getAnswer_3();
                         String answer4 = mysteries.get(i).getAnswer_4();
+                        String hint = mysteries.get(i).getHint();
                         int patternId = mysteries.get(i).getPatternId();
+                        int duration = mysteries.get(i).getDuration();
+                        int point = mysteries.get(i).getPoints();
 
                         switch (patternId) {
                             case 1:
-                                fragments.add(TrueFalseFragment.newInstance(title,true_answer));
+                                fragments.add(TrueFalseFragment.newInstance(title,true_answer,hint,duration,point));
                                 break;
+
                             case 2:
-                                fragments.add(ChooseFragment.newInstance(title, answer1, answer2, answer3, answer4, true_answer));
+                                fragments.add(ChooseFragment.newInstance(title, answer1, answer2, answer3, answer4, true_answer,hint,duration,point));
                                 break;
+
                             case 3:
-                                fragments.add(FillFragment.newInstance(title,true_answer));
+                                fragments.add(FillFragment.newInstance(title, true_answer,hint,duration,point));
                                 break;
                         }
                         LevelAdapterFragment levelAdapterFragment = new LevelAdapterFragment(LevelActivity.this, fragments);
@@ -92,4 +88,5 @@ public class LevelActivity extends AppCompatActivity {
             }
         });
     }
+
 }

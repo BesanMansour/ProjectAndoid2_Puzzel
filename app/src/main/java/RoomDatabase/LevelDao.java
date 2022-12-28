@@ -12,7 +12,7 @@ import java.util.List;
 
 @Dao
 public interface LevelDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void InsertLevel(Level level);
 
     @Update

@@ -11,25 +11,28 @@ import java.util.Date;
 @Entity(tableName = "UserTable")
 @TypeConverters({DateConverter.class})
 public class User {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
     @NonNull
     private String UserName;
     @NonNull
     private String email;
     private Date birthday;
-    private String gender;
+    private String male;
+    private String female;
     private String country;
 
-    public User(@NonNull String userName, @NonNull String email, Date birthday, String gender, String country) {
+    public User() {
+    }
+
+    public User(int id, @NonNull String userName, @NonNull String email, Date birthday, String male, String female, String country) {
+        this.id = id;
         UserName = userName;
         this.email = email;
         this.birthday = birthday;
-        this.gender = gender;
+        this.male = male;
+        this.female = female;
         this.country = country;
-    }
-
-    public User() {
     }
 
     public int getId() {
@@ -65,12 +68,20 @@ public class User {
         this.birthday = birthday;
     }
 
-    public String getGender() {
-        return gender;
+    public String getMale() {
+        return male;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setMale(String male) {
+        this.male = male;
+    }
+
+    public String getFemale() {
+        return female;
+    }
+
+    public void setFemale(String female) {
+        this.female = female;
     }
 
     public String getCountry() {

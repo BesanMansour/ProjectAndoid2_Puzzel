@@ -12,7 +12,7 @@ import java.util.List;
 
 @Dao
 public interface MysteryDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void InsertMystery(Mystery mystery);
 
     @Update
@@ -24,7 +24,7 @@ public interface MysteryDao {
     @Query("SELECT * FROM Mystery")
     LiveData<List<Mystery>> AllMystery();
 
-//    @Query("SELECT * FROM Mystery where levelId=:levelId")
-//    LiveData<List<Mystery>> getQuestion(int levelId);
+    @Query("SELECT * FROM Mystery where levelId=:levelId")
+    LiveData<List<Mystery>> getQuestion(int levelId);
 
 }

@@ -50,5 +50,11 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+        binding.SettingProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getBaseContext(),ProfileActivity.class));
+            }
+        });
     }
 }

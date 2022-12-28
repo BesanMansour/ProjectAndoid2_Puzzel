@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.example.finalproject.databinding.ActivityHomeBinding;
 import com.example.finalproject.modle.MyJobService;
+import com.example.finalproject.modle.MyService;
 
 public class HomeActivity extends AppCompatActivity {
     ActivityHomeBinding binding;
@@ -40,5 +41,12 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(getBaseContext(), SettingsActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent intent = new Intent(getBaseContext(), MyService.class);
+//        stopService(intent);
     }
 }
