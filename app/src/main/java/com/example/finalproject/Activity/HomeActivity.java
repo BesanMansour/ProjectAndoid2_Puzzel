@@ -62,9 +62,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onBackPressed() {
+        super.onBackPressed();
         Intent intent = new Intent(getBaseContext(), MyService.class);
-//        stopService(intent);
+        stopService(intent);
     }
 }

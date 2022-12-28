@@ -17,35 +17,16 @@ import com.example.finalproject.Fragment.TrueFalseFragment;
 import com.example.finalproject.databinding.DialogBinding;
 
 public class MyDialog extends DialogFragment {
-    private static final String ARG_DIALOG = "answerBool";
-    private static final String ARG_TRUE_ANSWER = "trueAnswer";
-
-
     private static final String ARG_HINT = "hint";
-
-    private boolean answerBool;
-    private String true_answer;
 
     private String hint;
 
     public MyDialog() {
     }
-    public static MyDialog newInstanceDialog(boolean answerBool, String true_answer, String hint) {
-        Bundle args = new Bundle();
-        MyDialog fragment = new MyDialog();
-        args.putBoolean(ARG_DIALOG, answerBool);
-        args.putString(ARG_TRUE_ANSWER, true_answer);
-        args.putString(ARG_HINT, hint);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     public static MyDialog newInstanceDialogTrue(String hint) {
         Bundle args = new Bundle();
         MyDialog fragment = new MyDialog();
-//        args.putBoolean(ARG_DIALOG, answerBool);
         args.putString(ARG_HINT, hint);
-//        args.putString(ARG_TRUE_ANSWER, true_answer);
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,8 +35,6 @@ public class MyDialog extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            answerBool = getArguments().getBoolean(ARG_DIALOG);
-            true_answer = getArguments().getString(ARG_TRUE_ANSWER);
             hint = getArguments().getString(ARG_HINT);
         }
     }
