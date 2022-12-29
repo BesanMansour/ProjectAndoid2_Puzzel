@@ -39,13 +39,13 @@ public class SettingsActivity extends AppCompatActivity {
                     editor.putBoolean("sound_false", false);
                     editor.apply();
                     binding.SettingImg.setImageResource(R.drawable.img);
-//                    startService(intent);
+                    startService(intent);
                     sound = true;
                 } else {
                     editor.putBoolean("sound_true", true);
                     editor.apply();
                     binding.SettingImg.setImageResource(R.drawable.img_1);
-//                    stopService(intent);
+                    stopService(intent);
                     sound = false;
                 }
             }

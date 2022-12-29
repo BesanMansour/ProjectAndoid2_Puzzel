@@ -18,15 +18,18 @@ import com.example.finalproject.databinding.DialogBinding;
 
 public class MyDialog extends DialogFragment {
     private static final String ARG_HINT = "hint";
+    private static final String ARG_POINT = "point";
 
     private String hint;
+    private int point;
 
     public MyDialog() {
     }
-    public static MyDialog newInstanceDialogTrue(String hint) {
+    public static MyDialog newInstanceDialogTrue(String hint,int point) {
         Bundle args = new Bundle();
         MyDialog fragment = new MyDialog();
         args.putString(ARG_HINT, hint);
+        args.putInt(ARG_POINT, point);
         fragment.setArguments(args);
         return fragment;
     }
@@ -36,6 +39,7 @@ public class MyDialog extends DialogFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             hint = getArguments().getString(ARG_HINT);
+            point = getArguments().getInt(ARG_POINT);
         }
     }
 

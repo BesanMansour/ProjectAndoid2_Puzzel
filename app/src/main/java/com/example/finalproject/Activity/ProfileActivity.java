@@ -79,15 +79,19 @@ public class ProfileActivity extends AppCompatActivity {
                 type
         );
         binding.ProfileCountry.setAdapter(adapter);
+
+        viewModel.UpdateUser(new User(1,user_name,email,birthDate,male,female,country));
+
         binding.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 viewModel.AllUser().observe(ProfileActivity.this, new Observer<List<User>>() {
                     @Override
                     public void onChanged(List<User> users) {
-                        // users.get(0).getId();
-                        viewModel.UpdateUser(new User(1,user_name,email,birthDate,male,female,country));
-                        Log.d("Log",users.get(0).toString());
+//                         users.get(0).getId();
+
+//                        viewModel.UpdateUser(new User(1,user_name,email,birthDate,male,female,country));
+                        Log.d("user ",users.get(0).toString());
                     }
                 });
             }

@@ -29,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
         editor = sp.edit();
 
         Intent intent = new Intent(getBaseContext(), MyService.class);
-//        startService(intent);
+        startService(intent);
 
 //        if (sp.getBoolean("sound_true", true)) {
 //            stopService(intent);

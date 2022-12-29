@@ -35,11 +35,11 @@ public class HomeActivity extends AppCompatActivity {
         viewModel.AllUser().observe(this, new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {
-                if (users.size()==0) {
-                    viewModel.InsertUser(new User(1,"User1", null, null, null, null, null));
-                }}
+                if (users.size() == 0) {
+                    viewModel.InsertUser(new User(1, "User1", null, null, null, null, null));
+                }
+            }
         });
-//TODO: if list of user have object don't insert new user
 
         binding.HomeStartPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,9 +61,16 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        Intent intent = new Intent(getBaseContext(), MyService.class);
+//        stopService(intent);
+//    }
+
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    protected void onDestroy() {
+        super.onDestroy();
         Intent intent = new Intent(getBaseContext(), MyService.class);
         stopService(intent);
     }
