@@ -31,11 +31,13 @@ public class SplashActivity extends AppCompatActivity {
         Intent intent = new Intent(getBaseContext(), MyService.class);
         startService(intent);
 
-//        if (sp.getBoolean("sound_true", true)) {
-//            stopService(intent);
-//        } else if (sp.getBoolean("sound_false", false)) {
-//            startService(intent);
-//        }
+        if (sp.getBoolean("sound", true)) {
+            stopService(intent);
+//            SettingsActivity.binding.SettingImg.setImageResource(R.drawable.img_1);
+        } else if (sp.getBoolean("sound", false)) {
+            startService(intent);
+//            SettingsActivity.binding.SettingImg.setImageResource(R.drawable.img);
+        }
         Thread thread = new Thread() {
             @Override
             public void run() {

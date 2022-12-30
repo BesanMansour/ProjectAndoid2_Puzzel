@@ -2,6 +2,7 @@ package com.example.finalproject.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.finalproject.Activity.HomeActivity;
 import com.example.finalproject.Activity.LevelActivity;
+import com.example.finalproject.Activity.StartPlayingActivity;
 import com.example.finalproject.Activity.TrueFalseDialog;
 import com.example.finalproject.R;
 import com.example.finalproject.databinding.FragmentTrueFalseBinding;
@@ -32,7 +34,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TrueFalseFragment extends Fragment {
-
+    public  static  FragmentTrueFalseBinding binding;
     private static final String ARG_TITLE = "title";
     private static final String ARG_Answer = "answer";
     private static final String ARG_HINT = "hint";
@@ -75,12 +77,8 @@ public class TrueFalseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentTrueFalseBinding binding = FragmentTrueFalseBinding.inflate(inflater, container, false);
+         binding = FragmentTrueFalseBinding.inflate(inflater, container, false);
         binding.FragTitle.setText(title);
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
 
         new CountDownTimer(duration, 1000) {
             @Override
@@ -89,76 +87,66 @@ public class TrueFalseFragment extends Fragment {
                 long hour = (l / 3600000) % 24;
                 long min = (l / 60000) % 60;
                 long sec = (l / 1000) % 60;
-                Toast.makeText(getContext(), duration+"", Toast.LENGTH_SHORT).show();
                 binding.timer.setText(f.format(hour) + ":" + f.format(min) + ":" + f.format(sec));
 
                 binding.RadioFalse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (binding.RadioFalse.getText().toString().equals(answer)) {
-//                    LevelActivity.score = point;
-                    LevelActivity.media_win.start();
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
-                    myDialog.show(getParentFragmentManager(), "dialogTrue");
-                } else {
-//                    LevelActivity.score = 0;
-                    LevelActivity.media_fail.start();
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
-                    myDialog.show(getParentFragmentManager(), "dialogTrue");
-                }
-//                LevelActivity.binding.LevelNumPoint.setText("Score: "+LevelActivity.score);
-            }
-        });
-        binding.RadioTrue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                    @Override
+                    public void onClick(View view) {
+                        if (binding.RadioFalse.getText().toString().equals(answer)) {
+                            LevelActivity.media_win.start();
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            myDialog.show(getParentFragmentManager(), "dialogTrue");
 
-                if (binding.RadioTrue.getText().toString().equals(answer)) {
-//                    LevelActivity.score = point;
-                    LevelActivity.media_win.start();
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
-                    myDialog.show(getParentFragmentManager(), "dialogTrue");
-                } else {
-//                    LevelActivity.score = 0;
-                    LevelActivity.media_fail.start();
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("try again \n" + hint, 0);
-                    myDialog.show(getParentFragmentManager(), "dialogTrue");
-                }
-//                LevelActivity.binding.LevelNumPoint.setText("Score: "+LevelActivity.score);
-            }
-        });
-//        Thread thread = new Thread() {
-//            @Override
-//            public void run() {
-//                try {
-//                    sleep(x);
-//                    Intent intent = new Intent(getContext(), HomeActivity.class);
-//                    startActivity(intent);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        };
-//        thread.start();
+                            binding.scoreTrue.setText(point + "");
 
-//     }
-//        },1000);
+                            LevelActivity.editor.putInt("TueFalsePoint", point);
+                            LevelActivity.editor.apply();
+                        } else {
+                            LevelActivity.media_fail.start();
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
+                            myDialog.show(getParentFragmentManager(), "dialogTrue");
+                        }
+                    }
+                });
+                binding.RadioTrue.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (binding.RadioTrue.getText().toString().equals(answer)) {
+                            LevelActivity.media_win.start();
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            myDialog.show(getParentFragmentManager(), "dialogTrue");
+
+                            binding.scoreTrue.setText(point + "");
+                            LevelActivity.editor.putInt("TueFalsePoint", point);
+                            LevelActivity.editor.apply();
+                        } else {
+
+                            LevelActivity.media_fail.start();
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("try again \n" + hint, 0);
+                            myDialog.show(getParentFragmentManager(), "dialogTrue");
+                        }
+                    }
+                });
             }
+
             @Override
             public void onFinish() {
                 binding.timer.setText("00:00:00");
-                     Toast.makeText(getContext(), "Finish!", Toast.LENGTH_SHORT).show();
-                FragmentManager fragmentManager =getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                     Toast.makeText(getContext(), "Finish!", Toast.LENGTH_SHORT).show();
+//                FragmentManager fragmentManager =TrueFalseFragment.this.getSuport;
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//
+//                fragmentTransaction.replace(R.id.LevelPager,LevelActivity.fragments.get(2));
+//                fragmentTransaction.commit();
+//                // Fragment newFragment = new ExampleFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.LevelPager,new ChooseFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
 
-                fragmentTransaction.replace(R.id.LevelPager,LevelActivity.fragments.get(2));
-                fragmentTransaction.commit();
                 //Todo: chenge this fragment to next one
             }
         }.start();
-
-
-
         return binding.getRoot();
     }
 }

@@ -27,6 +27,8 @@ public class ProfileActivity extends AppCompatActivity {
     ActivityProfileBinding binding;
     DatePickerDialog dpd;
     String age;
+    String UserName,Email,Country,Birthday,Gender;
+    int GenderId;
 
 
     @Override
@@ -37,12 +39,16 @@ public class ProfileActivity extends AppCompatActivity {
 
         ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
 
-        String user_name = binding.ProfileUserName.getText().toString().trim();
-        String email = binding.ProfileEmail.getText().toString().trim();
-        String birthDate = binding.ProfileBirth.getText().toString().trim();
-        String male = binding.ProfileMale.getText().toString();
-        String female = binding.ProfileFemale.getText().toString();
-        String country = binding.ProfileCountry.getText().toString().trim();
+        //        String user_name = binding.ProfileUserName.getText().toString().trim();
+//        String email = binding.ProfileEmail.getText().toString().trim();
+//        String birthDate = binding.ProfileBirth.getText().toString().trim();
+//        String male = binding.ProfileMale.getText().toString();
+//        String female = binding.ProfileFemale.getText().toString();
+//        String country = binding.ProfileCountry.getText().toString().trim();
+        final String[] birth1 = new String[1];
+
+
+
 
         binding.ProfileBirth.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -59,6 +65,7 @@ public class ProfileActivity extends AppCompatActivity {
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
                                 String birth = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
                                 binding.ProfileBirth.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                birth1[0] =birth;
                                 // الشهر زائد 1 لانو الشهر في الكلندر بيبدا من صفر
                                 age = String.valueOf(now.get(Calendar.YEAR) - year);
                             }
@@ -80,25 +87,29 @@ public class ProfileActivity extends AppCompatActivity {
         );
         binding.ProfileCountry.setAdapter(adapter);
 
-        viewModel.UpdateUser(new User(1,user_name,email,birthDate,male,female,country));
+//        viewModel.UpdateUser(new User(1,user_name,email,birthDate,male,female,country));
 
         binding.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                UserName = binding.userName.getText().toString().trim();
+                Email = binding.ProfileEmail.getText().toString();
+                Country = binding.ProfileCountry.getText().toString();
+                Birthday = binding.ProfileBirth.getText().toString();
+                GenderId = binding.RBGGender.getCheckedRadioButtonId();
+                Gender = findViewById(GenderId).toString();
                 viewModel.AllUser().observe(ProfileActivity.this, new Observer<List<User>>() {
                     @Override
                     public void onChanged(List<User> users) {
-//                         users.get(0).getId();
+                         users.get(0).getId();
 
-//                        viewModel.UpdateUser(new User(1,user_name,email,birthDate,male,female,country));
+                        viewModel.UpdateUser(new User(1,UserName+"1",Email+"b",Birthday,null,Gender,Country));
                         Log.d("user ",users.get(0).toString());
                     }
                 });
             }
         });
 
-
-
-//        viewModel.InsertUser(new User(user_name,email,,male,female,country));
+//        viewModel.InsertUser(new User(user_name+"b",email+"b",,male,female,country));
     }
 }

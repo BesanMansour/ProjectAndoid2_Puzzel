@@ -10,12 +10,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/scoreTrue"
+        android:layout_gravity="left"
+        android:text="0"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/timer"
         android:layout_gravity="right"
         android:text="1"
         android:textSize="30sp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20sp"/>
+        android:layout_marginRight="20dp" />
 
     <TextView
         android:id="@+id/FragTitle"

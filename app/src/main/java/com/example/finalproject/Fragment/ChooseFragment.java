@@ -92,6 +92,9 @@ public class ChooseFragment extends Fragment {
         boolean answer3 = true_answer.equals(binding.ChooseAnswer3.getText().toString());
         boolean answer4 = true_answer.equals(binding.ChooseAnswer4.getText().toString());
 
+        int TueFalsePoint = LevelActivity.sp.getInt("TueFalsePoint", TrueFalseFragment.point);
+        binding.score.setText(TueFalsePoint + "");
+
         new CountDownTimer(duration, 1000) {
             @Override
             public void onTick(long l) {
@@ -99,91 +102,94 @@ public class ChooseFragment extends Fragment {
                 long hour = (l / 3600000) % 24;
                 long min = (l / 60000) % 60;
                 long sec = (l / 1000) % 60;
-                Toast.makeText(getContext(), duration+"", Toast.LENGTH_SHORT).show();
                 binding.timer.setText(f.format(hour) + ":" + f.format(min) + ":" + f.format(sec));
 
-
-
                 binding.ChooseAnswer1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (answer1) {
-//                    LevelActivity.score = point;
-                    LevelActivity.media_win.start();
+                    @Override
+                    public void onClick(View view) {
+                        if (answer1) {
+                            LevelActivity.media_win.start();
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
-                    myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
-                } else {
-//                    LevelActivity.score = 0;
-                    LevelActivity.media_fail.start();
+                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
-                    myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
-                }
-                LevelActivity.binding.LevelNumPoint.setText("Score: " + LevelActivity.score);
+                            LevelActivity.editor.putInt("ChoosePoint", point);
+                            LevelActivity.editor.apply();
+                        } else {
+                            LevelActivity.media_fail.start();
+
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
+                            myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+                        }
+                    }
+                });
+                binding.ChooseAnswer2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (answer2) {
+                            LevelActivity.media_win.start();
+
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+
+                            binding.score.setText(String.valueOf(TueFalsePoint + point));
+                            LevelActivity.editor.putInt("ChoosePoint", point);
+                            LevelActivity.editor.apply();
+
+                        } else {
+                            LevelActivity.media_fail.start();
+
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
+                            myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+                        }
+                    }
+                });
+                binding.ChooseAnswer3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (answer3) {
+                            LevelActivity.media_win.start();
+
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+                            binding.score.setText(String.valueOf(TueFalsePoint + point));
+
+                            LevelActivity.editor.putInt("ChoosePoint", point);
+                            LevelActivity.editor.apply();
+
+                        } else {
+                            LevelActivity.media_fail.start();
+
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
+                            myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+                        }
+                    }
+                });
+                binding.ChooseAnswer4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (answer4) {
+                            LevelActivity.media_win.start();
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+                            binding.score.setText(String.valueOf(TueFalsePoint + point));
+
+                            LevelActivity.editor.putInt("ChoosePoint", point);
+                            LevelActivity.editor.apply();
+                        } else {
+                            LevelActivity.media_fail.start();
+
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
+                            myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+                        }
+                    }
+                });
             }
-        });
-        binding.ChooseAnswer2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (answer2) {
-//                    LevelActivity.score = point;
-                    LevelActivity.media_win.start();
-
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
-                    myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
-                } else {
-//                    LevelActivity.score = 0;
-                    LevelActivity.media_fail.start();
-
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
-                    myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
-                }
-//                LevelActivity.binding.LevelNumPoint.setText("Score: " + LevelActivity.score);
-            }
-        });
-        binding.ChooseAnswer3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (answer3) {
-//                    LevelActivity.score = point;
-                    LevelActivity.media_win.start();
-
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
-                    myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
-                } else {
-//                    LevelActivity.score = 0;
-                    LevelActivity.media_fail.start();
-
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
-                    myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
-                }
-//                LevelActivity.binding.LevelNumPoint.setText("Score: " + LevelActivity.score);
-            }
-        });
-        binding.ChooseAnswer4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (answer4) {
-//                    LevelActivity.score = point;
-                    LevelActivity.media_win.start();
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
-                    myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
-                } else {
-//                    LevelActivity.score = 0;
-                    LevelActivity.media_fail.start();
-
-                    MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
-                    myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
-                }
-//                LevelActivity.binding.LevelNumPoint.setText("Score: " + LevelActivity.score);
-            }
-        }); }
 
             @Override
             public void onFinish() {
                 binding.timer.setText("00:00:00");
-                Toast.makeText(getContext(), "Finish!", Toast.LENGTH_SHORT).show();
 
                 //Todo: chenge this fragment to next one
             }

@@ -1,0 +1,110 @@
+[
+  {
+    "level_no": 1,
+    "unlock_points": 0,
+    "questions": [
+      {
+        "id": 1,
+        "title": "hello",
+        "answer_1": "",
+        "answer_2": "",
+        "answer_3": "",
+        "answer_4": "",
+        "true_answer": "false",
+        "points": 3,
+        "duration": 10000,
+        "pattern": {
+          "pattern_id": 1,
+          "pattern_name": "True of False"
+        },
+        "hint": "hint"
+      },
+      {
+        "id": 2,
+        "title": "عاصمة أثيوبيا هي",
+        "answer_1": "أديس أبابا",
+        "answer_2": "جامايكا",
+        "answer_3": "كوالالمبور",
+        "answer_4": "دبلن",
+        "true_answer": "أديس أبابا",
+        "points": 2,
+        "duration": 15000,
+        "pattern": {
+          "pattern_id": 2,
+          "pattern_name": "Choose the correct answer"
+        },
+        "hint": "عاصمة أثيوبيا هي أديس أبابا"
+      },
+      {
+        "id": 3,
+        "title": "الكوكب الأحمر هو كوكب",
+        "answer_1": "",
+        "answer_2": "",
+        "answer_3": "",
+        "answer_4": "",
+        "true_answer": "المريخ",
+        "points": 1,
+        "duration": 20000,
+        "pattern": {
+          "pattern_id": 3,
+          "pattern_name": "Fill the answer"
+        },
+        "hint": "الكوكب الأحمر هو كوكب المريخ"
+      }
+    ]
+  },
+  {
+    "level_no": 2,
+    "unlock_points": 6,
+    "questions": [
+      {
+        "id": 4,
+        "title": "شكل مجرة درب التبانة هو حلزوني",
+        "answer_1": "",
+        "answer_2": "",
+        "answer_3": "",
+        "answer_4": "",
+        "true_answer": "true",
+        "points": 5,
+        "duration": 10000,
+        "pattern": {
+          "pattern_id": 1,
+          "pattern_name": "True of False"
+        },
+        "hint": "شكل مجرة درب التبانة هو حلزوني"
+      },
+      {
+        "id": 5,
+        "title": "يسمى صغير الضفدع",
+        "answer_1": "دنغل",
+        "answer_2": "شرغوف",
+        "answer_3": "يرقة",
+        "answer_4": "كوالا",
+        "true_answer": "شرغوف",
+        "points": 4,
+        "duration": 15000,
+        "pattern": {
+          "pattern_id": 2,
+          "pattern_name": "Choose the correct answer"
+        },
+        "hint": "صغير الضفدع هو الشرغوف"
+      },
+      {
+        "id": 6,
+        "title": "تعتبر ال....... هي أسرع المخلوقات البحرية",
+        "answer_1": "",
+        "answer_2": "",
+        "answer_3": "",
+        "answer_4": "",
+        "true_answer": "التونة",
+        "points": 1,
+        "duration": 20000,
+        "pattern": {
+          "pattern_id": 3,
+          "pattern_name": "Fill the answer"
+        },
+        "hint": "التونة تعتبر اسرع المخلوقات البحرية، حيث يعتبر الحوت أكبرها"
+      }
+    ]
+  }
+]

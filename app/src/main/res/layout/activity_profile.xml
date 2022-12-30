@@ -8,21 +8,25 @@
     android:padding="16dp"
     tools:context=".Activity.ProfileActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="50dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ProfileUserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="user Name"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:padding="10dp"
-            android:textSize="17sp"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/user_name"/>
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/ProfileUserName"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="user Name"-->
+<!--            android:inputType="textPersonName"-->
+<!--            android:ems="10"-->
+<!--            android:padding="10dp"-->
+<!--            android:textSize="17sp"/>-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -69,7 +73,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
-        android:id="@+id/ProfileRadioGroup"
+        android:id="@+id/RBG_Gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"

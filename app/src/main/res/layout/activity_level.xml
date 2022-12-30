@@ -26,6 +26,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/LevelScore"
+            android:text="0"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="40dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/LevelTV"
             android:text="المجموعة الاولى"
             android:textSize="25sp"
@@ -36,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/LevelNumPoint"
+            android:id="@+id/LevelTimer"
             android:text="0"
             android:textSize="25sp"
             android:layout_weight="1"
@@ -44,19 +54,19 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timer"
-        android:layout_gravity="center"
-        android:text="1"
-        android:textSize="30sp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20sp"/>
-
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="500dp"
         android:id="@+id/LevelPager"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:text="Skip"
+        android:textAllCaps="false"
+        android:id="@+id/LevelSkip"
+        android:textSize="20sp"/>
+
 
 </LinearLayout>

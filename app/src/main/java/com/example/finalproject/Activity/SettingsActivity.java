@@ -16,7 +16,7 @@ import com.example.finalproject.databinding.SettingsActivityBinding;
 import com.example.finalproject.modle.MyService;
 
 public class SettingsActivity extends AppCompatActivity {
-    SettingsActivityBinding binding;
+   SettingsActivityBinding binding;
     Intent intent;
     private boolean sound = false;
     SharedPreferences sp;
@@ -36,13 +36,13 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!sound) {
-                    editor.putBoolean("sound_false", false);
+                    editor.putBoolean("sound", false);
                     editor.apply();
                     binding.SettingImg.setImageResource(R.drawable.img);
                     startService(intent);
                     sound = true;
                 } else {
-                    editor.putBoolean("sound_true", true);
+                    editor.putBoolean("sound", true);
                     editor.apply();
                     binding.SettingImg.setImageResource(R.drawable.img_1);
                     stopService(intent);
