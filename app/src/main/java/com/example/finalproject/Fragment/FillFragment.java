@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.finalproject.Activity.LevelActivity;
+import com.example.finalproject.Activity.SplashActivity;
 import com.example.finalproject.R;
 import com.example.finalproject.databinding.FragmentFillBinding;
 import com.example.finalproject.modle.MyDialog;
@@ -66,8 +67,8 @@ public class FillFragment extends Fragment {
         FragmentFillBinding binding = FragmentFillBinding.inflate(inflater, container, false);
         binding.FillTitle.setText(title);
 
-        int TueFalsePoint= LevelActivity.sp.getInt("TueFalsePoint",TrueFalseFragment.point);
-        int ChoosePoint= LevelActivity.sp.getInt("ChoosePoint",ChooseFragment.point);
+        int TueFalsePoint= SplashActivity.sp.getInt("TueFalsePoint",TrueFalseFragment.point);
+        int ChoosePoint= SplashActivity.sp.getInt("ChoosePoint",ChooseFragment.point);
         binding.score.setText(String.valueOf(TueFalsePoint+ChoosePoint));
 
         new CountDownTimer(duration, 1000) {
@@ -89,9 +90,9 @@ public class FillFragment extends Fragment {
 
                             binding.score.setText(String.valueOf(TueFalsePoint + ChoosePoint + point));
 
-                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
-                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
-                            LevelActivity.editor.apply();
+                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
+                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+                            SplashActivity.editor.apply();
                         } else {
                             LevelActivity.media_fail.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);

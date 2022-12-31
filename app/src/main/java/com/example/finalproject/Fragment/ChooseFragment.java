@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.finalproject.Activity.LevelActivity;
+import com.example.finalproject.Activity.SplashActivity;
 import com.example.finalproject.databinding.FragmentChooseBinding;
 import com.example.finalproject.modle.MyDialog;
 
@@ -117,9 +118,9 @@ public class ChooseFragment extends Fragment {
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 //
 
-                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
-                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
-                            LevelActivity.editor.apply();
+                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
+                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+                            SplashActivity.editor.apply();
                         } else {
                             LevelActivity.media_fail.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
@@ -140,9 +141,9 @@ public class ChooseFragment extends Fragment {
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
 
-                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
-                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
-                            LevelActivity.editor.apply();
+                            int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
+                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+                            SplashActivity.editor.apply();
                         } else {
                             LevelActivity.media_fail.start();
 
@@ -161,9 +162,9 @@ public class ChooseFragment extends Fragment {
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
 
-                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
-                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
-                            LevelActivity.editor.apply();
+                            int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
+                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+                            SplashActivity.editor.apply();
 
                         } else {
                             LevelActivity.media_fail.start();
@@ -183,9 +184,9 @@ public class ChooseFragment extends Fragment {
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
 
-                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
-                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
-                            LevelActivity.editor.apply();
+                            int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
+                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+                            SplashActivity.editor.apply();
                         } else {
                             LevelActivity.media_fail.start();
 

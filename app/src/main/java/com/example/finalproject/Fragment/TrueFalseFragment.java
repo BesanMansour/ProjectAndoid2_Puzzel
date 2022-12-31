@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.finalproject.Activity.HomeActivity;
 import com.example.finalproject.Activity.LevelActivity;
+import com.example.finalproject.Activity.SplashActivity;
 import com.example.finalproject.Activity.StartPlayingActivity;
 import com.example.finalproject.Activity.TrueFalseDialog;
 import com.example.finalproject.R;
@@ -98,10 +99,19 @@ public class TrueFalseFragment extends Fragment {
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
                             binding.scoreTrue.setText(point + "");
 
-                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
-                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
-                            LevelActivity.editor.apply();
+                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
+                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+                            int TrueAnswer =SplashActivity.sp.getInt(LevelActivity.CountTQus, 0);
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus, TrueAnswer+1);
+                            int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
+                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
+
+
                         } else {
+                            int FalseAnswer =SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);
+                            int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
+                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
+                            SplashActivity.editor.putInt(LevelActivity.CountFQus, FalseAnswer+1);
                             LevelActivity.media_fail.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
@@ -118,18 +128,25 @@ public class TrueFalseFragment extends Fragment {
 
                             binding.scoreTrue.setText(point + "");
 
-                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
-                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
-                            LevelActivity.editor.apply();
+                            int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
+                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+                            int TrueAnswer =SplashActivity.sp.getInt(LevelActivity.CountTQus, 0);
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus, TrueAnswer+1);
+                            int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
+                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
+
 
                         } else {
 
+                            int FalseAnswer =SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);
+                            int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
+                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
+                            SplashActivity.editor.putInt(LevelActivity.CountFQus, FalseAnswer+1);
                             LevelActivity.media_fail.start();
-
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("try again \n" + hint, 0);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
                         }
-                    }
+                        SplashActivity.editor.apply();}
                 });
             }
 

@@ -16,20 +16,18 @@ public class User {
     private String UserName;
     private String email;
     private String birthday;
-    private String male;
-    private String female;
+    private String Gender;
     private String country;
 
     public User() {
     }
 
-    public User(int id, @NonNull String userName, @NonNull String email, String birthday, String male, String female, String country) {
+    public User(int id, @NonNull String userName, @NonNull String email, String birthday, String Gender , String country) {
         this.id = id;
         UserName = userName;
         this.email = email;
         this.birthday = birthday;
-        this.male = male;
-        this.female = female;
+        this.Gender = Gender;
         this.country = country;
     }
 
@@ -66,20 +64,12 @@ public class User {
         this.birthday = birthday;
     }
 
-    public String getMale() {
-        return male;
+    public String getGender() {
+        return Gender;
     }
 
-    public void setMale(String male) {
-        this.male = male;
-    }
-
-    public String getFemale() {
-        return female;
-    }
-
-    public void setFemale(String female) {
-        this.female = female;
+    public void setGender(String gender) {
+        Gender = gender;
     }
 
     public String getCountry() {
@@ -97,8 +87,6 @@ public class User {
                 ", UserName='" + UserName + '\'' +
                 ", email='" + email + '\'' +
                 ", birthday='" + birthday + '\'' +
-                ", male='" + male + '\'' +
-                ", female='" + female + '\'' +
                 ", country='" + country + '\'' +
                 '}';
     }

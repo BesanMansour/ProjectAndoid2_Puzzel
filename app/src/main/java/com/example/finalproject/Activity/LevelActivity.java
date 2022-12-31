@@ -44,8 +44,8 @@ public class LevelActivity extends AppCompatActivity {
     public static ArrayList<Fragment> fragments;
     public static MediaPlayer media_fail;
     public static MediaPlayer media_win;
-    public static SharedPreferences sp;
-    public static SharedPreferences.Editor editor;
+//    public static SharedPreferences sp;
+//    public static SharedPreferences.Editor editor;
     LevelAdapterFragment levelAdapterFragment;
     public static final String CountQus = "CountQ";
     public static final String CountLevel = "CountLevel";
@@ -53,14 +53,12 @@ public class LevelActivity extends AppCompatActivity {
     public static final String CountFQus = "CountFQ";
     public static final String Score = "Score";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLevelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         String language = getApplicationContext().getResources().getConfiguration().locale.getLanguage();
-        ;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && language.equals("en")) {
             // Language is English
             String assets = ParsJson.readFromAssets(getApplicationContext(), "json/english.json");
@@ -74,8 +72,8 @@ public class LevelActivity extends AppCompatActivity {
             p.readJson(assets);
         }
 
-        sp = getSharedPreferences("Login", MODE_PRIVATE);
-        editor = sp.edit();
+//        sp = getSharedPreferences("Login", MODE_PRIVATE);
+//        editor = sp.edit();
 
         media_fail = MediaPlayer.create(this, R.raw.fail_sound);
         media_win = MediaPlayer.create(this, R.raw.win_sound);
@@ -168,7 +166,7 @@ public class LevelActivity extends AppCompatActivity {
 //                                Log.d("FillPoint", point + "");
                                 break;
                         }
-                        binding.LevelScore.setText(sp.getInt(Score, 0)+"");
+                        binding.LevelScore.setText(SplashActivity.sp.getInt(Score, 0)+"");
 
                         levelAdapterFragment = new LevelAdapterFragment(LevelActivity.this, fragments);
                         binding.LevelPager.setAdapter(levelAdapterFragment);
@@ -176,14 +174,21 @@ public class LevelActivity extends AppCompatActivity {
                 }
             }
         });
+        binding.LevelPager.setUserInputEnabled(false);
 
 //        binding.LevelScore.setText("score " + score);
         binding.LevelNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragments.set(1, fragments.get(1));
-                binding.LevelPager.setCurrentItem(1, true);
+               int Log1= binding.LevelPager.getCurrentItem();
+               if (Log1 != 2){
+               Log.d("LevelActivity",Log1+"");
+                binding.LevelPager.setCurrentItem(Log1+1, true);
                 levelAdapterFragment.notifyItemChanged(1);
+
+            }else {
+                   startActivity(new Intent(LevelActivity.this,StartPlayingActivity.class));
+               }
             }
         });
 //        binding.LevelSkip.setOnClickListener(new View.OnClickListener() {
@@ -195,9 +200,8 @@ public class LevelActivity extends AppCompatActivity {
 //                fragmentTransaction.commit();
 //            }
 //        });
-    //TODO: How we can refresh shard.
-
-
+    //TODO: How we can refresh shared.
 
     }
+
 }

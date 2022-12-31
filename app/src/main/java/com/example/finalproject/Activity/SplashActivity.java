@@ -14,9 +14,11 @@ import com.example.finalproject.R;
 import com.example.finalproject.modle.MyJobService;
 import com.example.finalproject.modle.MyService;
 
+import java.util.prefs.AbstractPreferences;
+
 public class SplashActivity extends AppCompatActivity {
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
+    public static SharedPreferences sp;
+    public static SharedPreferences.Editor editor;
     public static JobScheduler jobScheduler;
 
     @Override

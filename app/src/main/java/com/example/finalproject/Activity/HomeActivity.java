@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<User> users) {
                 if (users.size() == 0) {
-                    viewModel.InsertUser(new User(1, "User1", null, null, null, null, null));
+                    viewModel.InsertUser(new User(1, "User1", null, null, null, null));
                 }
             }
         });

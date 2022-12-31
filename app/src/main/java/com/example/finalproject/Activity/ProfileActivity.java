@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ public class ProfileActivity extends AppCompatActivity {
     String age;
     String UserName,Email,Country,Birthday,Gender;
     int GenderId;
+    public static SharedPreferences sp;
+    public static SharedPreferences.Editor editor;
 
 
     @Override
@@ -36,19 +39,9 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        sp = getSharedPreferences("Login", MODE_PRIVATE);
+        editor = sp.edit();
         ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
-
-        //        String user_name = binding.ProfileUserName.getText().toString().trim();
-//        String email = binding.ProfileEmail.getText().toString().trim();
-//        String birthDate = binding.ProfileBirth.getText().toString().trim();
-//        String male = binding.ProfileMale.getText().toString();
-//        String female = binding.ProfileFemale.getText().toString();
-//        String country = binding.ProfileCountry.getText().toString().trim();
-        final String[] birth1 = new String[1];
-
-
-
 
         binding.ProfileBirth.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -63,10 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
                             // ليسنر على دالة أون ديت ست
                             // تستدعى لمن المستخدم يختار تاريخ
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                                String birth = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                                binding.ProfileBirth.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                                birth1[0] =birth;
-                                // الشهر زائد 1 لانو الشهر في الكلندر بيبدا من صفر
+                                binding.ProfileBirth.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);// الشهر زائد 1 لانو الشهر في الكلندر بيبدا من صفر
                                 age = String.valueOf(now.get(Calendar.YEAR) - year);
                             }
                         },
@@ -98,18 +88,29 @@ public class ProfileActivity extends AppCompatActivity {
                 Birthday = binding.ProfileBirth.getText().toString();
                 GenderId = binding.RBGGender.getCheckedRadioButtonId();
                 Gender = findViewById(GenderId).toString();
+
+                if (binding.ProfileMale.isChecked()){
+                    Gender = "Male";
+                }else{
+                    Gender = "Female";
+                }
                 viewModel.AllUser().observe(ProfileActivity.this, new Observer<List<User>>() {
                     @Override
                     public void onChanged(List<User> users) {
                          users.get(0).getId();
 
-                        viewModel.UpdateUser(new User(1,UserName+"1",Email+"b",Birthday,null,Gender,Country));
+                        viewModel.UpdateUser(new User(1,UserName+"1",Email+"b",Birthday,Gender,Country));
                         Log.d("user ",users.get(0).toString());
                     }
                 });
             }
         });
+    binding.tvCountF.setText(sp.getInt(LevelActivity.CountFQus,0)+"");
+        binding.tvCountQ.setText(sp.getInt(LevelActivity.CountQus,0)+"");
+        binding.tvCountTQ.setText(sp.getInt(LevelActivity.CountTQus,0)+"");
 
-//        viewModel.InsertUser(new User(user_name+"b",email+"b",,male,female,country));
+
     }
+
+
 }
