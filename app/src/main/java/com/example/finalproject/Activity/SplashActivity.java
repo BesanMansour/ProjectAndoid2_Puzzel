@@ -61,7 +61,7 @@ public class SplashActivity extends AppCompatActivity {
         JobInfo jobInfo = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             jobInfo = new JobInfo.Builder(1, componentName)
-                    .setPeriodic(24 * 60 * 60 * 1000, 10*60*1000)
+                    .setPeriodic(24 * 60 * 60 * 1000, JobInfo.getMinFlexMillis())
                     .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                     .build();
         }

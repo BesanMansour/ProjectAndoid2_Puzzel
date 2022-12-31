@@ -201,6 +201,7 @@ public class ChooseFragment extends Fragment {
             public void onFinish() {
                 binding.timer.setText("00:00:00");
                 //Todo: chenge this fragment to next one
+
             }
         }.start();
         return binding.getRoot();
