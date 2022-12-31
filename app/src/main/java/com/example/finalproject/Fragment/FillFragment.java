@@ -66,9 +66,9 @@ public class FillFragment extends Fragment {
         FragmentFillBinding binding = FragmentFillBinding.inflate(inflater, container, false);
         binding.FillTitle.setText(title);
 
-      int TueFalsePoint= LevelActivity.sp.getInt("TueFalsePoint",TrueFalseFragment.point);
-      int ChoosePoint= LevelActivity.sp.getInt("ChoosePoint",ChooseFragment.point);
-       binding.score.setText(String.valueOf(TueFalsePoint+ChoosePoint));
+        int TueFalsePoint= LevelActivity.sp.getInt("TueFalsePoint",TrueFalseFragment.point);
+        int ChoosePoint= LevelActivity.sp.getInt("ChoosePoint",ChooseFragment.point);
+        binding.score.setText(String.valueOf(TueFalsePoint+ChoosePoint));
 
         new CountDownTimer(duration, 1000) {
             @Override
@@ -89,7 +89,8 @@ public class FillFragment extends Fragment {
 
                             binding.score.setText(String.valueOf(TueFalsePoint + ChoosePoint + point));
 
-                            LevelActivity.editor.putInt("FillPoint",point);
+                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
+                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
                             LevelActivity.editor.apply();
                         } else {
                             LevelActivity.media_fail.start();

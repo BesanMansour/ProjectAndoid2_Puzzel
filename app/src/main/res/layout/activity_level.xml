@@ -23,15 +23,15 @@
             android:layout_weight="1"
             android:textColor="@color/black"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/LevelScore"
-            android:text="0"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="40dp"
-            android:layout_weight="1"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/LevelScore"-->
+<!--            android:text="0"-->
+<!--            android:textSize="25sp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            android:layout_weight="1"/>-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/LevelTimer"
+            android:id="@+id/LevelScore"
             android:text="0"
             android:textSize="25sp"
             android:layout_weight="1"
@@ -56,13 +56,22 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="450dp"
         android:id="@+id/LevelPager"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="50dp"
+        android:layout_margin="20dp"
+        android:text="Next"
+        android:textAllCaps="false"
+        android:id="@+id/LevelNext"
+        android:textSize="20sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:text="Skip"
         android:textAllCaps="false"
         android:id="@+id/LevelSkip"

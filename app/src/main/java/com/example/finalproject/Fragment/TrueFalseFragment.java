@@ -96,10 +96,10 @@ public class TrueFalseFragment extends Fragment {
                             LevelActivity.media_win.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
-
                             binding.scoreTrue.setText(point + "");
 
-                            LevelActivity.editor.putInt("TueFalsePoint", point);
+                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
+                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
                             LevelActivity.editor.apply();
                         } else {
                             LevelActivity.media_fail.start();
@@ -117,11 +117,15 @@ public class TrueFalseFragment extends Fragment {
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
 
                             binding.scoreTrue.setText(point + "");
-                            LevelActivity.editor.putInt("TueFalsePoint", point);
+
+                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
+                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
                             LevelActivity.editor.apply();
+
                         } else {
 
                             LevelActivity.media_fail.start();
+
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("try again \n" + hint, 0);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
                         }
@@ -133,16 +137,16 @@ public class TrueFalseFragment extends Fragment {
             public void onFinish() {
                 binding.timer.setText("00:00:00");
 //                     Toast.makeText(getContext(), "Finish!", Toast.LENGTH_SHORT).show();
-//                FragmentManager fragmentManager =TrueFalseFragment.this.getSuport;
+//               FragmentManager fragmentManager =getChildFragmentManager();
 //                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //
-//                fragmentTransaction.replace(R.id.LevelPager,LevelActivity.fragments.get(2));
+//                fragmentTransaction.replace(R.id.LevelPager,LevelActivity.fragments.get(1));
 //                fragmentTransaction.commit();
 //                // Fragment newFragment = new ExampleFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.LevelPager,new ChooseFragment());
-                transaction.addToBackStack(null);
-                transaction.commit();
+//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                transaction.replace(R.id.LevelPager,new ChooseFragment());
+//                transaction.addToBackStack(null);
+//                transaction.commit();
 
                 //Todo: chenge this fragment to next one
             }

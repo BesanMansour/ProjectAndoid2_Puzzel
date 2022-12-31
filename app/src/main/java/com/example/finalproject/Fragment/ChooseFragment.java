@@ -92,8 +92,8 @@ public class ChooseFragment extends Fragment {
         boolean answer3 = true_answer.equals(binding.ChooseAnswer3.getText().toString());
         boolean answer4 = true_answer.equals(binding.ChooseAnswer4.getText().toString());
 
-        int TueFalsePoint = LevelActivity.sp.getInt("TueFalsePoint", TrueFalseFragment.point);
-        binding.score.setText(TueFalsePoint + "");
+//        int TueFalsePoint = LevelActivity.sp.getInt("TueFalsePoint", TrueFalseFragment.point);
+//        binding.score.setText(TueFalsePoint + "");
 
         new CountDownTimer(duration, 1000) {
             @Override
@@ -109,16 +109,19 @@ public class ChooseFragment extends Fragment {
                     public void onClick(View view) {
                         if (answer1) {
                             LevelActivity.media_win.start();
+
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
-                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
-                            LevelActivity.editor.putInt("ChoosePoint", point);
+//                            binding.score.setText(String.valueOf(TueFalsePoint + point));
+//
+
+                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
+                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
                             LevelActivity.editor.apply();
                         } else {
                             LevelActivity.media_fail.start();
-
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
                         }
@@ -133,10 +136,13 @@ public class ChooseFragment extends Fragment {
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
-                            binding.score.setText(String.valueOf(TueFalsePoint + point));
-                            LevelActivity.editor.putInt("ChoosePoint", point);
-                            LevelActivity.editor.apply();
 
+//                            binding.score.setText(String.valueOf(TueFalsePoint + point));
+
+
+                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
+                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
+                            LevelActivity.editor.apply();
                         } else {
                             LevelActivity.media_fail.start();
 
@@ -150,12 +156,13 @@ public class ChooseFragment extends Fragment {
                     public void onClick(View view) {
                         if (answer3) {
                             LevelActivity.media_win.start();
-
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
-                            binding.score.setText(String.valueOf(TueFalsePoint + point));
+//                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
-                            LevelActivity.editor.putInt("ChoosePoint", point);
+
+                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
+                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
                             LevelActivity.editor.apply();
 
                         } else {
@@ -173,9 +180,11 @@ public class ChooseFragment extends Fragment {
                             LevelActivity.media_win.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
-                            binding.score.setText(String.valueOf(TueFalsePoint + point));
+//                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
-                            LevelActivity.editor.putInt("ChoosePoint", point);
+
+                            int sore =LevelActivity.sp.getInt(LevelActivity.Score, 0);
+                            LevelActivity.editor.putInt(LevelActivity.Score, sore+point);
                             LevelActivity.editor.apply();
                         } else {
                             LevelActivity.media_fail.start();
@@ -190,7 +199,6 @@ public class ChooseFragment extends Fragment {
             @Override
             public void onFinish() {
                 binding.timer.setText("00:00:00");
-
                 //Todo: chenge this fragment to next one
             }
         }.start();

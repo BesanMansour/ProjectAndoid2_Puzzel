@@ -3,6 +3,7 @@ package com.example.finalproject.Activity;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
@@ -43,26 +44,36 @@ public class LevelActivity extends AppCompatActivity {
     public static ArrayList<Fragment> fragments;
     public static MediaPlayer media_fail;
     public static MediaPlayer media_win;
-    public static int score;
     public static SharedPreferences sp;
     public static SharedPreferences.Editor editor;
     LevelAdapterFragment levelAdapterFragment;
-    String title;
-    int point;
-    int duration;
-    int patternId;
-    String hint;
-    String answer4;
-    String answer3;
-    String answer2;
-    String answer1;
-    String true_answer;
+    public static final String CountQus = "CountQ";
+    public static final String CountLevel = "CountLevel";
+    public static final String CountTQus = "CountTQ";
+    public static final String CountFQus = "CountFQ";
+    public static final String Score = "Score";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLevelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        String language = getApplicationContext().getResources().getConfiguration().locale.getLanguage();
+        ;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && language.equals("en")) {
+            // Language is English
+            String assets = ParsJson.readFromAssets(getApplicationContext(), "json/english.json");
+            ParsJson p = new ParsJson(this);
+            p.readJson(assets);
+
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && language.equals("ar")) {
+            // Language is Arabic
+            String assets = ParsJson.readFromAssets(getApplicationContext(), "json/jsonStr.json");
+            ParsJson p = new ParsJson(this);
+            p.readJson(assets);
+        }
+
         sp = getSharedPreferences("Login", MODE_PRIVATE);
         editor = sp.edit();
 
@@ -71,31 +82,29 @@ public class LevelActivity extends AppCompatActivity {
 
         fragments = new ArrayList<>();
 
+
+
         Intent intent = getIntent();
         int pos = intent.getIntExtra("position", 0);
 
         ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
         Locale currentLocale = Locale.getDefault();
-        String languageCode = currentLocale.getLanguage();
-        if (languageCode.equals("en")) {
-            // Language is English
-            String assets = ParsJson.readFromAssets(getApplicationContext(), "json/english.json");
-            ParsJson p = new ParsJson(this);
-            p.readJson(assets);
+//        String languageCode = currentLocale.getLanguage();
+//        String language= getResources().getConfiguration().locale.getDisplayLanguage();
 
-        } else if (languageCode.equals("ar")) {
-            // Language is Arabic
-            String assets = ParsJson.readFromAssets(getApplicationContext(), "json/jsonStr.json");
-            ParsJson p = new ParsJson(this);
-            p.readJson(assets);
-        }
 
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//        } else {
+//
+//        }
+//        binding.LevelScore.setText(sp.getInt("Score", 0)+"");
         binding.LevelTV.setText("المجموعة " + pos);
 
 //        TextView tv = findViewById(R.id.scoreTrue);
-        int true_false = sp.getInt("TueFalsePoint", TrueFalseFragment.point);
-        Log.d("true_false", true_false + "");
-        Toast.makeText(this, true_false + "", Toast.LENGTH_SHORT).show();
+//        int true_false = sp.getInt("Score",0);
+//
+//        Log.d("true_false", true_false + "");
+//        Toast.makeText(this, true_false + "", Toast.LENGTH_SHORT).show();
 //        TrueFalseFragment.binding.scoreTrue.setText(true_false + "");
 
         viewModel.getQuestion(pos).observe(this, new Observer<List<Mystery>>() {
@@ -105,20 +114,23 @@ public class LevelActivity extends AppCompatActivity {
                     int level = mysteries.get(i).getLevelId();
 
                     if (level == pos) {
-                        title = mysteries.get(i).getTitle();
-                        true_answer = mysteries.get(i).getTrue_answer();
-                        answer1 = mysteries.get(i).getAnswer_1();
-                        answer2 = mysteries.get(i).getAnswer_2();
-                        answer3 = mysteries.get(i).getAnswer_3();
-                        answer4 = mysteries.get(i).getAnswer_4();
-                        hint = mysteries.get(i).getHint();
-                        patternId = mysteries.get(i).getPatternId();
-                        duration = mysteries.get(i).getDuration();
-                        point = mysteries.get(i).getPoints();
+                        String title = mysteries.get(i).getTitle();
+                        String true_answer = mysteries.get(i).getTrue_answer();
+                        String answer1 = mysteries.get(i).getAnswer_1();
+                        String answer2 = mysteries.get(i).getAnswer_2();
+                        String answer3 = mysteries.get(i).getAnswer_3();
+                        String answer4 = mysteries.get(i).getAnswer_4();
+                        String hint = mysteries.get(i).getHint();
+                        int patternId = mysteries.get(i).getPatternId();
+                        int duration = mysteries.get(i).getDuration();
+                        int point = mysteries.get(i).getPoints();
 
                         switch (patternId) {
                             case 1:
                                 fragments.add(TrueFalseFragment.newInstance(title, true_answer, hint, duration, point));
+//                                score = sp.getInt("TueFalsePoint", point);
+//                                Log.d("TueFalsePoint", point + "");
+
 //                                    new CountDownTimer(duration, 1000) {
 //                                    @Override
 //                                    public void onTick(long l) {
@@ -146,27 +158,46 @@ public class LevelActivity extends AppCompatActivity {
 
                             case 2:
                                 fragments.add(ChooseFragment.newInstance(title, answer1, answer2, answer3, answer4, true_answer, hint, duration, point));
+//                                score = sp.getInt("ChoosePoint", point);
+//                                Log.d("ChoosePoint", point + "");
                                 break;
 
                             case 3:
                                 fragments.add(FillFragment.newInstance(title, true_answer, hint, duration, point));
+//                                score = sp.getInt("FillPoint", point);
+//                                Log.d("FillPoint", point + "");
                                 break;
-
                         }
+                        binding.LevelScore.setText(sp.getInt(Score, 0)+"");
+
                         levelAdapterFragment = new LevelAdapterFragment(LevelActivity.this, fragments);
                         binding.LevelPager.setAdapter(levelAdapterFragment);
                     }
                 }
             }
         });
-        binding.LevelSkip.setOnClickListener(new View.OnClickListener() {
+
+//        binding.LevelScore.setText("score " + score);
+        binding.LevelNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragments.set(1, ChooseFragment.newInstance(title, answer1, answer2, answer3, answer4, true_answer, hint, duration, point));
+                fragments.set(1, fragments.get(1));
                 binding.LevelPager.setCurrentItem(1, true);
-//                binding.LevelPager.getCurrentItem();
                 levelAdapterFragment.notifyItemChanged(1);
             }
         });
+//        binding.LevelSkip.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FragmentManager fragmentManager =getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManage.
+//                fragmentTransaction.replace(R.id.LevelPager,fragments.get(1));
+//                fragmentTransaction.commit();
+//            }
+//        });
+    //TODO: How we can refresh shard.
+
+
+
     }
 }
