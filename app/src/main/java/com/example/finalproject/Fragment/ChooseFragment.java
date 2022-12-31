@@ -1,7 +1,9 @@
 package com.example.finalproject.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
@@ -16,12 +18,13 @@ import com.example.finalproject.Activity.LevelActivity;
 import com.example.finalproject.Activity.SplashActivity;
 import com.example.finalproject.databinding.FragmentChooseBinding;
 import com.example.finalproject.modle.MyDialog;
+import com.example.finalproject.modle.MyListener;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class ChooseFragment extends Fragment {
-
+    MyListener myListener;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_ANSWER1 = "answer1";
     private static final String ARG_ANSWER2 = "answer2";
@@ -43,6 +46,12 @@ public class ChooseFragment extends Fragment {
     public static int point;
 
     public ChooseFragment() {
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        myListener = (MyListener) context;
     }
 
     public static ChooseFragment newInstance(String param1, String answer1, String answer2, String answer3, String answer4, String true_answer, String hint
@@ -114,13 +123,13 @@ public class ChooseFragment extends Fragment {
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
-
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 //
-
                             int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
                             SplashActivity.editor.apply();
+
+                            myListener.onClick(point);
                         } else {
                             LevelActivity.media_fail.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
@@ -144,6 +153,7 @@ public class ChooseFragment extends Fragment {
                             int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
                             SplashActivity.editor.apply();
+                            myListener.onClick(point);
                         } else {
                             LevelActivity.media_fail.start();
 
@@ -161,11 +171,10 @@ public class ChooseFragment extends Fragment {
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
-
                             int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
                             SplashActivity.editor.apply();
-
+                            myListener.onClick(point);
                         } else {
                             LevelActivity.media_fail.start();
 
@@ -183,10 +192,10 @@ public class ChooseFragment extends Fragment {
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
-
                             int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
                             SplashActivity.editor.apply();
+                            myListener.onClick(point);
                         } else {
                             LevelActivity.media_fail.start();
 

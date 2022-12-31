@@ -27,6 +27,7 @@ import com.example.finalproject.Activity.TrueFalseDialog;
 import com.example.finalproject.R;
 import com.example.finalproject.databinding.FragmentTrueFalseBinding;
 import com.example.finalproject.modle.MyDialog;
+import com.example.finalproject.modle.MyListener;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -35,7 +36,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TrueFalseFragment extends Fragment {
-    public  static  FragmentTrueFalseBinding binding;
+    FragmentTrueFalseBinding binding;
+    MyListener myListener;
     private static final String ARG_TITLE = "title";
     private static final String ARG_Answer = "answer";
     private static final String ARG_HINT = "hint";
@@ -49,6 +51,12 @@ public class TrueFalseFragment extends Fragment {
     public static int point;
 
     public TrueFalseFragment() {
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        myListener = (MyListener) context;
     }
 
     public static TrueFalseFragment newInstance(String title, String answer, String hint, int duration, int point) {
@@ -97,7 +105,8 @@ public class TrueFalseFragment extends Fragment {
                             LevelActivity.media_win.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
-                            binding.scoreTrue.setText(point + "");
+
+//                            binding.scoreTrue.setText(point + "");
 
                             int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
@@ -106,7 +115,7 @@ public class TrueFalseFragment extends Fragment {
                             int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
                             SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
 
-
+                            myListener.onClick(point);
                         } else {
                             int FalseAnswer =SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);
                             int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
@@ -126,7 +135,7 @@ public class TrueFalseFragment extends Fragment {
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
 
-                            binding.scoreTrue.setText(point + "");
+//                            binding.scoreTrue.setText(point + "");
 
                             int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
@@ -135,9 +144,9 @@ public class TrueFalseFragment extends Fragment {
                             int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
                             SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
 
+                            myListener.onClick(point);
 
                         } else {
-
                             int FalseAnswer =SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);
                             int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
                             SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);

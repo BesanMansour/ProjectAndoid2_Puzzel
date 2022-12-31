@@ -1,7 +1,9 @@
 package com.example.finalproject.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
@@ -16,12 +18,13 @@ import com.example.finalproject.Activity.SplashActivity;
 import com.example.finalproject.R;
 import com.example.finalproject.databinding.FragmentFillBinding;
 import com.example.finalproject.modle.MyDialog;
+import com.example.finalproject.modle.MyListener;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class FillFragment extends Fragment {
-
+    MyListener myListener;
     private static final String ARG_TITLE = "title";
     private static final String ARG_Answer = "answer";
     private static final String ARG_HINT = "hint";
@@ -35,6 +38,12 @@ public class FillFragment extends Fragment {
     public static int point;
 
     public FillFragment() {
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        myListener = (MyListener) context;
     }
 
     public static FillFragment newInstance(String title, String answerFill, String hint, int duration, int point) {
@@ -93,6 +102,7 @@ public class FillFragment extends Fragment {
                             int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
                             SplashActivity.editor.apply();
+                            myListener.onClick(point);
                         } else {
                             LevelActivity.media_fail.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);

@@ -38,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
                 if (!sound) {
                     editor.putBoolean("sound", false);
                     editor.apply();
-                    binding.SettingImg.setImageResource(R.drawable.img);
+                  binding.SettingImg.setImageResource(R.drawable.img);
                     startService(intent);
                     sound = true;
                 } else {

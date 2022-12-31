@@ -30,6 +30,7 @@ import com.example.finalproject.Fragment.TrueFalseFragment;
 import com.example.finalproject.Json.ParsJson;
 import com.example.finalproject.R;
 import com.example.finalproject.databinding.ActivityLevelBinding;
+import com.example.finalproject.modle.MyListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ import RoomDatabase.Level;
 import RoomDatabase.Mystery;
 import RoomDatabase.ViewModel;
 
-public class LevelActivity extends AppCompatActivity {
+public class LevelActivity extends AppCompatActivity implements MyListener {
     public static ActivityLevelBinding binding;
     public static ArrayList<Fragment> fragments;
     public static MediaPlayer media_fail;
@@ -151,19 +152,15 @@ public class LevelActivity extends AppCompatActivity {
 //                                        transaction.commit();
 //                                        //Todo: chenge this fragment to next one
 //                                    }
-//                                }.start();
+//                                }.start()
                                 break;
 
                             case 2:
                                 fragments.add(ChooseFragment.newInstance(title, answer1, answer2, answer3, answer4, true_answer, hint, duration, point));
-//                                score = sp.getInt("ChoosePoint", point);
-//                                Log.d("ChoosePoint", point + "");
                                 break;
 
                             case 3:
                                 fragments.add(FillFragment.newInstance(title, true_answer, hint, duration, point));
-//                                score = sp.getInt("FillPoint", point);
-//                                Log.d("FillPoint", point + "");
                                 break;
                         }
                         binding.LevelScore.setText(SplashActivity.sp.getInt(Score, 0)+"");
@@ -201,7 +198,9 @@ public class LevelActivity extends AppCompatActivity {
 //            }
 //        });
     //TODO: How we can refresh shared.
-
     }
-
+    @Override
+    public void onClick(int position) {
+        binding.LevelScore.setText(position+"");
+    }
 }
