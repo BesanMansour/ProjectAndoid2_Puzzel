@@ -26,6 +26,7 @@ import com.example.finalproject.Activity.StartPlayingActivity;
 import com.example.finalproject.Activity.TrueFalseDialog;
 import com.example.finalproject.R;
 import com.example.finalproject.databinding.FragmentTrueFalseBinding;
+import com.example.finalproject.modle.ListenerScore;
 import com.example.finalproject.modle.MyDialog;
 import com.example.finalproject.modle.MyListener;
 
@@ -36,8 +37,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TrueFalseFragment extends Fragment {
-    FragmentTrueFalseBinding binding;
-    MyListener myListener;
+    public interface trueScore{
+        void TFQ(int score);
+    }
+
+FragmentTrueFalseBinding binding;
     private static final String ARG_TITLE = "title";
     private static final String ARG_Answer = "answer";
     private static final String ARG_HINT = "hint";
@@ -49,6 +53,7 @@ public class TrueFalseFragment extends Fragment {
     private String hint;
     private int duration;
     public static int point;
+    trueScore trueScore;
 
     public TrueFalseFragment() {
     }
@@ -56,7 +61,7 @@ public class TrueFalseFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        myListener = (MyListener) context;
+        trueScore = (TrueFalseFragment.trueScore) context;
     }
 
     public static TrueFalseFragment newInstance(String title, String answer, String hint, int duration, int point) {
@@ -115,7 +120,7 @@ public class TrueFalseFragment extends Fragment {
                             int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
                             SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
 
-                            myListener.onClick(point);
+                            trueScore.TFQ(point);
                         } else {
                             int FalseAnswer =SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);
                             int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
@@ -144,7 +149,7 @@ public class TrueFalseFragment extends Fragment {
                             int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
                             SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
 
-                            myListener.onClick(point);
+                            trueScore.TFQ(point);
 
                         } else {
                             int FalseAnswer =SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);

@@ -30,6 +30,7 @@ import com.example.finalproject.Fragment.TrueFalseFragment;
 import com.example.finalproject.Json.ParsJson;
 import com.example.finalproject.R;
 import com.example.finalproject.databinding.ActivityLevelBinding;
+import com.example.finalproject.modle.ListenerScore;
 import com.example.finalproject.modle.MyListener;
 
 import java.util.ArrayList;
@@ -40,32 +41,31 @@ import RoomDatabase.Level;
 import RoomDatabase.Mystery;
 import RoomDatabase.ViewModel;
 
-public class LevelActivity extends AppCompatActivity implements MyListener {
+public class LevelActivity extends AppCompatActivity implements TrueFalseFragment.trueScore,ChooseFragment.chooseScore,FillFragment.fillScore{
     public static ActivityLevelBinding binding;
     public static ArrayList<Fragment> fragments;
     public static MediaPlayer media_fail;
     public static MediaPlayer media_win;
-//    public static SharedPreferences sp;
-//    public static SharedPreferences.Editor editor;
     LevelAdapterFragment levelAdapterFragment;
     public static final String CountQus = "CountQ";
     public static final String CountLevel = "CountLevel";
     public static final String CountTQus = "CountTQ";
     public static final String CountFQus = "CountFQ";
     public static final String Score = "Score";
+    int levelScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLevelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         String language = getApplicationContext().getResources().getConfiguration().locale.getLanguage();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && language.equals("en")) {
             // Language is English
             String assets = ParsJson.readFromAssets(getApplicationContext(), "json/english.json");
             ParsJson p = new ParsJson(this);
             p.readJson(assets);
-
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && language.equals("ar")) {
             // Language is Arabic
             String assets = ParsJson.readFromAssets(getApplicationContext(), "json/jsonStr.json");
@@ -80,7 +80,6 @@ public class LevelActivity extends AppCompatActivity implements MyListener {
         media_win = MediaPlayer.create(this, R.raw.win_sound);
 
         fragments = new ArrayList<>();
-
 
 
         Intent intent = getIntent();
@@ -182,7 +181,6 @@ public class LevelActivity extends AppCompatActivity implements MyListener {
                Log.d("LevelActivity",Log1+"");
                 binding.LevelPager.setCurrentItem(Log1+1, true);
                 levelAdapterFragment.notifyItemChanged(1);
-
             }else {
                    startActivity(new Intent(LevelActivity.this,StartPlayingActivity.class));
                }
@@ -199,8 +197,22 @@ public class LevelActivity extends AppCompatActivity implements MyListener {
 //        });
     //TODO: How we can refresh shared.
     }
+
     @Override
-    public void onClick(int position) {
-        binding.LevelScore.setText(position+"");
+    public void TFQ(int score) {
+        levelScore = score;
+        binding.LevelScore.setText(levelScore+"");
+    }
+
+    @Override
+    public void ChQ(int score) {
+        levelScore += score;
+        binding.LevelScore.setText(levelScore+"");
+    }
+
+    @Override
+    public void FillQ(int score) {
+        levelScore += score;
+        binding.LevelScore.setText(levelScore+"");
     }
 }

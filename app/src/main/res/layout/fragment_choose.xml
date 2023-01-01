@@ -7,14 +7,14 @@
     android:padding="16dp"
     tools:context=".Fragment.ChooseFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/score"
-        android:layout_gravity="left"
-        android:text="0"
-        android:textSize="30sp"
-        android:layout_marginTop="20sp"/>
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/score"-->
+<!--        android:layout_gravity="left"-->
+<!--        android:text="0"-->
+<!--        android:textSize="30sp"-->
+<!--        android:layout_marginTop="20sp"/>-->
 
     <TextView
         android:layout_width="wrap_content"

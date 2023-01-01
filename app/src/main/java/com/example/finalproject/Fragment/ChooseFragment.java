@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.finalproject.Activity.LevelActivity;
 import com.example.finalproject.Activity.SplashActivity;
 import com.example.finalproject.databinding.FragmentChooseBinding;
+import com.example.finalproject.modle.ListenerScore;
 import com.example.finalproject.modle.MyDialog;
 import com.example.finalproject.modle.MyListener;
 
@@ -24,7 +25,9 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class ChooseFragment extends Fragment {
-    MyListener myListener;
+    public interface chooseScore{
+        void ChQ(int score);
+    }
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_ANSWER1 = "answer1";
     private static final String ARG_ANSWER2 = "answer2";
@@ -44,6 +47,7 @@ public class ChooseFragment extends Fragment {
     private String hint;
     private int duration;
     public static int point;
+    chooseScore chooseScore;
 
     public ChooseFragment() {
     }
@@ -51,7 +55,7 @@ public class ChooseFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        myListener = (MyListener) context;
+        chooseScore = (ChooseFragment.chooseScore) context;
     }
 
     public static ChooseFragment newInstance(String param1, String answer1, String answer2, String answer3, String answer4, String true_answer, String hint
@@ -124,12 +128,12 @@ public class ChooseFragment extends Fragment {
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
-//
+
                             int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
                             SplashActivity.editor.apply();
 
-                            myListener.onClick(point);
+                            chooseScore.ChQ(point);
                         } else {
                             LevelActivity.media_fail.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
@@ -153,7 +157,7 @@ public class ChooseFragment extends Fragment {
                             int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
                             SplashActivity.editor.apply();
-                            myListener.onClick(point);
+                            chooseScore.ChQ(point);
                         } else {
                             LevelActivity.media_fail.start();
 
@@ -174,7 +178,7 @@ public class ChooseFragment extends Fragment {
                             int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
                             SplashActivity.editor.apply();
-                            myListener.onClick(point);
+                            chooseScore.ChQ(point);
                         } else {
                             LevelActivity.media_fail.start();
 
@@ -195,7 +199,7 @@ public class ChooseFragment extends Fragment {
                             int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
                             SplashActivity.editor.apply();
-                            myListener.onClick(point);
+                            chooseScore.ChQ(point);
                         } else {
                             LevelActivity.media_fail.start();
 
@@ -209,8 +213,6 @@ public class ChooseFragment extends Fragment {
             @Override
             public void onFinish() {
                 binding.timer.setText("00:00:00");
-                //Todo: chenge this fragment to next one
-
             }
         }.start();
         return binding.getRoot();

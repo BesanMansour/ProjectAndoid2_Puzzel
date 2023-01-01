@@ -17,6 +17,7 @@ import com.example.finalproject.Activity.LevelActivity;
 import com.example.finalproject.Activity.SplashActivity;
 import com.example.finalproject.R;
 import com.example.finalproject.databinding.FragmentFillBinding;
+import com.example.finalproject.modle.ListenerScore;
 import com.example.finalproject.modle.MyDialog;
 import com.example.finalproject.modle.MyListener;
 
@@ -24,7 +25,10 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class FillFragment extends Fragment {
-    MyListener myListener;
+    public interface fillScore{
+        void FillQ(int score);
+    }
+
     private static final String ARG_TITLE = "title";
     private static final String ARG_Answer = "answer";
     private static final String ARG_HINT = "hint";
@@ -36,6 +40,7 @@ public class FillFragment extends Fragment {
     String hint;
     private int duration;
     public static int point;
+    fillScore fillScore;
 
     public FillFragment() {
     }
@@ -43,7 +48,7 @@ public class FillFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        myListener = (MyListener) context;
+        fillScore = (FillFragment.fillScore) context;
     }
 
     public static FillFragment newInstance(String title, String answerFill, String hint, int duration, int point) {
@@ -76,9 +81,9 @@ public class FillFragment extends Fragment {
         FragmentFillBinding binding = FragmentFillBinding.inflate(inflater, container, false);
         binding.FillTitle.setText(title);
 
-        int TueFalsePoint= SplashActivity.sp.getInt("TueFalsePoint",TrueFalseFragment.point);
-        int ChoosePoint= SplashActivity.sp.getInt("ChoosePoint",ChooseFragment.point);
-        binding.score.setText(String.valueOf(TueFalsePoint+ChoosePoint));
+//        int TueFalsePoint= SplashActivity.sp.getInt("TueFalsePoint",TrueFalseFragment.point);
+//        int ChoosePoint= SplashActivity.sp.getInt("ChoosePoint",ChooseFragment.point);
+//        binding.score.setText(String.valueOf(TueFalsePoint+ChoosePoint));
 
         new CountDownTimer(duration, 1000) {
             @Override
@@ -97,18 +102,17 @@ public class FillFragment extends Fragment {
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
-                            binding.score.setText(String.valueOf(TueFalsePoint + ChoosePoint + point));
+//                            binding.score.setText(String.valueOf(TueFalsePoint + ChoosePoint + point));
 
                             int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
                             SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
                             SplashActivity.editor.apply();
-                            myListener.onClick(point);
+                            fillScore.FillQ(point);
                         } else {
                             LevelActivity.media_fail.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
                         }
-
                     }
                 });
             }
@@ -116,7 +120,6 @@ public class FillFragment extends Fragment {
             @Override
             public void onFinish() {
                 binding.timer.setText("00:00:00");
-                //Todo: chenge this fragment to next one
             }
         }.start();
         return binding.getRoot();

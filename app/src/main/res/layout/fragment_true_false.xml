@@ -7,13 +7,13 @@
     android:padding="16dp"
     tools:context=".Fragment.TrueFalseFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scoreTrue"
-        android:layout_gravity="left"
-        android:text="0"
-        android:textSize="30sp"/>
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/scoreTrue"-->
+<!--        android:layout_gravity="left"-->
+<!--        android:text="0"-->
+<!--        android:textSize="30sp"/>-->
 
     <TextView
         android:layout_width="wrap_content"
