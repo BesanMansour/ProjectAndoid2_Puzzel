@@ -17,7 +17,7 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
         mp = MediaPlayer.create(this, R.raw.sound);
-        // عشان لمن يخلص الصوت تتطفي السيرفس
+//         عشان لمن يخلص الصوت تتطفي السيرفس
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {

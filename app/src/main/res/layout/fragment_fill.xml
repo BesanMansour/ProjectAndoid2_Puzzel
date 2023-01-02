@@ -5,59 +5,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".Fragment.FillFragment">
-
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/score"-->
-<!--        android:layout_gravity="left"-->
-<!--        android:text="0"-->
-<!--        android:textSize="30sp"-->
-<!--        android:layout_marginTop="20sp"/>-->
+    tools:context=".Fragment.FillFragment"
+    android:layout_margin="@dimen/_10sdp"
+    android:background="@drawable/border_frag">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timer"
-        android:layout_gravity="right"
+        android:layout_gravity="center"
         android:text="1"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:layout_marginRight="@dimen/_8sdp" />
+
 
     <TextView
         android:id="@+id/FillTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="@dimen/_25ssp"
         android:textColor="@color/black"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:text="Title"/>
+        android:layout_marginTop="@dimen/_100sdp"
+        android:text="@string/frag_title"/>
 
     <EditText
         android:id="@+id/FillAnswer"
         android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Answer"/>
+        android:hint="@string/fill_answer"
+        android:textColor="@color/black"
+        android:padding="@dimen/_10sdp"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_35sdp"
         android:layout_gravity="center"
-        android:text="Check"
+        android:text="@string/fill_check"
+        android:background="@drawable/home_btn"
         android:textAllCaps="false"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:textColor="@color/white"
         android:id="@+id/CheckBtn"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:text="Skip"
-        android:textAllCaps="false"
-        android:id="@+id/btnSkip"
-        android:textSize="20sp"/>
-
 
 </LinearLayout>

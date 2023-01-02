@@ -30,6 +30,7 @@ import com.example.finalproject.Fragment.TrueFalseFragment;
 import com.example.finalproject.Json.ParsJson;
 import com.example.finalproject.R;
 import com.example.finalproject.databinding.ActivityLevelBinding;
+import com.example.finalproject.modle.AdapterStartPlay;
 import com.example.finalproject.modle.ListenerScore;
 import com.example.finalproject.modle.MyListener;
 
@@ -41,18 +42,22 @@ import RoomDatabase.Level;
 import RoomDatabase.Mystery;
 import RoomDatabase.ViewModel;
 
-public class LevelActivity extends AppCompatActivity implements TrueFalseFragment.trueScore,ChooseFragment.chooseScore,FillFragment.fillScore{
+public class LevelActivity extends AppCompatActivity implements TrueFalseFragment.trueScore, ChooseFragment.chooseScore, FillFragment.fillScore {
     public static ActivityLevelBinding binding;
     public static ArrayList<Fragment> fragments;
     public static MediaPlayer media_fail;
     public static MediaPlayer media_win;
-    LevelAdapterFragment levelAdapterFragment;
+   public static LevelAdapterFragment levelAdapterFragment;
     public static final String CountQus = "CountQ";
     public static final String CountLevel = "CountLevel";
     public static final String CountTQus = "CountTQ";
     public static final String CountFQus = "CountFQ";
     public static final String Score = "Score";
+    public static int CountTrue;
+    public static int CountFalse;
+    public static int CountQ;
     int levelScore;
+    int scoreShared;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,26 +66,26 @@ public class LevelActivity extends AppCompatActivity implements TrueFalseFragmen
         setContentView(binding.getRoot());
 
         String language = getApplicationContext().getResources().getConfiguration().locale.getLanguage();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && language.equals("en")) {
+        if (language.equals("en")) {
             // Language is English
-            String assets = ParsJson.readFromAssets(getApplicationContext(), "json/english.json");
+            String assetsEn = ParsJson.readFromAssets(getApplicationContext(), "json/english.json");
             ParsJson p = new ParsJson(this);
-            p.readJson(assets);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && language.equals("ar")) {
+            p.readJson(assetsEn);
+        } else if (language.equals("ar")) {
             // Language is Arabic
-            String assets = ParsJson.readFromAssets(getApplicationContext(), "json/jsonStr.json");
+            String assetsAr = ParsJson.readFromAssets(getApplicationContext(), "json/jsonStr.json");
             ParsJson p = new ParsJson(this);
-            p.readJson(assets);
+            p.readJson(assetsAr);
         }
 
-//        sp = getSharedPreferences("Login", MODE_PRIVATE);
-//        editor = sp.edit();
-
+        Toast.makeText(this, getApplicationContext().getResources().getConfiguration().locale.getLanguage(), Toast.LENGTH_SHORT).show();
         media_fail = MediaPlayer.create(this, R.raw.fail_sound);
         media_win = MediaPlayer.create(this, R.raw.win_sound);
 
         fragments = new ArrayList<>();
 
+        levelScore += scoreShared;
+        scoreShared = SplashActivity.sp.getInt("levelScore",0);
 
         Intent intent = getIntent();
         int pos = intent.getIntExtra("position", 0);
@@ -96,7 +101,7 @@ public class LevelActivity extends AppCompatActivity implements TrueFalseFragmen
 //
 //        }
 //        binding.LevelScore.setText(sp.getInt("Score", 0)+"");
-        binding.LevelTV.setText("المجموعة " + pos);
+        binding.LevelTV.setText("المجموعة \n"+pos);
 
 //        TextView tv = findViewById(R.id.scoreTrue);
 //        int true_false = sp.getInt("Score",0);
@@ -104,6 +109,12 @@ public class LevelActivity extends AppCompatActivity implements TrueFalseFragmen
 //        Log.d("true_false", true_false + "");
 //        Toast.makeText(this, true_false + "", Toast.LENGTH_SHORT).show();
 //        TrueFalseFragment.binding.scoreTrue.setText(true_false + "");
+
+//        Log.d("scoreLevel", SplashActivity.sp.getInt("levelScore",0)+ "");
+//        scoreShared = SplashActivity.sp.getInt("levelScore",0);
+//        levelScore += scoreShared;
+////        scoreShared = AdapterStartPlay.score;
+//        binding.LevelScore.setText(levelScore+ "/6 \n"+"Marks");
 
         viewModel.getQuestion(pos).observe(this, new Observer<List<Mystery>>() {
             @Override
@@ -126,32 +137,6 @@ public class LevelActivity extends AppCompatActivity implements TrueFalseFragmen
                         switch (patternId) {
                             case 1:
                                 fragments.add(TrueFalseFragment.newInstance(title, true_answer, hint, duration, point));
-//                                score = sp.getInt("TueFalsePoint", point);
-//                                Log.d("TueFalsePoint", point + "");
-
-//                                    new CountDownTimer(duration, 1000) {
-//                                    @Override
-//                                    public void onTick(long l) {
-////                                        NumberFormat f = new DecimalFormat("00");
-//                                        NumberFormat f = null;
-//                                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-//                                            f = new DecimalFormat("00");
-//                                            long hour = (l / 3600000) % 24;
-//                                            long min = (l / 60000) % 60;
-//                                            long sec = (l / 1000) % 60;
-//                                            binding.LevelTimer.setText(f.format(hour) + ":" + f.format(min) + ":" + f.format(sec));
-//                                        }
-//                                    }
-//                                    @Override
-//                                    public void onFinish() {
-//                                        binding.LevelTimer.setText("00:00:00");
-//                                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                                        transaction.replace(R.id.LevelPager,ChooseFragment.newInstance(title, answer1, answer2, answer3, answer4, true_answer, hint, duration, point));
-//                                        transaction.addToBackStack(null);
-//                                        transaction.commit();
-//                                        //Todo: chenge this fragment to next one
-//                                    }
-//                                }.start()
                                 break;
 
                             case 2:
@@ -162,8 +147,6 @@ public class LevelActivity extends AppCompatActivity implements TrueFalseFragmen
                                 fragments.add(FillFragment.newInstance(title, true_answer, hint, duration, point));
                                 break;
                         }
-                        binding.LevelScore.setText(SplashActivity.sp.getInt(Score, 0)+"");
-
                         levelAdapterFragment = new LevelAdapterFragment(LevelActivity.this, fragments);
                         binding.LevelPager.setAdapter(levelAdapterFragment);
                     }
@@ -172,47 +155,70 @@ public class LevelActivity extends AppCompatActivity implements TrueFalseFragmen
         });
         binding.LevelPager.setUserInputEnabled(false);
 
-//        binding.LevelScore.setText("score " + score);
         binding.LevelNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               int Log1= binding.LevelPager.getCurrentItem();
-               if (Log1 != 2){
-               Log.d("LevelActivity",Log1+"");
-                binding.LevelPager.setCurrentItem(Log1+1, true);
-                levelAdapterFragment.notifyItemChanged(1);
-            }else {
-                   startActivity(new Intent(LevelActivity.this,StartPlayingActivity.class));
-               }
+                int pager = binding.LevelPager.getCurrentItem();
+                if (pager != 2) {
+                    binding.LevelPager.setCurrentItem(pager + 1, true);
+                    levelAdapterFragment.notifyItemChanged(1);
+                } else {
+                    startActivity(new Intent(LevelActivity.this, StartPlayingActivity.class));
+                }
             }
         });
-//        binding.LevelSkip.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FragmentManager fragmentManager =getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManage.
-//                fragmentTransaction.replace(R.id.LevelPager,fragments.get(1));
-//                fragmentTransaction.commit();
-//            }
-//        });
-    //TODO: How we can refresh shared.
+        binding.LevelSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pager = binding.LevelPager.getCurrentItem();
+                if (pager != 2) {
+                    binding.LevelPager.setCurrentItem(pager + 1, true);
+                    levelAdapterFragment.notifyItemChanged(1);
+                    levelScore = levelScore-3;
+                } else {
+                    levelScore = levelScore-3;
+                    startActivity(new Intent(LevelActivity.this, StartPlayingActivity.class));
+                }
+            }
+        });
+
+
     }
 
     @Override
     public void TFQ(int score) {
         levelScore = score;
-        binding.LevelScore.setText(levelScore+"");
+        SplashActivity.editor.putInt("levelScore", levelScore);
+        SplashActivity.editor.apply();
+//        scoreShared = SplashActivity.sp.getInt("levelScore",0);
+//        levelScore += scoreShared;
+//        scoreShared = AdapterStartPlay.score;
+//        binding.LevelScore.setText(levelScore+ "/6 \n"+"Marks");
+        binding.LevelScore.setText(levelScore + "/6 \n"+"Marks");
+
     }
 
     @Override
     public void ChQ(int score) {
         levelScore += score;
-        binding.LevelScore.setText(levelScore+"");
+        SplashActivity.editor.putInt("levelScore", levelScore);
+        SplashActivity.editor.apply();
+//        scoreShared = SplashActivity.sp.getInt("levelScore",0);
+//        levelScore += scoreShared;
+        //        scoreShared = AdapterStartPlay.score;
+//        binding.LevelScore.setText(levelScore+ "/6 \n"+"Marks");
+        binding.LevelScore.setText(levelScore + "/6 \n"+"Marks");
     }
 
     @Override
     public void FillQ(int score) {
         levelScore += score;
-        binding.LevelScore.setText(levelScore+"");
+        SplashActivity.editor.putInt("levelScore", levelScore);
+        SplashActivity.editor.apply();
+//        scoreShared = SplashActivity.sp.getInt("levelScore",0);
+//        levelScore += scoreShared;
+//        scoreShared = AdapterStartPlay.score;
+//        binding.LevelScore.setText(levelScore+ "/6 \n"+"Marks");
+        binding.LevelScore.setText(levelScore + "/6 \n"+"Marks");
     }
 }

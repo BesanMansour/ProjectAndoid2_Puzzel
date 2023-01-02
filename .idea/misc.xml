@@ -8,26 +8,35 @@
         <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/back_btn_not_sound_img.xml" value="0.1745" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/back_btn_sound.xml" value="0.182" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/back_btn_sound_img.xml" value="0.182" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/back_splash.xml" value="0.135" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/border_frag.xml" value="0.226" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/border_profile.xml" value="0.209" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/border_radio.xml" value="0.226" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/border_setting.xml" value="0.11" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/home_btn.xml" value="0.182" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/ic_baseline_ad_units_24.xml" value="0.142" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.1" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.182" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/ic_date_svgrepo_com.xml" value="0.209" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/ic_email_svgrepo_com.xml" value="0.209" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.182" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/ic_password_svgrepo_com.xml" value="0.209" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/ic_user_svgrepo_com__3_.xml" value="0.209" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/item.xml" value="0.204" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/drawable/setting.xml" value="0.182" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/font/abril_fatface.xml" value="0.13703703703703704" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/font/aguafina_script.xml" value="0.13703703703703704" />
-        <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/activity_home.xml" value="0.2" />
-        <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/activity_level.xml" value="0.25" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/activity_level.xml" value="0.264" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/activity_start_playing.xml" value="0.25" />
-        <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/dialog.xml" value="0.176" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/dialog.xml" value="0.264" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/dialog_true_false.xml" value="0.25" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/drop_down_item.xml" value="0.24635416666666668" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/fragment_choose.xml" value="0.2" />
-        <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/fragment_fill.xml" value="0.2" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/fragment_fill.xml" value="0.176" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/fragment_pager.xml" value="0.2" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/fragment_setting.xml" value="0.22685185185185186" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/fragment_true_false.xml" value="0.25475285171102663" />
@@ -36,7 +45,7 @@
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/item_fill.xml" value="0.264" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/item_start_playing.xml" value="0.25" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/item_true_false.xml" value="0.1" />
-        <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/settings_activity.xml" value="0.25" />
+        <entry key="..\:/capter2/FinalProject/app/src/main/res/layout/settings_activity.xml" value="0.264" />
         <entry key="..\:/capter2/FinalProject/app/src/main/res/menu/nav_menu.xml" value="0.176" />
       </map>
     </option>

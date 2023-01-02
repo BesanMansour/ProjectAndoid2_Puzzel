@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PuzzleGame</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="profile_user">اسم المستخدم</string>
+    <string name="profile_save">حفظ</string>
+    <string name="count_true">عدد الاسئلة الصحيحة</string>
+    <string name="count_ques">عدد الاسئلة</string>
+    <string name="count_false">عد الاسئلة الخاطئة</string>
+    <string name="profile_email">الايميل</string>
+    <string name="profile_country">الدولة</string>
+    <string name="profile_birth">تاريخ الميلاد</string>
+    <string name="profile_male">ذكر</string>
+    <string name="profile_female">أنثى</string>
+    <string name="setting_profile">الملف الشخصي</string>
+    <string name="setting_notification">الاشعارات</string>
+    <string name="setting_return">اعادة اللعبة من الصفر</string>
+    <string name="setting_title">الاعدادات</string>
+    <string name="home_title">لعبة الألغاز</string>
+    <string name="home_play">ابدأ اللعب</string>
+    <string name="home_exit">خروج</string>
+    <string name="item_level_num">المجموعة الاولى</string>
+    <string name="frag_title">العنوان</string>
+    <string name="frag_true">صحيح</string>
+    <string name="frag_false">خاطئ</string>
+    <string name="level_skip">تخطي</string>
+    <string name="fill_answer">الاجابة</string>
+    <string name="fill_check">تأكيد</string>
+    <string name="dialog_true">أحسنت</string>
+    <string name="dialog_false">حظا أوفر</string>
+    <string name="dialog_next">التالي</string>
+</resources>

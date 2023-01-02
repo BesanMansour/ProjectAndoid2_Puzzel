@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">PuzzleGame</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_settings">SettingsActivity</string>
@@ -18,4 +18,32 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="profile_user">User Name</string>
+    <string name="profile_save">Save</string>
+    <string name="count_true">Count True Question</string>
+    <string name="count_ques">Count Question</string>
+    <string name="count_false">Count False Question</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_country">Country</string>
+    <string name="profile_birth">Birthday</string>
+    <string name="profile_male">Male</string>
+    <string name="profile_female">Female</string>
+    <string name="setting_profile">Profile</string>
+    <string name="setting_notification">Notification</string>
+    <string name="setting_return">Replay the game from scratch</string>
+    <string name="setting_title">Setting</string>
+    <string name="home_title">Puzzle Game</string>
+    <string name="home_play">Start Play</string>
+    <string name="home_exit">Exit</string>
+    <string name="item_level_num">1</string>
+    <string name="frag_title">title</string>
+    <string name="frag_true">true</string>
+    <string name="frag_false">false</string>
+    <string name="level_skip">Skip</string>
+    <string name="fill_answer">Answer</string>
+    <string name="fill_check">Confirmation</string>
+    <string name="dialog_true">Well done</string>
+    <string name="dialog_false">Good luck</string>
+    <string name="dialog_next">Next</string>
 </resources>

@@ -9,23 +9,33 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.example.finalproject.R;
+import com.example.finalproject.databinding.ActivitySplashBinding;
 import com.example.finalproject.modle.MyJobService;
 import com.example.finalproject.modle.MyService;
 
-import java.util.prefs.AbstractPreferences;
-
 public class SplashActivity extends AppCompatActivity {
+    ActivitySplashBinding binding;
     public static SharedPreferences sp;
     public static SharedPreferences.Editor editor;
     public static JobScheduler jobScheduler;
+    Animation img,tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        binding = ActivitySplashBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         jobService();
+        img =AnimationUtils.loadAnimation(this, R.anim.splash_img);
+        tv =AnimationUtils.loadAnimation(this, R.anim.splash_tv);
+        binding.imageView.setAnimation(img);
+        binding.SplashTV.setAnimation(tv);
 
         sp = getSharedPreferences("shared", MODE_PRIVATE);
         editor = sp.edit();
@@ -35,10 +45,8 @@ public class SplashActivity extends AppCompatActivity {
 
         if (sp.getBoolean("sound", true)) {
             stopService(intent);
-//            SettingsActivity.binding.SettingImg.setImageResource(R.drawable.img_1);
         } else if (sp.getBoolean("sound", false)) {
             startService(intent);
-//            SettingsActivity.binding.SettingImg.setImageResource(R.drawable.img);
         }
         Thread thread = new Thread() {
             @Override
@@ -54,7 +62,14 @@ public class SplashActivity extends AppCompatActivity {
             }
         };
         thread.start();
+
+        SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
+        SplashActivity.sp.getInt(LevelActivity.CountTQus, 0);
+        SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);
+        SplashActivity.sp.getInt("levelScore", 0);
+        Toast.makeText(this, "scoreSplash " + SplashActivity.sp.getInt("levelScore", 0), Toast.LENGTH_SHORT).show();
     }
+
     public void jobService() {
         jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
         ComponentName componentName = new ComponentName(getBaseContext(), MyJobService.class);
@@ -68,3 +83,12 @@ public class SplashActivity extends AppCompatActivity {
         jobScheduler.schedule(jobInfo);
     }
 }
+//TODO: عند الخروج من التطبيق والعودة مرة أخرى يجب العودة لنفس اللغز الذي توقف عنده
+//المستخدم.
+
+//TODO:باإلضافة إلى زر تخطي skip تخطي اللغز الحالي: حيث يتم خصم 3 نقاط عند تخطي كل
+//لغز.
+
+//TODO :التقييم العام للمرحلة-وهو متوسط النقاط التي حصل عليها في جميع ألغاز هذه المرحلة-(
+
+//TODO:وعدد المراحل التي أنهاها

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.finalproject.R;
 import com.example.finalproject.databinding.ActivityProfileBinding;
@@ -28,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
     ActivityProfileBinding binding;
     DatePickerDialog dpd;
     String age;
-    String UserName,Email,Country,Birthday,Gender;
+    public static String UserName, Email, Country, Birthday, Gender;
     int GenderId;
     public static SharedPreferences sp;
     public static SharedPreferences.Editor editor;
@@ -65,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
                         now.get(Calendar.MONTH), // Initial month selection
                         now.get(Calendar.DAY_OF_MONTH) // Inital day selection
                 );
-                dpd.show(getSupportFragmentManager(),"Datepickerdialog");
+                dpd.show(getSupportFragmentManager(), "Datepickerdialog");
             }
         });
 
@@ -77,40 +78,52 @@ public class ProfileActivity extends AppCompatActivity {
         );
         binding.ProfileCountry.setAdapter(adapter);
 
-//        viewModel.UpdateUser(new User(1,user_name,email,birthDate,male,female,country));
-
         binding.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserName = binding.userName.getText().toString().trim();
+                UserName = binding.ProfileUser.getText().toString().trim();
                 Email = binding.ProfileEmail.getText().toString();
                 Country = binding.ProfileCountry.getText().toString();
                 Birthday = binding.ProfileBirth.getText().toString();
                 GenderId = binding.RBGGender.getCheckedRadioButtonId();
                 Gender = findViewById(GenderId).toString();
 
-                if (binding.ProfileMale.isChecked()){
+                if (binding.ProfileMale.isChecked()) {
                     Gender = "Male";
-                }else{
+                } else {
                     Gender = "Female";
                 }
+
                 viewModel.AllUser().observe(ProfileActivity.this, new Observer<List<User>>() {
                     @Override
                     public void onChanged(List<User> users) {
-                         users.get(0).getId();
-
-                        viewModel.UpdateUser(new User(1,UserName+"1",Email+"b",Birthday,Gender,Country));
-                        Log.d("user ",users.get(0).toString());
+                        if (!UserName.isEmpty() && !Email.isEmpty() && !Country.isEmpty() && !Birthday.isEmpty() && !Gender.isEmpty()){
+                            if (!isValidEmail(Email)) {
+                                binding.ProfileEmail.setError("Please check the email");         
+                            }
+                            else {
+                                viewModel.UpdateUser(new User(1, UserName, Email, Birthday, Gender, Country));
+                            }
+                        }
+                        else {
+                            Toast.makeText(ProfileActivity.this, "please enter fields", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }
         });
-    binding.tvCountF.setText(sp.getInt(LevelActivity.CountFQus,0)+"");
-        binding.tvCountQ.setText(sp.getInt(LevelActivity.CountQus,0)+"");
-        binding.tvCountTQ.setText(sp.getInt(LevelActivity.CountTQus,0)+"");
 
-
+        binding.tvCountQ.setText(SplashActivity.sp.getInt(LevelActivity.CountQus, 0) + "");
+        binding.tvCountF.setText(SplashActivity.sp.getInt(LevelActivity.CountFQus, 0) + "");
+        binding.tvCountTQ.setText(SplashActivity.sp.getInt(LevelActivity.CountTQus, 0) + "");
     }
-
+    public static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+            // في كلاس Patterns هل الايميل مطابق للمتسلسل target
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
 
 }

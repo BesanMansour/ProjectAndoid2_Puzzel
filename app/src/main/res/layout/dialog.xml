@@ -2,15 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/_16sdp"
     android:orientation="vertical">
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dialogAnswer"
-        android:text=""
-        android:textSize="20sp"
+        android:text="text"
+        android:textSize="@dimen/_20ssp"
         android:gravity="center"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_gravity="center"
+        android:id="@+id/dialogNext"
+        android:text="@string/dialog_next"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@drawable/home_btn"
+        android:textColor="@color/white"/>
 
 </LinearLayout>

@@ -4,19 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
+import com.example.finalproject.R;
 import com.example.finalproject.databinding.ActivityHomeBinding;
-import com.example.finalproject.modle.MyJobService;
 import com.example.finalproject.modle.MyService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import RoomDatabase.User;
@@ -60,13 +57,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        Intent intent = new Intent(getBaseContext(), MyService.class);
-//        stopService(intent);
-//    }
 
     @Override
     protected void onDestroy() {

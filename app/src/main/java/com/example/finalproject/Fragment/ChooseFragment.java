@@ -1,6 +1,7 @@
 package com.example.finalproject.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.finalproject.Activity.LevelActivity;
 import com.example.finalproject.Activity.SplashActivity;
+import com.example.finalproject.Activity.StartPlayingActivity;
 import com.example.finalproject.databinding.FragmentChooseBinding;
 import com.example.finalproject.modle.ListenerScore;
 import com.example.finalproject.modle.MyDialog;
@@ -129,8 +131,9 @@ public class ChooseFragment extends Fragment {
 
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
-                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
-                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+//                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
+                            LevelActivity.CountTrue+=1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountTrue );
                             SplashActivity.editor.apply();
 
                             chooseScore.ChQ(point);
@@ -138,7 +141,14 @@ public class ChooseFragment extends Fragment {
                             LevelActivity.media_fail.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+
+                            LevelActivity.CountFalse+=1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountFalse );
+                            SplashActivity.editor.apply();
                         }
+                        LevelActivity.CountQ += 1;
+                        SplashActivity.editor.putInt(LevelActivity.CountQus,LevelActivity.CountQ);
+                        SplashActivity.editor.apply();
                     }
                 });
                 binding.ChooseAnswer2.setOnClickListener(new View.OnClickListener() {
@@ -150,20 +160,29 @@ public class ChooseFragment extends Fragment {
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
-
+                            LevelActivity.CountTrue+=1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountTrue );
+                            SplashActivity.editor.apply();
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
 
-                            int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
-                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
-                            SplashActivity.editor.apply();
+//                            int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
+//                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+//                            SplashActivity.editor.apply();
                             chooseScore.ChQ(point);
                         } else {
                             LevelActivity.media_fail.start();
 
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+
+                            LevelActivity.CountFalse+=1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountFalse );
+                            SplashActivity.editor.apply();
                         }
+                        LevelActivity.CountQ += 1;
+                        SplashActivity.editor.putInt(LevelActivity.CountQus,LevelActivity.CountQ);
+                        SplashActivity.editor.apply();
                     }
                 });
                 binding.ChooseAnswer3.setOnClickListener(new View.OnClickListener() {
@@ -175,8 +194,11 @@ public class ChooseFragment extends Fragment {
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
-                            int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
-                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+//                            int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
+//                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+//                            SplashActivity.editor.apply();
+                            LevelActivity.CountTrue+=1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountTrue );
                             SplashActivity.editor.apply();
                             chooseScore.ChQ(point);
                         } else {
@@ -184,7 +206,13 @@ public class ChooseFragment extends Fragment {
 
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+                            LevelActivity.CountFalse+=1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountFalse );
+                            SplashActivity.editor.apply();
                         }
+                        LevelActivity.CountQ += 1;
+                        SplashActivity.editor.putInt(LevelActivity.CountQus,LevelActivity.CountQ);
+                        SplashActivity.editor.apply();
                     }
                 });
                 binding.ChooseAnswer4.setOnClickListener(new View.OnClickListener() {
@@ -196,8 +224,11 @@ public class ChooseFragment extends Fragment {
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
-                            int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
-                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+//                            int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
+//                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+//                            SplashActivity.editor.apply();
+                            LevelActivity.CountTrue+=1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountTrue );
                             SplashActivity.editor.apply();
                             chooseScore.ChQ(point);
                         } else {
@@ -205,16 +236,34 @@ public class ChooseFragment extends Fragment {
 
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+
+                            LevelActivity.CountFalse+=1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountFalse );
+                            SplashActivity.editor.apply();
                         }
+                        LevelActivity.CountQ += 1;
+                        SplashActivity.editor.putInt(LevelActivity.CountQus,LevelActivity.CountQ);
+                        SplashActivity.editor.apply();
                     }
                 });
             }
-
             @Override
             public void onFinish() {
                 binding.timer.setText("00:00:00");
+                int pager = LevelActivity.binding.LevelPager.getCurrentItem();
+                if (pager != 2) {
+                    LevelActivity.binding.LevelPager.setCurrentItem(pager + 1, true);
+                    LevelActivity.levelAdapterFragment.notifyItemChanged(1);
+                } else {
+                    startActivity(new Intent(getActivity(), StartPlayingActivity.class));
+                }
             }
         }.start();
         return binding.getRoot();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        return;
     }
 }

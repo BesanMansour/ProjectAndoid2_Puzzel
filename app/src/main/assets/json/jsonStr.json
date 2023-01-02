@@ -55,7 +55,7 @@
   },
   {
     "level_no": 2,
-    "unlock_points": 6,
+    "unlock_points": 5,
     "questions": [
       {
         "id": 4,
@@ -107,4 +107,6 @@
       }
     ]
   }
+
+
 ]

@@ -2,13 +2,10 @@ package com.example.finalproject.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.CountDownTimer;
@@ -16,32 +13,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
-import android.widget.Toast;
 
-import com.example.finalproject.Activity.HomeActivity;
 import com.example.finalproject.Activity.LevelActivity;
 import com.example.finalproject.Activity.SplashActivity;
 import com.example.finalproject.Activity.StartPlayingActivity;
-import com.example.finalproject.Activity.TrueFalseDialog;
 import com.example.finalproject.R;
+import com.example.finalproject.databinding.ActivityLevelBinding;
 import com.example.finalproject.databinding.FragmentTrueFalseBinding;
-import com.example.finalproject.modle.ListenerScore;
 import com.example.finalproject.modle.MyDialog;
-import com.example.finalproject.modle.MyListener;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.time.Duration;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class TrueFalseFragment extends Fragment {
-    public interface trueScore{
+    public interface trueScore {
         void TFQ(int score);
     }
-
-FragmentTrueFalseBinding binding;
     private static final String ARG_TITLE = "title";
     private static final String ARG_Answer = "answer";
     private static final String ARG_HINT = "hint";
@@ -54,6 +41,7 @@ FragmentTrueFalseBinding binding;
     private int duration;
     public static int point;
     trueScore trueScore;
+
 
     public TrueFalseFragment() {
     }
@@ -91,7 +79,7 @@ FragmentTrueFalseBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-         binding = FragmentTrueFalseBinding.inflate(inflater, container, false);
+        FragmentTrueFalseBinding binding = FragmentTrueFalseBinding.inflate(inflater, container, false);
         binding.FragTitle.setText(title);
 
         new CountDownTimer(duration, 1000) {
@@ -108,28 +96,42 @@ FragmentTrueFalseBinding binding;
                     public void onClick(View view) {
                         if (binding.RadioFalse.getText().toString().equals(answer)) {
                             LevelActivity.media_win.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good"+"👏👏", point);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
 
-//                            binding.scoreTrue.setText(point + "");
-
-                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
-                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
-                            int TrueAnswer =SplashActivity.sp.getInt(LevelActivity.CountTQus, 0);
-                            SplashActivity.editor.putInt(LevelActivity.CountTQus, TrueAnswer+1);
-                            int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
-                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
+                            LevelActivity.CountTrue += 1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountTrue);
+                            SplashActivity.editor.putInt("point",point);
+                            SplashActivity.editor.apply();
+                            Log.d("CountTrue",LevelActivity.CountTrue+"");
+//                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
+//                            Log.d("score",sore+""); //0
+//                            SplashActivity.editor.putInt(LevelActivity.Score, sore + point);
+//                            int TrueAnswer = SplashActivity.sp.getInt(LevelActivity.CountTQus, 0);
+//                            Log.d("TrueAnswer",TrueAnswer+"");//0
+//                            SplashActivity.editor.putInt(LevelActivity.CountTQus, TrueAnswer + 1);
+//                            int CountQ = SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
+//                            Log.d("CountQ",CountQ+"");//0
+//                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ + 1);
+//                            SplashActivity.editor.apply();
 
                             trueScore.TFQ(point);
                         } else {
-                            int FalseAnswer =SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);
-                            int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
-                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
-                            SplashActivity.editor.putInt(LevelActivity.CountFQus, FalseAnswer+1);
+//                            int FalseAnswer = SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);
+//                            int CountQ = SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
+//                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ + 1);
+//                            SplashActivity.editor.putInt(LevelActivity.CountFQus, FalseAnswer + 1);
                             LevelActivity.media_fail.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("😒🤦‍"+"The Correct Answer is:\n" + hint, 0);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
+
+                            LevelActivity.CountFalse += 1;
+                            SplashActivity.editor.putInt(LevelActivity.CountFQus,LevelActivity.CountFalse);
+                            SplashActivity.editor.apply();
                         }
+                        LevelActivity.CountQ += 1;
+                        SplashActivity.editor.putInt(LevelActivity.CountQus,LevelActivity.CountQ);
+                        SplashActivity.editor.apply();
                     }
                 });
                 binding.RadioTrue.setOnClickListener(new View.OnClickListener() {
@@ -140,48 +142,60 @@ FragmentTrueFalseBinding binding;
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
 
+                            LevelActivity.CountTrue += 1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountTrue);
+                            SplashActivity.editor.putInt("point",point);
+                            SplashActivity.editor.apply();
+
 //                            binding.scoreTrue.setText(point + "");
 
-                            int sore =SplashActivity.sp.getInt(LevelActivity.Score, 0);
-                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
-                            int TrueAnswer =SplashActivity.sp.getInt(LevelActivity.CountTQus, 0);
-                            SplashActivity.editor.putInt(LevelActivity.CountTQus, TrueAnswer+1);
-                            int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
-                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
+//                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
+//                            SplashActivity.editor.putInt(LevelActivity.Score, sore + point);
+//                            int TrueAnswer = SplashActivity.sp.getInt(LevelActivity.CountTQus, 0);
+//                            SplashActivity.editor.putInt(LevelActivity.CountTQus, TrueAnswer + 1);
+//                            int CountQ = SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
+//                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ + 1);
 
                             trueScore.TFQ(point);
-
                         } else {
-                            int FalseAnswer =SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);
-                            int CountQ =SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
-                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ+1);
-                            SplashActivity.editor.putInt(LevelActivity.CountFQus, FalseAnswer+1);
+                            int FalseAnswer = SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);
+                            int CountQ = SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
+                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ + 1);
+                            SplashActivity.editor.putInt(LevelActivity.CountFQus, FalseAnswer + 1);
                             LevelActivity.media_fail.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("try again \n" + hint, 0);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("😒🤦‍"+"The Correct Answer is:\n" + hint, 0);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
+
+                            LevelActivity.CountFalse += 1;
+                            SplashActivity.editor.putInt(LevelActivity.CountFQus,LevelActivity.CountFalse);
+                            SplashActivity.editor.apply();
                         }
-                        SplashActivity.editor.apply();}
+                        LevelActivity.CountQ += 1;
+                        SplashActivity.editor.putInt(LevelActivity.CountQus,LevelActivity.CountQ);
+                        SplashActivity.editor.apply();
+                    }
                 });
             }
 
             @Override
             public void onFinish() {
                 binding.timer.setText("00:00:00");
-//                     Toast.makeText(getContext(), "Finish!", Toast.LENGTH_SHORT).show();
-//               FragmentManager fragmentManager =getChildFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//
-//                fragmentTransaction.replace(R.id.LevelPager,LevelActivity.fragments.get(1));
-//                fragmentTransaction.commit();
-//                // Fragment newFragment = new ExampleFragment();
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                transaction.replace(R.id.LevelPager,new ChooseFragment());
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-
-                //Todo: chenge this fragment to next one
+                int pager = LevelActivity.binding.LevelPager.getCurrentItem();
+                if (pager != 2) {
+                    LevelActivity.binding.LevelPager.setCurrentItem(pager + 1, true);
+                   LevelActivity.levelAdapterFragment.notifyItemChanged(1);
+                } else {
+                    startActivity(new Intent(getActivity(), StartPlayingActivity.class));
+                }
             }
         }.start();
+
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        return;
     }
 }

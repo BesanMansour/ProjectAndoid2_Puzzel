@@ -1,69 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:padding="16dp"
-    tools:context=".Activity.HomeActivity">
+    android:padding="@dimen/_16sdp"
+    android:orientation="vertical"
+    tools:context=".Activity.HomeActivity"
+    android:background="@color/red_light">
 
     <TextView
         android:id="@+id/HomeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="-80dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginTop="@dimen/_60sdp"
+        android:layout_marginBottom="@dimen/_40sdp"
         android:fontFamily="@font/akronim"
-        android:text="Puzzle game"
-        android:textColor="@color/blue"
-        android:textSize="60dp" />
+        android:text="@string/home_title"
+        android:textColor="@color/red"
+        android:textSize="@dimen/_50ssp" />
+
+    <ImageView
+        android:id="@+id/HomeImg"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_180sdp"
+        app:srcCompat="@drawable/logo" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/HomeStartPlay"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_width="200dp"
-        android:textColor="@color/white"
-        android:layout_height="60dp"
-        android:text="ابدأ اللعب"
-        android:background="@drawable/home_btn"
-        android:layout_below="@+id/HomeTitle"
+        android:layout_width="@dimen/_220sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginBottom="30dp"
-        android:textSize="20sp" />
-
-<!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        android:id="@+id/HomeSetting"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:layout_below="@+id/HomeStartPlay"-->
-<!--        android:text="الاعدادات"-->
-<!--        android:textSize="20sp" />-->
+        android:layout_marginTop="50dp"
+        android:background="@drawable/home_btn"
+        android:text="@string/home_play"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_16ssp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/HomeLogout"
-        android:layout_width="200dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/_220sdp"
+        android:layout_height="@dimen/_40sdp"
         android:textColor="@color/white"
         android:background="@drawable/home_btn"
-        android:layout_marginTop="20dp"
-        android:layout_height="60dp"
-        android:text="خروج"
-        android:layout_below="@+id/HomeStartPlay"
-        android:textSize="20sp" />
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/home_exit"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_16ssp" />
 
     <ImageView
         android:id="@+id/HomeSetting"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_alignBottom="@+id/HomeLogout"
-        android:layout_alignParentEnd="true"
+        android:layout_width="@dimen/_43sdp"
+        android:layout_height="@dimen/_43sdp"
         android:layout_gravity="bottom"
-        android:layout_marginEnd="320dp"
-        android:layout_marginBottom="-225dp"
-        app:srcCompat="@drawable/setting" />
+        android:layout_marginTop="@dimen/_40sdp"
+        app:srcCompat="@drawable/setting"
+        android:layout_marginStart="@dimen/_20sdp"/>
 
-</RelativeLayout>
+</LinearLayout>

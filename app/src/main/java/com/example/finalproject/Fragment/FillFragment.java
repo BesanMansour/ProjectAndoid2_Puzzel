@@ -1,6 +1,7 @@
 package com.example.finalproject.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.finalproject.Activity.LevelActivity;
 import com.example.finalproject.Activity.SplashActivity;
+import com.example.finalproject.Activity.StartPlayingActivity;
 import com.example.finalproject.R;
 import com.example.finalproject.databinding.FragmentFillBinding;
 import com.example.finalproject.modle.ListenerScore;
@@ -104,24 +106,45 @@ public class FillFragment extends Fragment {
 
 //                            binding.score.setText(String.valueOf(TueFalsePoint + ChoosePoint + point));
 
-                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
-                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+//                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
+//                            SplashActivity.editor.putInt(LevelActivity.Score, sore+point);
+//                            SplashActivity.editor.apply();
+                            LevelActivity.CountTrue+=1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountTrue );
                             SplashActivity.editor.apply();
                             fillScore.FillQ(point);
                         } else {
                             LevelActivity.media_fail.start();
                             MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
+
+                            LevelActivity.CountFalse+=1;
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountFalse );
+                            SplashActivity.editor.apply();
                         }
+                        LevelActivity.CountQ += 1;
+                        SplashActivity.editor.putInt(LevelActivity.CountQus,LevelActivity.CountQ);
+                        SplashActivity.editor.apply();
                     }
                 });
             }
-
             @Override
             public void onFinish() {
                 binding.timer.setText("00:00:00");
+                int pager = LevelActivity.binding.LevelPager.getCurrentItem();
+                if (pager != 2) {
+                    LevelActivity.binding.LevelPager.setCurrentItem(pager + 1, true);
+                    LevelActivity.levelAdapterFragment.notifyItemChanged(1);
+                } else {
+                    startActivity(new Intent(getActivity(), StartPlayingActivity.class));
+                }
             }
         }.start();
         return binding.getRoot();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        return;
     }
 }

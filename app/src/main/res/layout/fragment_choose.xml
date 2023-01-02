@@ -4,72 +4,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".Fragment.ChooseFragment">
-
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/score"-->
-<!--        android:layout_gravity="left"-->
-<!--        android:text="0"-->
-<!--        android:textSize="30sp"-->
-<!--        android:layout_marginTop="20sp"/>-->
+    tools:context=".Fragment.ChooseFragment"
+    android:layout_margin="@dimen/_10sdp"
+    android:background="@drawable/border_frag">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timer"
-        android:layout_gravity="right"
+        android:layout_gravity="center"
         android:text="1"
-        android:textSize="30sp" />
+        android:textSize="@dimen/_20ssp"
+        android:textColor="@color/black"
+        android:layout_marginRight="@dimen/_8sdp" />
 
     <TextView
         android:id="@+id/ChooseTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20ssp"
         android:textColor="@color/black"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:text="choose"/>
+        android:layout_marginTop="@dimen/_80sdp"
+        android:text="@string/frag_title"
+        android:layout_marginBottom="@dimen/_18sdp"/>
 
     <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <RadioButton
             android:id="@+id/ChooseAnswer1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="RadioButton"
+            android:background="@drawable/border_radio"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:padding="@dimen/_10sdp"/>
 
         <RadioButton
             android:id="@+id/ChooseAnswer2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="RadioButton"
+            android:background="@drawable/border_radio"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_20sdp"/>
 
         <RadioButton
             android:id="@+id/ChooseAnswer3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="RadioButton"
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/border_radio"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_20sdp"/>
 
         <RadioButton
             android:id="@+id/ChooseAnswer4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="RadioButton"
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/border_radio"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_15sdp"/>
     </RadioGroup>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:text="Skip"
-        android:textAllCaps="false"
-        android:id="@+id/btnSkip"
-        android:textSize="20sp"/>
 
 </LinearLayout>

@@ -4,34 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".Fragment.TrueFalseFragment">
-
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/scoreTrue"-->
-<!--        android:layout_gravity="left"-->
-<!--        android:text="0"-->
-<!--        android:textSize="30sp"/>-->
+    android:padding="@dimen/_16sdp"
+    tools:context=".Fragment.TrueFalseFragment"
+    android:layout_margin="@dimen/_10sdp"
+    android:background="@drawable/border_frag">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timer"
-        android:layout_gravity="right"
+        android:layout_gravity="center"
         android:text="1"
         android:textSize="30sp"
-        android:layout_marginRight="20dp" />
+        android:textColor="@color/black"
+        android:layout_marginRight="@dimen/_8sdp" />
 
     <TextView
         android:id="@+id/FragTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="title"
-        android:textSize="30sp"
+        android:text="@string/frag_title"
+        android:textSize="@dimen/_25ssp"
         android:layout_gravity="center"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="@dimen/_100sdp"
         android:textColor="@color/black"/>
 
     <RadioGroup
@@ -40,33 +35,23 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:padding="10dp"
-        android:layout_marginTop="50dp">
+        android:padding="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_40sdp">
 
         <RadioButton
             android:id="@+id/RadioTrue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="true"
-            android:textSize="18sp"
-            android:layout_marginRight="20dp"/>
+            android:text="@string/frag_true"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginRight="@dimen/_20sdp"/>
 
         <RadioButton
             android:id="@+id/RadioFalse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="false"
-            android:textSize="18sp"
-            android:layout_marginLeft="20dp"/>
+            android:text="@string/frag_false"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginLeft="@dimen/_20sdp"/>
     </RadioGroup>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:text="Skip"
-        android:textAllCaps="false"
-        android:id="@+id/btnSkip"
-        android:textSize="20sp"/>
-
 </LinearLayout>

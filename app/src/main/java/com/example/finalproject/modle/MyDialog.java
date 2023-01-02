@@ -1,5 +1,6 @@
 package com.example.finalproject.modle;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.finalproject.Activity.LevelActivity;
+import com.example.finalproject.Activity.StartPlayingActivity;
 import com.example.finalproject.Fragment.FillFragment;
 import com.example.finalproject.Fragment.TrueFalseFragment;
 import com.example.finalproject.databinding.DialogBinding;
@@ -48,6 +51,18 @@ public class MyDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         DialogBinding dialogBinding = DialogBinding.inflate(inflater, container, false);
         dialogBinding.dialogAnswer.setText(hint);
+        dialogBinding.dialogNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int pager = LevelActivity.binding.LevelPager.getCurrentItem();
+                if (pager != 2) {
+                    LevelActivity.binding.LevelPager.setCurrentItem(pager + 1, true);
+                    LevelActivity.levelAdapterFragment.notifyItemChanged(1);
+                } else {
+                    startActivity(new Intent(getActivity(), StartPlayingActivity.class));
+                }
+            }
+        });
         return dialogBinding.getRoot();
     }
 

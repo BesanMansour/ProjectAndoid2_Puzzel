@@ -59,4 +59,10 @@ public class StartPlayingActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(getBaseContext(),HomeActivity.class));
+    }
 }

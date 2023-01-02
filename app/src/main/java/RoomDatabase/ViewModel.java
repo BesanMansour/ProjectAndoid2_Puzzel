@@ -22,7 +22,7 @@ public class ViewModel extends AndroidViewModel {
     public void UpdateUser(User user){
         repository.UpdateUser(user);
     }
-    void DeleteUser(User user){
+    public void DeleteUser(User user){
         repository.DeleteUser(user);
     }
     public LiveData<List<User>> AllUser(){

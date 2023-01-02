@@ -6,14 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".Activity.SplashActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_300sdp"
+        app:srcCompat="@drawable/img_splash" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="لعبة الألغاز"
+        android:text="@string/home_title"
         android:id="@+id/SplashTV"
-        android:textSize="50sp"
-        android:textColor="#BF0303"/>
-
+        android:fontFamily="@font/akronim"
+        android:textSize="@dimen/_50ssp"
+        android:textColor="@color/red"/>
 </LinearLayout>
