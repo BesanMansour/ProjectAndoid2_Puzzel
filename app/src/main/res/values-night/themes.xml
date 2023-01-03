@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.FinalProject" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#E1CEFD</item>
-        <item name="colorPrimaryVariant">#E1CEFD</item>
-        <item name="colorOnPrimary">#E1CEFD</item>
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryVariant">@color/red_light</item>
+        <item name="colorOnPrimary">@color/red</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/red</item>
+        <item name="colorSecondaryVariant">@color/red</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>

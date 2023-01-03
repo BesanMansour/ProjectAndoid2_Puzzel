@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.finalproject.Activity.LevelActivity;
 import com.example.finalproject.Activity.SplashActivity;
@@ -29,6 +30,7 @@ public class TrueFalseFragment extends Fragment {
     public interface trueScore {
         void TFQ(int score);
     }
+
     private static final String ARG_TITLE = "title";
     private static final String ARG_Answer = "answer";
     private static final String ARG_HINT = "hint";
@@ -96,14 +98,14 @@ public class TrueFalseFragment extends Fragment {
                     public void onClick(View view) {
                         if (binding.RadioFalse.getText().toString().equals(answer)) {
                             LevelActivity.media_win.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good"+"👏👏", point);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point, R.drawable.good);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
 
                             LevelActivity.CountTrue += 1;
-                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountTrue);
-                            SplashActivity.editor.putInt("point",point);
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus, LevelActivity.CountTrue);
+                            SplashActivity.editor.putInt("point", point);
                             SplashActivity.editor.apply();
-                            Log.d("CountTrue",LevelActivity.CountTrue+"");
+                            Log.d("CountTrue", LevelActivity.CountTrue + "");
 //                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
 //                            Log.d("score",sore+""); //0
 //                            SplashActivity.editor.putInt(LevelActivity.Score, sore + point);
@@ -122,15 +124,15 @@ public class TrueFalseFragment extends Fragment {
 //                            SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ + 1);
 //                            SplashActivity.editor.putInt(LevelActivity.CountFQus, FalseAnswer + 1);
                             LevelActivity.media_fail.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("😒🤦‍"+"The Correct Answer is:\n" + hint, 0);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0, R.drawable.bad_luck);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
 
                             LevelActivity.CountFalse += 1;
-                            SplashActivity.editor.putInt(LevelActivity.CountFQus,LevelActivity.CountFalse);
+                            SplashActivity.editor.putInt(LevelActivity.CountFQus, LevelActivity.CountFalse);
                             SplashActivity.editor.apply();
                         }
                         LevelActivity.CountQ += 1;
-                        SplashActivity.editor.putInt(LevelActivity.CountQus,LevelActivity.CountQ);
+                        SplashActivity.editor.putInt(LevelActivity.CountQus, LevelActivity.CountQ);
                         SplashActivity.editor.apply();
                     }
                 });
@@ -139,16 +141,15 @@ public class TrueFalseFragment extends Fragment {
                     public void onClick(View view) {
                         if (binding.RadioTrue.getText().toString().equals(answer)) {
                             LevelActivity.media_win.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point, R.drawable.good);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
 
                             LevelActivity.CountTrue += 1;
-                            SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountTrue);
-                            SplashActivity.editor.putInt("point",point);
+                            SplashActivity.editor.putInt(LevelActivity.CountTQus, LevelActivity.CountTrue);
+                            SplashActivity.editor.putInt("point", point);
                             SplashActivity.editor.apply();
 
 //                            binding.scoreTrue.setText(point + "");
-
 //                            int sore = SplashActivity.sp.getInt(LevelActivity.Score, 0);
 //                            SplashActivity.editor.putInt(LevelActivity.Score, sore + point);
 //                            int TrueAnswer = SplashActivity.sp.getInt(LevelActivity.CountTQus, 0);
@@ -163,15 +164,15 @@ public class TrueFalseFragment extends Fragment {
                             SplashActivity.editor.putInt(LevelActivity.CountQus, CountQ + 1);
                             SplashActivity.editor.putInt(LevelActivity.CountFQus, FalseAnswer + 1);
                             LevelActivity.media_fail.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("😒🤦‍"+"The Correct Answer is:\n" + hint, 0);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0, R.drawable.bad_luck);
                             myDialog.show(getParentFragmentManager(), "dialogTrue");
 
                             LevelActivity.CountFalse += 1;
-                            SplashActivity.editor.putInt(LevelActivity.CountFQus,LevelActivity.CountFalse);
+                            SplashActivity.editor.putInt(LevelActivity.CountFQus, LevelActivity.CountFalse);
                             SplashActivity.editor.apply();
                         }
                         LevelActivity.CountQ += 1;
-                        SplashActivity.editor.putInt(LevelActivity.CountQus,LevelActivity.CountQ);
+                        SplashActivity.editor.putInt(LevelActivity.CountQus, LevelActivity.CountQ);
                         SplashActivity.editor.apply();
                     }
                 });
@@ -180,13 +181,6 @@ public class TrueFalseFragment extends Fragment {
             @Override
             public void onFinish() {
                 binding.timer.setText("00:00:00");
-                int pager = LevelActivity.binding.LevelPager.getCurrentItem();
-                if (pager != 2) {
-                    LevelActivity.binding.LevelPager.setCurrentItem(pager + 1, true);
-                   LevelActivity.levelAdapterFragment.notifyItemChanged(1);
-                } else {
-                    startActivity(new Intent(getActivity(), StartPlayingActivity.class));
-                }
             }
         }.start();
 

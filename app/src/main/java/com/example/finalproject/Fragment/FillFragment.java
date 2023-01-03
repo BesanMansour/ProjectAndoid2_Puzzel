@@ -101,7 +101,7 @@ public class FillFragment extends Fragment {
                     public void onClick(View view) {
                         if (binding.FillAnswer.getText().toString().equals(answerFill)) {
                             LevelActivity.media_win.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point,R.drawable.good);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
 //                            binding.score.setText(String.valueOf(TueFalsePoint + ChoosePoint + point));
@@ -115,7 +115,7 @@ public class FillFragment extends Fragment {
                             fillScore.FillQ(point);
                         } else {
                             LevelActivity.media_fail.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0,R.drawable.bad_luck);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
                             LevelActivity.CountFalse+=1;
@@ -131,13 +131,6 @@ public class FillFragment extends Fragment {
             @Override
             public void onFinish() {
                 binding.timer.setText("00:00:00");
-                int pager = LevelActivity.binding.LevelPager.getCurrentItem();
-                if (pager != 2) {
-                    LevelActivity.binding.LevelPager.setCurrentItem(pager + 1, true);
-                    LevelActivity.levelAdapterFragment.notifyItemChanged(1);
-                } else {
-                    startActivity(new Intent(getActivity(), StartPlayingActivity.class));
-                }
             }
         }.start();
         return binding.getRoot();

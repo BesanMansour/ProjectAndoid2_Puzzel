@@ -4,73 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/red_light"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".Activity.ProfileActivity"
-    android:background="@color/red_light">
+    tools:context=".Activity.ProfileActivity">
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
-        android:layout_marginTop="@dimen/_50sdp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:layout_marginTop="@dimen/_50sdp">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ProfileUser"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:hint="@string/profile_user"
-            android:drawableLeft="@drawable/ic_user_svgrepo_com__3_"
+            android:drawableLeft="@drawable/user"
             android:drawablePadding="@dimen/_7sdp"
-            android:inputType="textPersonName"
             android:ems="10"
+            android:hint="@string/profile_user"
+            android:inputType="textPersonName"
             android:padding="@dimen/_7sdp"
-            android:textSize="@dimen/_13ssp"/>
+            android:textSize="@dimen/_13ssp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:layout_height="@dimen/_60sdp">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ProfileEmail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:drawableLeft="@drawable/ic_email_svgrepo_com"
+            android:drawableLeft="@drawable/email"
             android:drawablePadding="@dimen/_7sdp"
             android:ems="10"
             android:hint="@string/profile_email"
             android:inputType="textEmailAddress"
             android:padding="@dimen/_7sdp"
-            android:textSize="@dimen/_13ssp"/>
+            android:textSize="@dimen/_13ssp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
-        android:hint="@string/profile_country"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+        android:hint="@string/profile_country">
+
         <AutoCompleteTextView
             android:id="@+id/ProfileCountry"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:inputType="none"
-            android:textSize="@dimen/_13ssp"/>
+            android:textSize="@dimen/_13ssp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:layout_height="@dimen/_60sdp">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ProfileBirth"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
+            android:drawableLeft="@drawable/date"
+            android:drawablePadding="@dimen/_7sdp"
             android:hint="@string/profile_birth"
             android:padding="10dp"
-            android:drawableLeft="@drawable/ic_date_svgrepo_com"
-            android:drawablePadding="@dimen/_7sdp"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13ssp"/>
+            android:textSize="@dimen/_13ssp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
@@ -84,11 +88,11 @@
             android:id="@+id/ProfileMale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_20sdp"
             android:layout_weight="1"
             android:text="@string/profile_male"
-            android:textSize="@dimen/_13ssp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp" />
 
         <RadioButton
             android:id="@+id/ProfileFemale"
@@ -107,17 +111,17 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_margin="@dimen/_20sdp"
         android:background="@drawable/home_btn"
+        android:text="@string/profile_save"
         android:textAllCaps="false"
-        android:textSize="@dimen/_15ssp"
         android:textColor="@color/white"
-        android:text="@string/profile_save" />
+        android:textSize="@dimen/_15ssp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/red"
-        android:padding="@dimen/_16sdp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/_16sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -128,18 +132,18 @@
                 android:id="@+id/tv_CQ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/count_ques"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_13ssp"
-                android:text="@string/count_ques"/>
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:id="@+id/tv_CountQ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_100sdp"
-                android:textSize="@dimen/_16ssp"
+                android:text="TextView"
                 android:textColor="@color/white"
-                android:text="TextView" />
+                android:textSize="@dimen/_16ssp" />
         </LinearLayout>
 
         <LinearLayout
@@ -153,18 +157,18 @@
                 android:id="@+id/tv_CTQ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_13ssp"
+                android:text="@string/count_true"
                 android:textColor="@color/white"
-                android:text="@string/count_true" />
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:id="@+id/tv_countTQ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_52sdp"
-                android:textSize="@dimen/_16ssp"
+                android:text="TextView"
                 android:textColor="@color/white"
-                android:text="TextView" />
+                android:textSize="@dimen/_16ssp" />
         </LinearLayout>
 
         <LinearLayout
@@ -176,19 +180,44 @@
                 android:id="@+id/tv_CQF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/count_false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_13ssp"
-                android:text="@string/count_false" />
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:id="@+id/tv_countF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_62sdp"
-                android:textSize="@dimen/_16ssp"
+                android:text="TextView"
                 android:textColor="@color/white"
-                android:text="TextView" />
+                android:textSize="@dimen/_16ssp" />
         </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_CL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/count_level"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13ssp" />
+
+            <TextView
+                android:id="@+id/tv_CountLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_55sdp"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp" />
+        </LinearLayout>
+
     </LinearLayout>
 
 

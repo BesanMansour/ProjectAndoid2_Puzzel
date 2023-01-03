@@ -66,8 +66,8 @@ public class SplashActivity extends AppCompatActivity {
         SplashActivity.sp.getInt(LevelActivity.CountQus, 0);
         SplashActivity.sp.getInt(LevelActivity.CountTQus, 0);
         SplashActivity.sp.getInt(LevelActivity.CountFQus, 0);
-        SplashActivity.sp.getInt("levelScore", 0);
-        Toast.makeText(this, "scoreSplash " + SplashActivity.sp.getInt("levelScore", 0), Toast.LENGTH_SHORT).show();
+        SplashActivity.sp.getInt(LevelActivity.CountLevel, 0);
+//        SplashActivity.sp.getInt("new_score", 0);
     }
 
     public void jobService() {
@@ -83,6 +83,7 @@ public class SplashActivity extends AppCompatActivity {
         jobScheduler.schedule(jobInfo);
     }
 }
+
 //TODO: عند الخروج من التطبيق والعودة مرة أخرى يجب العودة لنفس اللغز الذي توقف عنده
 //المستخدم.
 

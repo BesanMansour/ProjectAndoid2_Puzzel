@@ -10,52 +10,52 @@
         "answer_2": "",
         "answer_3": "",
         "answer_4": "",
-        "true_answer": "false",
-        "points": 3,
+        "true_answer": "true",
+        "points": 2,
         "duration": 10000,
         "pattern": {
           "pattern_id": 1,
           "pattern_name": "True of False"
         },
-        "hint": "besan"
+        "hint": "noooo"
       },
       {
         "id": 2,
-        "title": "عاصمة أثيوبيا هي",
-        "answer_1": "أديس أبابا",
-        "answer_2": "جامايكا",
-        "answer_3": "كوالالمبور",
-        "answer_4": "دبلن",
-        "true_answer": "أديس أبابا",
-        "points": 2,
+        "title": "أول شهيد في الاسلام",
+        "answer_1": "علي بن ابي طالب",
+        "answer_2": "الحارث بن ابي هالة",
+        "answer_3": "سعد بن ابي وقاص",
+        "answer_4": "حمزة بن عبد المطلب",
+        "true_answer": "الحارث بن ابي هالة",
+        "points": 1,
         "duration": 15000,
         "pattern": {
           "pattern_id": 2,
           "pattern_name": "Choose the correct answer"
         },
-        "hint": "عاصمة أثيوبيا هي أديس أبابا"
+        "hint": "الحارث بن أبي هالة أول شهيد في الاسلام"
       },
       {
         "id": 3,
-        "title": "الكوكب الأحمر هو كوكب",
+        "title": "ما هي السورة التي بدأت وانتهت بالتسبيح؟",
         "answer_1": "",
         "answer_2": "",
         "answer_3": "",
         "answer_4": "",
-        "true_answer": "المريخ",
-        "points": 1,
+        "true_answer": "الحشر",
+        "points": 5,
         "duration": 20000,
         "pattern": {
           "pattern_id": 3,
           "pattern_name": "Fill the answer"
         },
-        "hint": "الكوكب الأحمر هو كوكب المريخ"
+        "hint": "سورة الحشر هي السورة التي بدأت وانتهت بالتسبيح"
       }
     ]
   },
   {
     "level_no": 2,
-    "unlock_points": 6,
+    "unlock_points": 5,
     "questions": [
       {
         "id": 4,
@@ -65,7 +65,7 @@
         "answer_3": "",
         "answer_4": "",
         "true_answer": "true",
-        "points": 5,
+        "points": 2,
         "duration": 10000,
         "pattern": {
           "pattern_id": 1,
@@ -75,13 +75,68 @@
       },
       {
         "id": 5,
-        "title": "يسمى صغير الضفدع",
-        "answer_1": "دنغل",
-        "answer_2": "شرغوف",
-        "answer_3": "يرقة",
-        "answer_4": "كوالا",
-        "true_answer": "شرغوف",
-        "points": 4,
+        "title": "كم يبلغ عدد الكواكب في المجموعة الشمسية؟",
+        "answer_1": "4 كواكب",
+        "answer_2": "3 كواكب",
+        "answer_3": "8 كواكب",
+        "answer_4": "10 كواكب",
+        "true_answer": "8 كواكب",
+        "points": 1,
+        "duration": 15000,
+        "pattern": {
+          "pattern_id": 2,
+          "pattern_name": "Choose the correct answer"
+        },
+        "hint": "عدد كواكب المجموعة الشمسية هو 8 كواكب"
+      },
+      {
+        "id": 6,
+        "title": "أقرب كوكب الى الشمس",
+        "answer_1": "",
+        "answer_2": "",
+        "answer_3": "",
+        "answer_4": "",
+        "true_answer": "عطارد",
+        "points": 1,
+        "duration": 20000,
+        "pattern": {
+          "pattern_id": 3,
+          "pattern_name": "Fill the answer"
+        },
+        "hint": "عطارد هو أقرب كوكب الى الشمس "
+      }
+    ]
+  },
+
+  {
+    "level_no": 3,
+    "unlock_points": 10,
+    "questions": [
+      {
+        "id": 7,
+        "title": "عاصمة دولة فرنسا مارسيليا",
+        "answer_1": "",
+        "answer_2": "",
+        "answer_3": "",
+        "answer_4": "",
+        "true_answer": "false",
+        "points": 2,
+        "duration": 10000,
+        "pattern": {
+          "pattern_id": 1,
+          "pattern_name": "True of False"
+        },
+        "hint": "عاصمة دولة فرنسا هي باريس"
+      },
+      {
+        "id": 8,
+        "title": "ما هي عاصمة جمهورية مصر العربية؟",
+        "answer_1": "الاسكندرية",
+        "answer_2": "جدة",
+        "answer_3": "الأقصر",
+        "answer_4": "القاهرة",
+        "true_answer": "القاهرة",
+        "points": 1,
         "duration": 15000,
         "pattern": {
           "pattern_id": 2,
@@ -90,14 +145,69 @@
         "hint": "صغير الضفدع هو الشرغوف"
       },
       {
-        "id": 6,
+        "id": 9,
+        "title": "ما هي العملة الرسمية في اليونان؟",
+        "answer_1": "",
+        "answer_2": "",
+        "answer_3": "",
+        "answer_4": "",
+        "true_answer": "اليورو",
+        "points": 5,
+        "duration": 20000,
+        "pattern": {
+          "pattern_id": 3,
+          "pattern_name": "Fill the answer"
+        },
+        "hint": "اليورو هو العملة الرسمية في اليونان"
+      }
+    ]
+  },
+
+  {
+    "level_no": 4,
+    "unlock_points": 15,
+    "questions": [
+      {
+        "id": 10,
+        "title": "عدد عيون النحلة هو 4 عيون",
+        "answer_1": "",
+        "answer_2": "",
+        "answer_3": "",
+        "answer_4": "",
+        "true_answer": "false",
+        "points": 2,
+        "duration": 10000,
+        "pattern": {
+          "pattern_id": 1,
+          "pattern_name": "True of False"
+        },
+        "hint": "عدد عيون النحلة هو 5 عيون"
+      },
+      {
+        "id": 11,
+        "title": "يسمى صغير الضفدع",
+        "answer_1": "دنغل",
+        "answer_2": "شرغوف",
+        "answer_3": "يرقة",
+        "answer_4": "كوالا",
+        "true_answer": "شرغوف",
+        "points": 1,
+        "duration": 15000,
+        "pattern": {
+          "pattern_id": 2,
+          "pattern_name": "Choose the correct answer"
+        },
+        "hint": "صغير الضفدع هو الشرغوف"
+      },
+      {
+        "id": 12,
         "title": "تعتبر ال....... هي أسرع المخلوقات البحرية",
         "answer_1": "",
         "answer_2": "",
         "answer_3": "",
         "answer_4": "",
         "true_answer": "التونة",
-        "points": 1,
+        "points": 5,
         "duration": 20000,
         "pattern": {
           "pattern_id": 3,

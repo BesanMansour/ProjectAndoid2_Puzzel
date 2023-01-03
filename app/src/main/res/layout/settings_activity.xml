@@ -24,7 +24,7 @@
             android:id="@+id/SettingImgSound"
             android:layout_width="@dimen/_45sdp"
             android:layout_height="@dimen/_45sdp"
-            android:src="@drawable/splash"
+            android:src="@drawable/sound_on"
             android:gravity="center"
             android:layout_gravity="center"/>
 

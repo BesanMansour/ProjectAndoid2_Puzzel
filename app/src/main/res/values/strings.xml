@@ -24,6 +24,7 @@
     <string name="count_true">Count True Question</string>
     <string name="count_ques">Count Question</string>
     <string name="count_false">Count False Question</string>
+    <string name="count_level">Count Level completed</string>
     <string name="profile_email">Email</string>
     <string name="profile_country">Country</string>
     <string name="profile_birth">Birthday</string>

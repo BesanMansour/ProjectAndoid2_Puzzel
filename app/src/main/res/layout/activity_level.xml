@@ -61,20 +61,22 @@
         android:layout_marginLeft="@dimen/_10sdp"
         android:id="@+id/LevelPager"/>
 
-    <ImageView
-        android:id="@+id/LevelNext"
-        android:layout_width="@dimen/_45sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/_25sdp"
-        app:srcCompat="@drawable/next" />
+<!--    <ImageView-->
+<!--        android:id="@+id/LevelNext"-->
+<!--        android:layout_width="@dimen/_45sdp"-->
+<!--        android:layout_height="@dimen/_45sdp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_margin="@dimen/_25sdp"-->
+<!--        app:srcCompat="@drawable/next" />-->
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:layout_marginTop="@dimen/_50sdp"
         android:layout_marginEnd="@dimen/_30sdp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/LinearSkip">
 
         <TextView
             android:layout_width="wrap_content"

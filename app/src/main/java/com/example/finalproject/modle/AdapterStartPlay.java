@@ -58,11 +58,10 @@ public class AdapterStartPlay extends RecyclerView.Adapter<AdapterStartPlay.Game
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int score = SplashActivity.sp.getInt("levelScore", 0);
+                int score = SplashActivity.sp.getInt("new_score", 0);
 
-                Toast.makeText(context, "score"+score, Toast.LENGTH_SHORT).show();//5
-                Toast.makeText(context, "countPoint"+levelArrayList.get(holder.getAdapterPosition()).getCountPoint(), Toast.LENGTH_SHORT).show();//6
-                Log.d("countPoint",levelArrayList.get(holder.getAdapterPosition()).getCountPoint()+"");
+//                Toast.makeText(context, "score"+score, Toast.LENGTH_SHORT).show();//5
+//                Toast.makeText(context, "countPoint"+levelArrayList.get(holder.getAdapterPosition()).getCountPoint(), Toast.LENGTH_SHORT).show();//6
                 if (score >= levelArrayList.get(holder.getAdapterPosition()).getCountPoint()) {
                     listener.onClick(level.getId());
                     holder.lock.setVisibility(View.GONE);
@@ -70,8 +69,9 @@ public class AdapterStartPlay extends RecyclerView.Adapter<AdapterStartPlay.Game
                 } else {
                     holder.lock.setVisibility(View.VISIBLE);
                     holder.unlock.setVisibility(View.GONE);
-                    Toast.makeText(context, "must br have a same scour or highest", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "must be have a same score or highest", Toast.LENGTH_SHORT).show();
                 }
+                SplashActivity.sp.getInt(LevelActivity.PAGE,0);
             }
         });
 

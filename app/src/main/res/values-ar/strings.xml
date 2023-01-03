@@ -25,6 +25,7 @@
     <string name="count_true">عدد الاسئلة الصحيحة</string>
     <string name="count_ques">عدد الاسئلة</string>
     <string name="count_false">عد الاسئلة الخاطئة</string>
+    <string name="count_level">عدد المراحل التي أنهاها</string>
     <string name="profile_email">الايميل</string>
     <string name="profile_country">الدولة</string>
     <string name="profile_birth">تاريخ الميلاد</string>

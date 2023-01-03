@@ -45,19 +45,21 @@ import RoomDatabase.ViewModel;
 public class LevelActivity extends AppCompatActivity implements TrueFalseFragment.trueScore, ChooseFragment.chooseScore, FillFragment.fillScore {
     public static ActivityLevelBinding binding;
     public static ArrayList<Fragment> fragments;
-    public static MediaPlayer media_fail;
-    public static MediaPlayer media_win;
+    public static MediaPlayer media_fail,media_win;
    public static LevelAdapterFragment levelAdapterFragment;
     public static final String CountQus = "CountQ";
     public static final String CountLevel = "CountLevel";
     public static final String CountTQus = "CountTQ";
     public static final String CountFQus = "CountFQ";
     public static final String Score = "Score";
+    public static final String PAGE = "page";
     public static int CountTrue;
     public static int CountFalse;
     public static int CountQ;
+    public static int Count_level;
     int levelScore;
-    int scoreShared;
+    int new_score;
+    int page;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,44 +79,18 @@ public class LevelActivity extends AppCompatActivity implements TrueFalseFragmen
             ParsJson p = new ParsJson(this);
             p.readJson(assetsAr);
         }
-
-        Toast.makeText(this, getApplicationContext().getResources().getConfiguration().locale.getLanguage(), Toast.LENGTH_SHORT).show();
         media_fail = MediaPlayer.create(this, R.raw.fail_sound);
         media_win = MediaPlayer.create(this, R.raw.win_sound);
 
         fragments = new ArrayList<>();
 
-        levelScore += scoreShared;
-        scoreShared = SplashActivity.sp.getInt("levelScore",0);
 
         Intent intent = getIntent();
         int pos = intent.getIntExtra("position", 0);
 
         ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
-        Locale currentLocale = Locale.getDefault();
-//        String languageCode = currentLocale.getLanguage();
-//        String language= getResources().getConfiguration().locale.getDisplayLanguage();
 
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//        } else {
-//
-//        }
-//        binding.LevelScore.setText(sp.getInt("Score", 0)+"");
-        binding.LevelTV.setText("المجموعة \n"+pos);
-
-//        TextView tv = findViewById(R.id.scoreTrue);
-//        int true_false = sp.getInt("Score",0);
-//
-//        Log.d("true_false", true_false + "");
-//        Toast.makeText(this, true_false + "", Toast.LENGTH_SHORT).show();
-//        TrueFalseFragment.binding.scoreTrue.setText(true_false + "");
-
-//        Log.d("scoreLevel", SplashActivity.sp.getInt("levelScore",0)+ "");
-//        scoreShared = SplashActivity.sp.getInt("levelScore",0);
-//        levelScore += scoreShared;
-////        scoreShared = AdapterStartPlay.score;
-//        binding.LevelScore.setText(levelScore+ "/6 \n"+"Marks");
+        binding.LevelTV.setText("Level \n"+pos);
 
         viewModel.getQuestion(pos).observe(this, new Observer<List<Mystery>>() {
             @Override
@@ -153,9 +129,30 @@ public class LevelActivity extends AppCompatActivity implements TrueFalseFragmen
                 }
             }
         });
+        if (SplashActivity.sp.getInt("new_score",0)==8){
+            SplashActivity.editor.putInt(CountLevel,SplashActivity.sp.getInt("new_score",0));
+            SplashActivity.editor.apply();
+            Toast.makeText(this, SplashActivity.sp.getInt("new_score",0)+"", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+        }
         binding.LevelPager.setUserInputEnabled(false);
-
-        binding.LevelNext.setOnClickListener(new View.OnClickListener() {
+//        binding.LevelNext.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Toast.makeText(getBaseContext(), binding.LevelPager.getCurrentItem()+"", Toast.LENGTH_SHORT).show();
+//                page = binding.LevelPager.getCurrentItem();
+//                if (page != 2) {
+//                    binding.LevelPager.setCurrentItem(page + 1, true);
+//                    levelAdapterFragment.notifyItemChanged(1);
+//                } else {
+//                    startActivity(new Intent(LevelActivity.this, StartPlayingActivity.class));
+//                }
+//
+//            }
+//        });
+        binding.LinearSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int pager = binding.LevelPager.getCurrentItem();
@@ -165,60 +162,40 @@ public class LevelActivity extends AppCompatActivity implements TrueFalseFragmen
                 } else {
                     startActivity(new Intent(LevelActivity.this, StartPlayingActivity.class));
                 }
+                levelScore=levelScore-3;
+
             }
         });
-        binding.LevelSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int pager = binding.LevelPager.getCurrentItem();
-                if (pager != 2) {
-                    binding.LevelPager.setCurrentItem(pager + 1, true);
-                    levelAdapterFragment.notifyItemChanged(1);
-                    levelScore = levelScore-3;
-                } else {
-                    levelScore = levelScore-3;
-                    startActivity(new Intent(LevelActivity.this, StartPlayingActivity.class));
-                }
-            }
-        });
-
-
     }
 
     @Override
     public void TFQ(int score) {
         levelScore = score;
-        SplashActivity.editor.putInt("levelScore", levelScore);
-        SplashActivity.editor.apply();
-//        scoreShared = SplashActivity.sp.getInt("levelScore",0);
-//        levelScore += scoreShared;
-//        scoreShared = AdapterStartPlay.score;
-//        binding.LevelScore.setText(levelScore+ "/6 \n"+"Marks");
-        binding.LevelScore.setText(levelScore + "/6 \n"+"Marks");
+        binding.LevelScore.setText(levelScore + "/8 \n"+"Marks");
 
     }
 
     @Override
     public void ChQ(int score) {
         levelScore += score;
-        SplashActivity.editor.putInt("levelScore", levelScore);
-        SplashActivity.editor.apply();
-//        scoreShared = SplashActivity.sp.getInt("levelScore",0);
-//        levelScore += scoreShared;
-        //        scoreShared = AdapterStartPlay.score;
-//        binding.LevelScore.setText(levelScore+ "/6 \n"+"Marks");
-        binding.LevelScore.setText(levelScore + "/6 \n"+"Marks");
+        binding.LevelScore.setText(levelScore + "/8 \n"+"Marks");
     }
 
     @Override
     public void FillQ(int score) {
         levelScore += score;
-        SplashActivity.editor.putInt("levelScore", levelScore);
+        binding.LevelScore.setText(levelScore + "/8 \n"+"Marks");
+        new_score = levelScore;
+        SplashActivity.editor.putInt("new_score",new_score);
         SplashActivity.editor.apply();
-//        scoreShared = SplashActivity.sp.getInt("levelScore",0);
-//        levelScore += scoreShared;
-//        scoreShared = AdapterStartPlay.score;
-//        binding.LevelScore.setText(levelScore+ "/6 \n"+"Marks");
-        binding.LevelScore.setText(levelScore + "/6 \n"+"Marks");
+        Toast.makeText(LevelActivity.this, "new_scoreFill "+new_score, Toast.LENGTH_SHORT).show();//8
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        SplashActivity.editor.putInt(PAGE,page);
+        SplashActivity.editor.apply();
+        Toast.makeText(this, "done", Toast.LENGTH_SHORT).show();
     }
 }

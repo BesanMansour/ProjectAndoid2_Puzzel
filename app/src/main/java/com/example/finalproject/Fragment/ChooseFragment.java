@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.finalproject.Activity.LevelActivity;
 import com.example.finalproject.Activity.SplashActivity;
 import com.example.finalproject.Activity.StartPlayingActivity;
+import com.example.finalproject.R;
 import com.example.finalproject.databinding.FragmentChooseBinding;
 import com.example.finalproject.modle.ListenerScore;
 import com.example.finalproject.modle.MyDialog;
@@ -126,7 +127,7 @@ public class ChooseFragment extends Fragment {
                         if (answer1) {
                             LevelActivity.media_win.start();
 
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point,R.drawable.good);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
@@ -139,7 +140,7 @@ public class ChooseFragment extends Fragment {
                             chooseScore.ChQ(point);
                         } else {
                             LevelActivity.media_fail.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0,R.drawable.bad_luck);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
                             LevelActivity.CountFalse+=1;
@@ -157,7 +158,7 @@ public class ChooseFragment extends Fragment {
                         if (answer2) {
                             LevelActivity.media_win.start();
 
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point, R.drawable.good);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
                             LevelActivity.CountTrue+=1;
@@ -173,7 +174,7 @@ public class ChooseFragment extends Fragment {
                         } else {
                             LevelActivity.media_fail.start();
 
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0,R.drawable.bad_luck);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
                             LevelActivity.CountFalse+=1;
@@ -190,7 +191,7 @@ public class ChooseFragment extends Fragment {
                     public void onClick(View view) {
                         if (answer3) {
                             LevelActivity.media_win.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point,R.drawable.good);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
@@ -204,7 +205,7 @@ public class ChooseFragment extends Fragment {
                         } else {
                             LevelActivity.media_fail.start();
 
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0,R.drawable.bad_luck);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
                             LevelActivity.CountFalse+=1;
                             SplashActivity.editor.putInt(LevelActivity.CountTQus,LevelActivity.CountFalse );
@@ -220,7 +221,7 @@ public class ChooseFragment extends Fragment {
                     public void onClick(View view) {
                         if (answer4) {
                             LevelActivity.media_win.start();
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("Good", point,R.drawable.good);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 //                            binding.score.setText(String.valueOf(TueFalsePoint + point));
 
@@ -234,7 +235,7 @@ public class ChooseFragment extends Fragment {
                         } else {
                             LevelActivity.media_fail.start();
 
-                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0);
+                            MyDialog myDialog = MyDialog.newInstanceDialogTrue("The Correct Answer is:\n" + hint, 0,R.drawable.bad_luck);
                             myDialog.show(getActivity().getSupportFragmentManager(), "dialogTrue");
 
                             LevelActivity.CountFalse+=1;
@@ -250,13 +251,6 @@ public class ChooseFragment extends Fragment {
             @Override
             public void onFinish() {
                 binding.timer.setText("00:00:00");
-                int pager = LevelActivity.binding.LevelPager.getCurrentItem();
-                if (pager != 2) {
-                    LevelActivity.binding.LevelPager.setCurrentItem(pager + 1, true);
-                    LevelActivity.levelAdapterFragment.notifyItemChanged(1);
-                } else {
-                    startActivity(new Intent(getActivity(), StartPlayingActivity.class));
-                }
             }
         }.start();
         return binding.getRoot();

@@ -45,6 +45,7 @@ dependencies {
     //datePicker
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
 
+
     // تعدد احجام الشاشة
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'

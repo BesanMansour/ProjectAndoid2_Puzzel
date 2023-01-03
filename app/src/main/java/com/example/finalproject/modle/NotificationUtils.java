@@ -33,12 +33,12 @@ public class NotificationUtils {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder
                 (context, CHANNEL_ID);
-        builder.setSmallIcon(R.drawable.ic_baseline_add_circle_24)
-                .setContentTitle("ألغاز")
-                .setContentText("text")
+        builder.setSmallIcon(R.drawable.logo)
+                .setContentTitle("PuzzleGame")
+                .setContentText("PuzzleGame")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText("هيا تعال وأكمل رحالتك في اللعبة!"))
-                .addAction(R.drawable.ic_baseline_close_24, "العب الان", pi);
+                .setStyle(new NotificationCompat.BigTextStyle().bigText("هيا تعال وأكمل رحلتك في اللعبة!"))
+                .addAction(R.drawable.logo, "العب الان", pi);
 
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(context);
         managerCompat.notify(1, builder.build());

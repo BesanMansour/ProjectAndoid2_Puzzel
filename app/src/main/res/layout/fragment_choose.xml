@@ -20,12 +20,15 @@
 
     <TextView
         android:id="@+id/ChooseTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_20ssp"
         android:textColor="@color/black"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_80sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:gravity="center"
         android:text="@string/frag_title"
         android:layout_marginBottom="@dimen/_18sdp"/>
 

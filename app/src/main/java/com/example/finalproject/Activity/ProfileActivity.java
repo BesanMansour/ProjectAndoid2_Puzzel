@@ -116,6 +116,8 @@ public class ProfileActivity extends AppCompatActivity {
         binding.tvCountQ.setText(SplashActivity.sp.getInt(LevelActivity.CountQus, 0) + "");
         binding.tvCountF.setText(SplashActivity.sp.getInt(LevelActivity.CountFQus, 0) + "");
         binding.tvCountTQ.setText(SplashActivity.sp.getInt(LevelActivity.CountTQus, 0) + "");
+        binding.tvCountLevel.setText(SplashActivity.sp.getInt(LevelActivity.CountLevel, 0) + "");
+        Toast.makeText(this, "countLevelProfile "+SplashActivity.sp.getInt(LevelActivity.CountLevel, 0), Toast.LENGTH_SHORT).show();
     }
     public static boolean isValidEmail(CharSequence target) {
         if (target == null) {
